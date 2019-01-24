@@ -1,0 +1,138 @@
+﻿@model Elmarknad.Models.ViewModels.ListSearchResultViewModel
+
+@{
+    ViewBag.Title = "Lägsta priset i ditt område";
+    int antalAvtal = Model.Clients.Count + Model.Scraped.Count;
+}
+<div class="col-xs-10 center-block" style="background-color: #f7f7f7 !important; margin-top: 1%; margin-bottom: 1%;">
+    <h2 class="text-center" style="color: #1b5b82;">Visar alla elavtal med postnummer @Model.Postnummer</h2>
+    <div class="col-lg-offset-2 col-md-10">
+        <div class="col-md-4" style="margin: 2%;">
+            <input type="text" class="form-control" placeholder="Sök efter Elbolag...." />
+        </div>
+        <div class="col-md-4" style="margin: 2%;">
+            @Html.DropDownListFor(m => m.Typ, Model.TypList, new { @class = "form-control" })
+        </div>
+        <div class="col-md-4" style="margin: 2%;">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Pris
+                </label>
+                <label class="btn btn-secondary" id="rating">
+                    <input type="radio" name="options" id="option2" autocomplete="off"> Betyg
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="col-xs-10">
+
+    <table class="table table-striped">
+        <thead style="background-color: #1b5b82;">
+            <tr>
+                <th scope="col" style="color: #fff;">Elbolag</th>
+                <th scope="col" style="color: #fff;">Vilkor</th>
+                <th scope="col" style="color: #fff;">Om Avtalet</th>
+                <th scope="col" style="color: #fff;">Betyg</th>
+                <th scope="col" style="color: #fff;">Pris</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Clients)
+            {
+                <tr class="to-hide-client">
+                    <td>
+                        <ul style="list-style: none">
+                            <li><img src="../@item.Image" class="img-responsive" style="width: 15%;" /></li>
+                            <li>@item.Company</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Avtalstyp: @Model.Typ</li>
+                            <li>Avtalstid: 12 månader</li>
+                            <li>Uppsägningstid: @item.Uppsägningstid</li>
+                        </ul>
+                    </td>
+                    <td>
+                        @item.Contract
+                    </td>
+                    <td>
+                        @item.Rating
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                    <td>
+                        @Html.ActionLink("Teckna avtal", "", "", new { @class = "btn btn-primary", @style = "background-color: #f07451 !important;" })
+                    </td>
+                </tr>
+            }
+            @foreach (var item in Model.Scraped)
+            {
+                <tr class="to-hide-scrape">
+                    <td>
+                        @item.Company
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Avtalstyp: @Model.Typ</li>
+                            <li>Avtalstid: 12 månader</li>
+                            <li>Uppsägningstid: @item.Uppsägningstid</li>
+                        </ul>
+                    </td>
+                    <td>
+                        @item.Contract
+                    </td>
+                    <td>
+                        @item.Rating
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                    <td>
+                        @Html.ActionLink("Teckna avtal", "some", new { id = item.SearchId }, new { @class = "btn btn-primary", @style = "background-color: #f07451 !important;" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="col-xs-10">
+    <div class="center-block"><button class="btn btn-success center-block" id="show-all" style="margin-bottom: 10%;">Visa Mer <br /> @antalAvtal Avtal </button></div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".to-hide-client:gt(2)").css("display", "none");
+            $(".to-hide-scrape:gt(2)").css("display", "none");
+        });
+
+        $("#show-all").on("click", function () {
+            $(".to-hide-client:gt(2)").fadeToggle(500);
+            $(".to-hide-scrape:gt(2)").fadeToggle(500);;
+            $("#show-all").hide();
+        });
+
+        $("#rating").on("click", function () {
+            var typ = "@Html.Raw(@Model.Typ)";
+            $.ajax({
+                url: "/api/search/rating",
+                type: "Post",
+                data: JSON.stringify([@Model.Förbrukning, typ, @Model.ElId]),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    alert(data.Scraped[0].Company);
+                    
+                },
+                error: function () {
+                    
+                }
+            })
+        });
+    </script>
+}

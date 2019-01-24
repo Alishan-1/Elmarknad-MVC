@@ -1,0 +1,85 @@
+﻿@using Elmarknad.Models.ViewModels
+@model List<ListCustomerViewModel>
+
+@{
+    ViewBag.Title = "Lista Kunder";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<h2>Lista Kunder</h2>
+<ul class="list-group list-inline">
+    <li class="btn btn-link"><span class="glyphicon glyphicon-pencil"></span>@Html.ActionLink("Dagens kunder", "TodaysDeals")</li>
+</ul>
+<div class="col-xs-12">
+    <table class="table table-dark">
+        <tr>
+            <th scope="col">Förnamn</th>
+            <th scope="col">Efternamn</th>
+            <th scope="col">Personnummer</th>
+            <th scope="col">Adress</th>
+            <th scope="col">Postnummer</th>
+            <th scope="col">Stad</th>
+            <th scope="col">Mail</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Firstname
+                </td>
+                <td>
+                    @item.Lastname
+                </td>
+                <td>
+                    @item.SocialSecurity
+                </td>
+                <td>
+                    @item.Address
+                </td>
+                <td>
+                    @item.Postnumber
+                </td>
+                <td>
+                    @item.City
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    <button class="btn btn-danger remove-cust" id="@item.CustomerId">Ta Bort</button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+@section scripts{
+    <script>
+        var targetValue;
+
+        $(".remove-cust").on("click", function (e) {
+            targetValue = e.target.getAttribute("id");
+            $("#warning-cust").modal('show');
+
+        });
+        
+        $("#remove-now").on("click", function () {
+            $("#warning-cust").modal('hide');
+            alert(targetValue);
+            $.ajax({
+                url: "/api/customer/delete",
+                type: "Post",
+                data: JSON.stringify([targetValue]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    location.reload();
+                },
+                error: function () {
+                    alert("Något har gått fel. Kontakta systemadmin!");
+                }
+            })
+        })
+    </script>
+  
+}

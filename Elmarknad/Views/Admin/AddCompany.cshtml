@@ -1,0 +1,49 @@
+﻿@model Elmarknad.Models.ViewModels.ElBolagViewModel
+
+@{
+    ViewBag.Title = "Lägg till";
+    Layout = "_LayoutAdmin.cshtml";
+}
+
+<h2>Elbolag</h2>
+<ul class="list-group list-inline">
+    <li class="btn btn-link"><span class="glyphicon glyphicon-pencil"></span>@Html.ActionLink("Se Elbolag", "EditCompany")</li>
+</ul>
+@using (Html.BeginForm("AddCompany", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="form-horizontal">
+    <h4>Lägg till ett bolag</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Image, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <label class="btn btn-primary" style="margin-top: 5px;">
+                Lägg till bild
+                <input type="file" name="Image" id="Image" class="btn btn-group-sm" hidden style="display: none !important;">
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Spara" />
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

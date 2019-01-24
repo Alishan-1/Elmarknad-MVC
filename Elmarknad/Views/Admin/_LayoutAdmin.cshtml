@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - AdminMode</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Admin", "Index", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Lägg till Elbolag", "AddCompany", "Admin")</li>
+                    <li>@Html.ActionLink("Se Elbolag", "EditCompany", "Admin")</li>
+                    <li>@Html.ActionLink("Lägg till Elavtal", "AddDeal", "Admin")</li>
+                    <li>@Html.ActionLink("Se Elavtal", "DisplayDeals", "Admin")</li>
+                    <li>@Html.ActionLink("Lägg till kund", "AddCustomer", "Admin")</li>
+                    <li>@Html.ActionLink("Se Kunder", "ListCustomers", "Admin")</li>
+                    <li>@Html.ActionLink("Lägg till användare", "Register", "Account")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Admin ElMarknad</p>
+        </footer>
+    </div>
+    <div class="modal fade" id="warning-cust" tabindex="-1" role="dialog" aria-labelledby="warning-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="warning-label">Varning</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Vill du verkligen ta bort användaren?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Ångra</button>
+                    <button type="button" class="btn btn-danger" id="remove-now">Ta Bort</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/datepicker")
+
+</body>
+</html>
