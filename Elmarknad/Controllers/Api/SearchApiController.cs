@@ -31,5 +31,22 @@ namespace Elmarknad.Controllers.Api
             }
 
         }
+        [Route("price")]
+        [HttpPost]
+        public IHttpActionResult FilterByPrice(List<string> items)
+        {
+            try
+            {
+                var model = _Search.FilterByPrice(int.Parse(items[0]), items[1], int.Parse(items[2]));
+
+                return Ok(model);
+            }
+            catch
+            {
+
+                return BadRequest();
+            }
+
+        }
     }
 }

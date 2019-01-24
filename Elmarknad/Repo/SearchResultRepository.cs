@@ -29,8 +29,20 @@ namespace Elmarknad.Repo
            
             var model = new ListSearchResultViewModel();
 
-            model.Clients = GetClients(typ, förbrukning, elId).OrderBy(i => i.Rating).ToList();
-            model.Scraped = GetScraped(typ, förbrukning, elId).OrderBy(i => i.Rating).ToList();
+            model.Clients = GetClients(typ, förbrukning, elId).OrderByDescending(i => i.Rating).ToList();
+            model.Scraped = GetScraped(typ, förbrukning, elId).OrderByDescending(i => i.Rating).ToList();
+            model.Typ = typ;
+            return model;
+        }
+
+        public ListSearchResultViewModel FilterByPrice(int förbrukning, string typ, int elId)
+        {
+
+            var model = new ListSearchResultViewModel();
+
+            model.Clients = GetClients(typ, förbrukning, elId).ToList();
+            model.Scraped = GetScraped(typ, förbrukning, elId).ToList();
+            model.Typ = typ;
             return model;
         }
 
