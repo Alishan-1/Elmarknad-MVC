@@ -11,7 +11,7 @@
             <input type="text" id="search-comp"class="form-control" placeholder="Sök efter Elbolag...." />
         </div>
         <div class="col-md-4" style="margin: 2%;">
-            @Html.DropDownListFor(m => m.Typ, Model.TypList, new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.Typ, Model.TypList, new { @class = "form-control state-changed" })
         </div>
         <div class="col-md-4" style="margin: 2%;">
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -43,11 +43,11 @@
         <tbody>
             @foreach (var item in Model.Clients)
             {
-                <tr class="to-hide-client">
+                <tr class="to-hide-client search-tool">
                     <td>
                         <ul style="list-style: none">
                             <li><img src="../@item.Image" class="img-responsive" style="width: 15%;" /></li>
-                            <li>@item.Company</li>
+                            <li class="comp-name">@item.Company</li>
                         </ul>
                     </td>
                     <td>
@@ -65,14 +65,14 @@
                         @item.Price
                     </td>
                     <td>
-                        @Html.ActionLink("Teckna avtal", "", "", new { @class = "btn btn-primary", @style = "background-color: #f07451 !important;" })
+                        @Html.ActionLink("Teckna avtal", "teckna-kampanjavtal", new { id = item.SearchId }, new { @class = "btn btn-primary", @style = "background-color: #f07451 !important;" })
                     </td>
                 </tr>
             }
             @foreach (var item in Model.Scraped)
             {
-                <tr class="to-hide-scrape">
-                    <td>
+                <tr class="to-hide-scrape search-tool">
+                    <td class="comp-name">
                         @item.Company
                     </td>
                     <td>
@@ -90,7 +90,7 @@
                         @item.Price
                     </td>
                     <td>
-                        @Html.ActionLink("Teckna avtal", "some", new { id = item.SearchId }, new { @class = "btn btn-primary", @style = "background-color: #f07451 !important;" })
+                        @Html.ActionLink("Teckna avtal", "teckna-avtal", new { id = item.SearchId }, new { @class = "btn btn-primary", @style = "background-color: #f07451 !important;" })
                     </td>
                 </tr>
             }
@@ -102,55 +102,79 @@
 </div>
 @section Scripts {
 <script>
+        $(".state-changed").change(function () {
+            var value = $(".state-changed").val();
+            window.location.href = "/Home/Search?Postnummer=" + @Model.Postnummer + "&Förbrukning=" + @Model.Förbrukning +"&Typ=" + value;
+        });
+
         $(document).ready(function () {
             $(".to-hide-client:gt(2)").css("display", "none");
             $(".to-hide-scrape:gt(2)").css("display", "none");
         });
 
-        $("#search-comp").on("keyup", function () {
-        var value = $("#search-comp").val();
-        alert(value);
-        });
+    $("#search-comp").on("keyup", function () {
+        $(".to-hide-client:gt(2)").show();
+        $(".to-hide-scrape:gt(2)").show();;
+        $("#show-all").hide();
+            var value = $("#search-comp").val();
+            if (value.length == 0) {
+                $(".search-tool").show();
+            } else {
 
-        $("#show-all").on("click", function () {
-            $(".to-hide-client:gt(2)").fadeToggle(500);
-            $(".to-hide-scrape:gt(2)").fadeToggle(500);;
-            $("#show-all").hide();
+                $(".search-tool").each(function () {
+                    var element = $(this);
+                    var company = $(this).find(".comp-name").text().toLowerCase().trim();
+                    //alert(company + value)
+                if (!company.startsWith(value)) {
+                    element.hide()
+                }
+
+                });
+            }
+    });
+    
+
+    $("#show-all").on("click", function () {
+        $(".to-hide-client:gt(2)").show();
+        $(".to-hide-scrape:gt(2)").show();;
+        $("#show-all").hide();
         });
 
         $("#price").on("click", function () {
-             var typ = "@Html.Raw(@Model.Typ)";
+            var typ = "@Html.Raw(@Model.Typ)";
+            $("#show-all").hide();
+            $("#search-comp").val("");
             $.ajax({
                 url: "/api/search/price",
                 type: "Post",
                 data: JSON.stringify([@Model.Förbrukning, typ, @Model.ElId]),
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    $("#show-all").hide();
+
                     $(".to-hide-client").remove();
                     $(".to-hide-scrape").remove();
                     for (var i = 0; i < data.Clients.length; i++) {
-                        $(".search-table").append("<tr class='to-hide-client'><td><ul style='list-style: none'>" +
+                        $(".search-table").append("<tr class='to-hide-client search-tool'><td><ul style='list-style: none'>" +
                             "<li><img src=" + "'../" + data.Clients[i].Image + "'" + "class='img-responsive' style='width: 15%;' /></li>" +
-                            "<li>" + data.Clients[i].Company + "</li > </ul></td >" +
+                            "<li class='comp-name'>" + data.Clients[i].Company + "</li > </ul></td >" +
                             "<td><ul><li>Avtalstyp: " + data.Typ + "</li >" +
                             "<li>Avtalstid: 12 månader</li>" +
                             "<li>Uppsägningstid: " + data.Clients[i].Uppsägningstid + "</li>" +
                             "<li>Kundbetyg: " + data.Clients[i].Rating + "</li >" +
                             "</ul></td><td>" + data.Clients[i].Contract + "</td >" +
                             "<td>" + data.Clients[i].Price + "</td ><td>" +
-                            "<a class='btn btn-primary' href='/Home/some/112' style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
+                            "<a class='btn btn-primary' href='/Home/teckna-kampanjavtal/" + data.Clients[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
                     }
 
                     for (var i = 0; i < data.Scraped.length; i++) {
-                        $(".search-table").append("<tr class='to-hide-client'><td>" + data.Scraped[i].Company + "</td >" +
+                        $(".search-table").append("<tr class='to-hide-client search-tool'><td  class='comp-name'>" + data.Scraped[i].Company + "</td >" +
                             "<td><ul><li>Avtalstyp: " + data.Typ + "</li >" +
                             "<li>Avtalstid: 12 månader</li>" +
                             "<li>Uppsägningstid: " + data.Scraped[i].Uppsägningstid + "</li>" +
                             "<li>Kundbetyg: " + data.Scraped[i].Rating + "</li >" +
                             "</ul></td><td>" + data.Scraped[i].Contract + "</td >" +
                             "<td>" + data.Scraped[i].Price + "</td ><td>" +
-                            "<a class='btn btn-primary' href='/Home/some/112' style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
+                            "<a class='btn btn-primary' href='/Home/teckna-avtal/" + data.Scraped[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
                     }
 
                 },
@@ -162,6 +186,7 @@
 
         $("#rating").on("click", function () {
             var typ = "@Html.Raw(@Model.Typ)";
+            $("#search-comp").val("");
             $.ajax({
                 url: "/api/search/rating",
                 type: "Post",
@@ -172,29 +197,29 @@
                     $(".to-hide-client").remove();
                     $(".to-hide-scrape").remove();
                     for (var i = 0; i < data.Clients.length; i++) {
-                        $(".search-table").append("<tr class='to-hide-client'><td><ul style='list-style: none'>" +
+                        $(".search-table").append("<tr class='to-hide-client search-tool'><td><ul style='list-style: none'>" +
                             "<li><img src=" + "'../" + data.Clients[i].Image + "'" + "class='img-responsive' style='width: 15%;' /></li>" +
-                            "<li>" + data.Clients[i].Company + "</li > </ul></td >" +
+                            "<li class='comp-name'>" + data.Clients[i].Company + "</li > </ul></td >" +
                             "<td><ul><li>Avtalstyp: " + data.Typ + "</li >" +
                             "<li>Avtalstid: 12 månader</li>" +
                             "<li>Uppsägningstid: " + data.Clients[i].Uppsägningstid + "</li>" +
                             "<li>Kundbetyg: " + data.Clients[i].Rating + "</li >" +
                             "</ul></td><td>" + data.Clients[i].Contract + "</td >" +
                             "<td>" + data.Clients[i].Price + "</td ><td>" +
-                            "<a class='btn btn-primary' href='/Home/some/112' style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
+                            "<a class='btn btn-primary' href='/Home/teckna-kampanjavtal/" + data.Clients[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
                     }
 
                     for (var i = 0; i < data.Scraped.length; i++) {
-                        $(".search-table").append("<tr class='to-hide-client'><td>" + data.Scraped[i].Company + "</td >" +
+                        $(".search-table").append("<tr class='to-hide-client search-tool'><td class='comp-name'>" + data.Scraped[i].Company + "</td >" +
                             "<td><ul><li>Avtalstyp: " + data.Typ + "</li >" +
                             "<li>Avtalstid: 12 månader</li>" +
                             "<li>Uppsägningstid: " + data.Scraped[i].Uppsägningstid + "</li>" +
                             "<li>Kundbetyg: " + data.Scraped[i].Rating + "</li >" +
                             "</ul></td><td>" + data.Scraped[i].Contract + "</td >" +
                             "<td>" + data.Scraped[i].Price + "</td ><td>" +
-                            "<a class='btn btn-primary' href='/Home/some/112' style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
+                            "<a class='btn btn-primary' href='/Home/teckna-avtal/" + data.Scraped[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
                     }
-                 
+
                 },
                 error: function () {
 
