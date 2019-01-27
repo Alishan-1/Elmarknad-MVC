@@ -6,20 +6,20 @@
     <title>@ViewBag.Title - Elmarknad</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+   
     <meta charset="UTF-8">
 </head>
 <body>
 
     <div class="navbar navbar-dark navbar-fixed-top" style="background-color: #1b5b82;">
-        <div class="container" style="color: #fff; background-color: #1b5b82;"> 
+        <div class="container" style="color: #fff; background-color: #1b5b82;">
             <div class="navbar-header" style="color: #fff; background-color: #1b5b82;">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar" style = "color: #fff !important; background-color: #fff !important;"></span>
-                    <span class="icon-bar" style = "color: #fff !important; background-color: #fff !important;"></span>
-                    <span class="icon-bar" style = "color: #fff !important; background-color: #fff !important;"></span>
+                    <span class="icon-bar" style="color: #fff !important; background-color: #fff !important;"></span>
+                    <span class="icon-bar" style="color: #fff !important; background-color: #fff !important;"></span>
+                    <span class="icon-bar" style="color: #fff !important; background-color: #fff !important;"></span>
                 </button>
-               <a href="~/Home/Index"><img src="~/Images/logo.png" class="img-responsive" style="width: 50%; margin-top: 2%;"/></a>
+                <a href="~/Home/Index"><img src="~/Images/logo.png" class="img-responsive" style="width: 50%; margin-top: 2%;" /></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -34,10 +34,10 @@
 
     <div class="container body-content custom">
         @RenderBody()
-     
-    </div>
 
-        <div class="row " style="background-color: #f7f7f7 !important; padding-top: 1%; padding-bottom: 1%;">
+    </div>
+    <div class="row" style="width: 100% !important;">
+        <div class="row" style="background-color: #f7f7f7 !important; padding-top: 1%; padding-bottom: 1%;">
             <table class="container">
                 <tr style="color: #1b5b82 !important; font-size: 120%;">
                     <th>
@@ -85,15 +85,19 @@
                 </tr>
             </table>
         </div>
-    <footer class="row">
-        <nav class="navbar navbar-dark" style="background-color: #1b5b82;">
-            <div class="container">
-                <p class="text-justify" style="color: #fff; margin-top: 1%; margin-bottom: auto;">Copyright &copy; 2017 Elmarknad.se</p>
+        
+            <div class="row" style="background-color: #1b5b82;">
+                <p class="text-center" style="color: #fff;">Copyright &copy; 2017 Elmarknad.se</p>
             </div>
-        </nav>
-    </footer>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        
+    </div>
+    
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/moment")
+        @Scripts.Render("~/bundles/datepicker")
+
 </body>
 </html>

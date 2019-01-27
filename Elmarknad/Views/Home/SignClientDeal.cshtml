@@ -1,0 +1,279 @@
+﻿@model Elmarknad.Models.ViewModels.SignDealViewModel
+
+@{
+    ViewBag.Title = "Teckna Avtal";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+
+
+        <h2><img src="../../@Model.Image" class="img-responsive" /></h2>
+
+        <h2>@Model.Company</h2>
+        <h3>@Model.Contract</h3>
+        <div class="col-lg-4">
+            <table class="table table-sm">
+                <tr>
+                    <th>Engångsavgift</th>
+                    <td>@Model.Engångsavgift öre/kWh</td>
+                </tr>
+                @if (Model.Fastpris != "0,00")
+                {
+                    <tr>
+                        <th>Fastpris</th>
+                        <td>@Model.Fastpris öre/kWh</td>
+                    </tr>
+                }
+                <tr>
+                    <th>Miljöpåslag</th>
+                    <td>@Model.Miljöpåslag öre/kWh</td>
+                </tr>
+                <tr>
+                    <th>Moms</th>
+                    <td>@Model.Moms öre/kWh</td>
+                </tr>
+                <tr>
+                    <th>Årsavgift</th>
+                    <td>@Model.ÅrsAvgift öre/kWh</td>
+                </tr>
+                @if (Model.RörligtPåslag != "0,00")
+                {
+                    <tr>
+                        <th>Rörligt påslag</th>
+                        <td>@Model.RörligtPåslag öre/kWh</td>
+                    </tr>
+                }
+                @if (Model.RörligtMiljöpåslag != "0,00")
+                {
+                    <tr>
+                        <th>Rörligt miljöpåslag</th>
+                        <td>@Model.RörligtMiljöpåslag öre/kWh</td>
+                    </tr>
+                }
+                @if (Model.RörligtInköpsPris != "0,00")
+                {
+                    <tr>
+                        <th>Rörligt Inköpspris</th>
+                        <td>@Model.RörligtInköpsPris öre/kWh</td>
+                    </tr>
+                }
+                <tr>
+
+                    <th>Totalt kilowattpris</th>
+                    <td>@Model.Price öre/kWh</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-4">
+            <table class="table-responsive table-sm" style="margin: 1%;">
+                <tr>
+                    <th>Autoförlängning</th>
+                    <td>@Model.Automatiskförlängning</td>
+                </tr>
+                <tr>
+                    <th>Elförbrukning</th>
+                    @if (Model.Förbrukning == 2000)
+                    {
+                        <td>0 - 2000 kwh/år</td>
+                    }
+                    else if (Model.Förbrukning == 5000)
+                    {
+                        <td>0 - 5000 kwh/år</td>
+                    }
+                    else
+                    {
+                        <td>0 - 20 000 kwh/år</td>
+                    }
+                </tr>
+                <tr>
+                    <th>Uppsägningstid</th>
+                    <td>@Model.Uppsägningstid</td>
+                </tr>
+                <tr>
+                    <th>Namn på avtal</th>
+                    <td>@Model.ExtraInfo</td>
+                </tr>
+                <tr>
+                    <th>Omteckningsrätt</th>
+                    <td>@Model.Omteckningsrätt</td>
+                </tr>
+                <tr>
+                    <th>Typ av avtal</th>
+                    <td>@Model.Typ</td>
+                </tr>
+                <tr>
+                    <th>Kundbetyg</th>
+                    <td>@Model.Rating</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("TecknaKampanjAvtal", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        @Html.AntiForgeryToken()
+
+        <h4>Teckna avtal</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerInfo.SocialSecurity, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.CustomerInfo.SocialSecurity, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CustomerInfo.SocialSecurity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerInfo.Firstname, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.CustomerInfo.Firstname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CustomerInfo.Firstname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerInfo.Lastname, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.CustomerInfo.Lastname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CustomerInfo.Lastname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerInfo.Address, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.CustomerInfo.Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CustomerInfo.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerInfo.Postnumber, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.CustomerInfo.Postnumber, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CustomerInfo.Postnumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerInfo.City, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.CustomerInfo.City, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CustomerInfo.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerInfo.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.CustomerInfo.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CustomerInfo.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerInfo.LetUsGetInfo, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.CustomerInfo.LetUsGetInfo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CustomerInfo.LetUsGetInfo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerInfo.AreaCode, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.CustomerInfo.AreaCode, new { @class = "form-control disable-prop" })
+                @Html.ValidationMessageFor(m => m.CustomerInfo.AreaCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerInfo.PropertyCode, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.CustomerInfo.PropertyCode, "", new { @class = "form-control disable-prop" })
+                @Html.ValidationMessageFor(m => m.CustomerInfo.PropertyCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerInfo.StartDate, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.CustomerInfo.StartDate, "", new { @class = "form-control disable-prop", @id = "datetimepicker4" })
+                @Html.ValidationMessageFor(m => m.CustomerInfo.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerInfo.Paymentmethod, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.CustomerInfo.Paymentmethod, Model.CustomerInfo.PaymentList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CustomerInfo.Paymentmethod, "", new { @class = "text-danger" })
+                @Html.HiddenFor(m => m.ScrapeId)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.CustomerInfo.HasConfirmed, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.CustomerInfo.HasConfirmed, new { @class = "form-control force-check" })
+                @Html.ValidationMessageFor(m => m.CustomerInfo.HasConfirmed, "", new { @class = "text-danger" })
+                <span class="" style="font-size: 80%;">Jag godkänner <a class="btn-link policy" style="cursor: pointer;">användarvillkoren</a> och att Elmarknad.se <br />inhämtar kompletterande uppgifter från mitt elnätsbolag</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-block btn-success" value="Teckna Avtal" />
+            </div>
+        </div>
+    </div>
+
+}
+<div class="modal fade" id="deal-info" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Användarvillkor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non rhoncus enim, a porta neque. Suspendisse potenti. Nam vel leo ornare turpis gravida consectetur eget in nibh. Phasellus fermentum, odio sed blandit maximus, nulla enim iaculis nisi, sed efficitur quam sem a ante. Praesent tellus elit, semper ut enim eget, malesuada finibus mi. Aliquam commodo felis justo, sed tristique augue ullamcorper eu. Praesent laoreet mollis iaculis. Nam tristique blandit ante, ac fermentum mauris commodo id. Phasellus vel orci sed justo congue facilisis. Pellentesque bibendum sed urna vitae suscipit. Fusce congue metus nec sem dapibus, et sagittis felis aliquam.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+                <button type="button" class="btn btn-primary" id="accept">Godkänn</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            if ($("#CustomerInfo_LetUsGetInfo").is(":checked")) {
+                $(".disable-prop").val("");
+                $(".disable-prop").prop('disabled', true);
+            } else {
+                $(".disable-prop").prop('disabled', false);
+            }
+        });
+        $("#accept").on("click", function () {
+            $('#CustomerInfo_HasConfirmed').prop('checked', true);
+            $('#deal-info').modal('hide');
+        });
+        $(".policy").on("click", function () {
+            $('#deal-info').modal('show')
+        });
+        $("#CustomerInfo_LetUsGetInfo").on("click", function () {
+            if ($(this).is(":checked")) {
+                $(".disable-prop").val("");
+                $(".disable-prop").prop('disabled', true);
+            } else {
+                $(".disable-prop").prop('disabled', false);
+            }
+
+        });
+
+        $(function () {
+            $('#datetimepicker4').datetimepicker({
+                format: 'YYYY/MM/DD'
+            });
+
+        });
+                        //format: 'YYYY/MM/DD'
+    </script>
+}

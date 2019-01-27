@@ -8,10 +8,13 @@
     <h2 class="text-center" style="color: #1b5b82;">Visar alla elavtal med postnummer @Model.Postnummer</h2>
     <div class="col-lg-offset-2 col-md-10">
         <div class="col-md-4" style="margin: 2%;">
-            <input type="text" id="search-comp"class="form-control" placeholder="Sök efter Elbolag...." />
+            <input type="text" id="search-comp" class="form-control" placeholder="Sök efter Elbolag...." />
         </div>
         <div class="col-md-4" style="margin: 2%;">
             @Html.DropDownListFor(m => m.Typ, Model.TypList, new { @class = "form-control state-changed" })
+        </div>
+        <div class="col-md-4" style="margin: 2%;">
+            @Html.DropDownListFor(m => m.Förbrukning, Model.FörbrukningList, new { @class = "form-control state-consumption" })
         </div>
         <div class="col-md-4" style="margin: 2%;">
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -46,7 +49,7 @@
                 <tr class="to-hide-client search-tool">
                     <td>
                         <ul style="list-style: none">
-                            <li><img src="../@item.Image" class="img-responsive" style="width: 15%;" /></li>
+                            <li><img src="../@item.Image" class="img-responsive" style="width: 40%;" /></li>
                             <li class="comp-name">@item.Company</li>
                         </ul>
                     </td>
@@ -65,7 +68,7 @@
                         @item.Price
                     </td>
                     <td>
-                        @Html.ActionLink("Teckna avtal", "teckna-kampanjavtal", new { id = item.SearchId }, new { @class = "btn btn-primary", @style = "background-color: #f07451 !important;" })
+                        @Html.ActionLink("Teckna avtal", "TecknaKampanjAvtal", new { id = item.SearchId }, new { @class = "btn btn-primary", @style = "background-color: #f07451 !important;" })
                     </td>
                 </tr>
             }
@@ -90,7 +93,7 @@
                         @item.Price
                     </td>
                     <td>
-                        @Html.ActionLink("Teckna avtal", "teckna-avtal", new { id = item.SearchId }, new { @class = "btn btn-primary", @style = "background-color: #f07451 !important;" })
+                        @Html.ActionLink("Teckna avtal", "TecknaAvtal", new { id = item.SearchId }, new { @class = "btn btn-primary", @style = "background-color: #f07451 !important;" })
                     </td>
                 </tr>
             }
@@ -105,6 +108,11 @@
         $(".state-changed").change(function () {
             var value = $(".state-changed").val();
             window.location.href = "/Home/Search?Postnummer=" + @Model.Postnummer + "&Förbrukning=" + @Model.Förbrukning +"&Typ=" + value;
+        });
+
+        $(".state-consumption").change(function () {
+            var value = $(".state-consumption").val();
+            window.location.href = "/Home/Search?Postnummer=" + @Model.Postnummer + "&Förbrukning=" + value +"&Typ=" + "@Html.Raw(@Model.Typ)";
         });
 
         $(document).ready(function () {
@@ -163,7 +171,7 @@
                             "<li>Kundbetyg: " + data.Clients[i].Rating + "</li >" +
                             "</ul></td><td>" + data.Clients[i].Contract + "</td >" +
                             "<td>" + data.Clients[i].Price + "</td ><td>" +
-                            "<a class='btn btn-primary' href='/Home/teckna-kampanjavtal/" + data.Clients[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
+                            "<a class='btn btn-primary' href='/Home/tecknakampanjavtal/" + data.Clients[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
                     }
 
                     for (var i = 0; i < data.Scraped.length; i++) {
@@ -174,7 +182,7 @@
                             "<li>Kundbetyg: " + data.Scraped[i].Rating + "</li >" +
                             "</ul></td><td>" + data.Scraped[i].Contract + "</td >" +
                             "<td>" + data.Scraped[i].Price + "</td ><td>" +
-                            "<a class='btn btn-primary' href='/Home/teckna-avtal/" + data.Scraped[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
+                            "<a class='btn btn-primary' href='/Home/tecknaavtal/" + data.Scraped[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
                     }
 
                 },
@@ -206,7 +214,7 @@
                             "<li>Kundbetyg: " + data.Clients[i].Rating + "</li >" +
                             "</ul></td><td>" + data.Clients[i].Contract + "</td >" +
                             "<td>" + data.Clients[i].Price + "</td ><td>" +
-                            "<a class='btn btn-primary' href='/Home/teckna-kampanjavtal/" + data.Clients[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
+                            "<a class='btn btn-primary' href='/Home/tecknakampanjavtal/" + data.Clients[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
                     }
 
                     for (var i = 0; i < data.Scraped.length; i++) {
@@ -217,7 +225,7 @@
                             "<li>Kundbetyg: " + data.Scraped[i].Rating + "</li >" +
                             "</ul></td><td>" + data.Scraped[i].Contract + "</td >" +
                             "<td>" + data.Scraped[i].Price + "</td ><td>" +
-                            "<a class='btn btn-primary' href='/Home/teckna-avtal/" + data.Scraped[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
+                            "<a class='btn btn-primary' href='/Home/tecknaavtal/" + data.Scraped[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
                     }
 
                 },

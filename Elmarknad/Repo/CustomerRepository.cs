@@ -31,6 +31,22 @@ namespace Elmarknad.Repo
         }
 
         public void SaveCustomerAdminModel(AddCustomerAdminViewModel model) {
+            try
+            {
+                if (model.ClientId != null)
+                {
+                    SaveClients(model);
+                }
+                else
+                {
+                    SaveScraped(model);
+                }
+            }
+            catch {
+                throw new Exception();
+            }
+        }
+        private void SaveClients(AddCustomerAdminViewModel model) {
             if (model.LetUsGetInfo)
             {
                 var customer = new Customer
@@ -52,7 +68,8 @@ namespace Elmarknad.Repo
                 db.Customers.Add(customer);
                 db.SaveChanges();
             }
-            else {
+            else
+            {
                 var customer = new Customer
                 {
                     Address = model.Address,
@@ -72,15 +89,65 @@ namespace Elmarknad.Repo
                     StartDate = model.StartDate,
                     PropertyCode = model.PropertyCode
                 };
-              
+
                 db.Customers.Add(customer);
                 db.SaveChanges();
 
             }
-
-
         }
-        
+
+        private void SaveScraped(AddCustomerAdminViewModel model)
+        {
+            if (model.LetUsGetInfo)
+            {
+                var customer = new Customer
+                {
+                    Address = model.Address,
+                    City = model.City,
+                    Email = model.Email,
+                    Firstname = model.Firstname,
+                    IpAdress = model.IpAdress,
+                    Lastname = model.Lastname,
+                    SocialSecurity = model.SocialSecurity,
+                    HasConfirmed = model.HasConfirmed,
+                    Paymentmethod = model.Paymentmethod,
+                    Postnumber = model.Postnumber,
+                    ScrapeId = model.ScrapeId,
+                    LetUsGetInfo = model.LetUsGetInfo,
+                    DaySigned = DateTime.Now
+                };
+                db.Customers.Add(customer);
+                db.SaveChanges();
+            }
+            else
+            {
+                var customer = new Customer
+                {
+                    Address = model.Address,
+                    City = model.City,
+                    DaySigned = DateTime.Now,
+                    Email = model.Email,
+                    Firstname = model.Firstname,
+                    IpAdress = model.IpAdress,
+                    Lastname = model.Lastname,
+                    SocialSecurity = model.SocialSecurity,
+                    HasConfirmed = model.HasConfirmed,
+                    Paymentmethod = model.Paymentmethod,
+                    Postnumber = model.Postnumber,
+                    ScrapeId = model.ScrapeId,
+                    LetUsGetInfo = model.LetUsGetInfo,
+                    AreaCode = model.AreaCode,
+                    StartDate = model.StartDate,
+                    PropertyCode = model.PropertyCode
+                };
+
+                db.Customers.Add(customer);
+                db.SaveChanges();
+
+            }
+        }
+
+
 
         public List<ListCustomerViewModel> GetCustomers() {
             var customers = db.Customers.ToList();

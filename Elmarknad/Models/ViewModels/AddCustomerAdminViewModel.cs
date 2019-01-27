@@ -66,10 +66,10 @@ namespace Elmarknad.Models.ViewModels
         [Display(Name = "Låt oss hämta dina uppgifter")]
         public virtual bool LetUsGetInfo { get; set; } = false;
 
-        
+        public int? ScrapeId { get; set; }
         
 
-        [Required]
+       
         [Display(Name = "Lägg till ett avtal")]
         public virtual int? ClientId { get; set; }
 

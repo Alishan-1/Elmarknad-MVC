@@ -17,7 +17,7 @@ namespace Elmarknad.Repo
 
             model.Clients = GetClients(m.Typ, m.Förbrukning, elId);
             model.Scraped = GetScraped(m.Typ, m.Förbrukning, elId);
-            model.Förbrukning = m.Förbrukning.ToString();
+            model.Förbrukning = m.Förbrukning;
             model.Typ = m.Typ;
             model.ElId = elId;
             model.Postnummer = m.Postnummer.ToString();
