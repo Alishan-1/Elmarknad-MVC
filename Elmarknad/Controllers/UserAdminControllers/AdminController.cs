@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Elmarknad.Controllers
 {
-    [Authorize(Users = "samuel@elmarknad.se, oliwer@elmarknad.se, andreas@elmarknad.se")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private ClientRepository Client = new ClientRepository();

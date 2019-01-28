@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Elmarknad.Controllers
 {
-    [Authorize(Users = "samuel@elmarknad.se")]
+    [Authorize(Roles = "Admin")]
     public class HomeController : Controller
     {
         private SearchResultRepository _searchRepo = new SearchResultRepository();

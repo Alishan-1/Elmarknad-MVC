@@ -26,7 +26,7 @@ namespace Elmarknad.Repo
                 var credential = new NetworkCredential
                 {
                     UserName = "billybolero1@gmail.com",  // replace with valid value
-                    Password = "samuel22"  // replace with valid value
+                    Password = "Samuel22."  // replace with valid value
                 };
                 smtp.Credentials = credential;
                 smtp.Host = "smtp.gmail.com";

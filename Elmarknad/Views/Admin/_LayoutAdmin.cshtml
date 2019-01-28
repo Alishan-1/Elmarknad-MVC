@@ -26,17 +26,18 @@
                             Hantera
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            @Html.ActionLink("Lägg till Elbolag", "AddCompany", "Admin", new { @class = "dropdown-item" })<br />
-                            @Html.ActionLink("Se Elbolag", "EditCompany", "Admin", new { @class = "dropdown-item" })<br />
-                            @Html.ActionLink("Lägg till Elavtal", "AddDeal", "Admin", new { @class = "dropdown-item" })<br />
-                            @Html.ActionLink("Se Elavtal", "DisplayDeals", "Admin", new { @class = "dropdown-item" })<br />
-                            @Html.ActionLink("Lägg till kund", "AddCustomer", "Admin", new { @class = "dropdown-item" })<br />
-                            @Html.ActionLink("Se Kunder", "ListCustomers", "Admin", new { @class = "dropdown-item" })<br />
-                            @Html.ActionLink("Lägg till användare", "Register", "Account", new { @class = "dropdown-item" })
+                            @Html.ActionLink("Lägg till Elbolag", "AddCompany", "Admin")<br />
+                            @Html.ActionLink("Se Elbolag", "EditCompany", "Admin")<br />
+                            @Html.ActionLink("Lägg till Elavtal", "AddDeal", "Admin")<br />
+                            @Html.ActionLink("Se Elavtal", "DisplayDeals", "Admin")<br />
+                            @Html.ActionLink("Lägg till kund", "AddCustomer", "Admin")<br />
+                            @Html.ActionLink("Se Kunder", "ListCustomers", "Admin")<br />
+                            @Html.ActionLink("Lägg till användare", "Register", "Account")
                         </div>
                     </li>
-                    
+
                     <li>@Html.ActionLink("Skicka epost", "", "", new { @class = "dropdown-item" })</li>
+                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

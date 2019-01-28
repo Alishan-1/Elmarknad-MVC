@@ -1,4 +1,5 @@
-﻿using Elmarknad.Models;
+﻿using DatingSida.Models.DBInitilizer;
+using Elmarknad.Models;
 using Elmarknad.Models.Webscrape;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,9 @@ namespace Elmarknad
         protected void Application_Start()
         {
             Database.SetInitializer<DbEl>(new DropCreateDatabaseIfModelChanges<DbEl>());
-
+            Database.SetInitializer(
+            new ApplicationDbContextSeed()
+            );
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

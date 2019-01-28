@@ -221,6 +221,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DbInitilizer\ApplicationDbContextSeed.cs" />
     <Compile Include="Models\UserAdminModels\AccountViewModels.cs" />
     <Compile Include="Models\ViewModels\AddCustomerAdminViewModel.cs" />
     <Compile Include="Models\ViewModels\AddDealViewModel.cs" />
