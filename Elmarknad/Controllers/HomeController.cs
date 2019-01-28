@@ -19,7 +19,7 @@ namespace Elmarknad.Controllers
            
             return View(model);
         }
-
+        #region ShowResult
         [HttpGet]
         public ActionResult Search(SearchViewModel model)
         {
@@ -46,8 +46,12 @@ namespace Elmarknad.Controllers
 
             return View("Index", model);
         }
+        #endregion
 
-        
+        #region SignAgreement
+
+        private EmailRepository _email = new EmailRepository();
+
         public ActionResult TecknaAvtal(int id)
         {
             try
@@ -99,6 +103,7 @@ namespace Elmarknad.Controllers
                 model = m.CustomerInfo;
                 model.IpAdress = Request.UserHostAddress;
                 Customer.SaveCustomerAdminModel(model);
+                _email.SendEmailAsync(m);
                 return RedirectToAction("Thanks");
             }
             var helper = new CustomerDealRepository();
@@ -132,6 +137,7 @@ namespace Elmarknad.Controllers
                 model = m.CustomerInfo;
                 model.IpAdress = Request.UserHostAddress;
                 Customer.SaveCustomerAdminModel(model);
+                _email.SendEmailAsync(m);
                 return RedirectToAction("Thanks");
             }
             var helper = new CustomerDealRepository();
@@ -149,5 +155,6 @@ namespace Elmarknad.Controllers
         {
             return View();
         }
+        #endregion
     }
 }

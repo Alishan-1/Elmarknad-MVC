@@ -248,6 +248,7 @@
     <Compile Include="Repo\CustomerRepository.cs" />
     <Compile Include="Repo\DealRepository.cs" />
     <Compile Include="Repo\ElområdeRepository.cs" />
+    <Compile Include="Repo\EmailRepository.cs" />
     <Compile Include="Repo\ScrapeRepository.cs" />
     <Compile Include="Repo\SearchResultRepository.cs" />
     <Compile Include="Startup.cs" />
@@ -263,6 +264,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Repo\EmailTemplate.html" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />

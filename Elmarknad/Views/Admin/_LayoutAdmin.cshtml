@@ -21,13 +21,22 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Lägg till Elbolag", "AddCompany", "Admin")</li>
-                    <li>@Html.ActionLink("Se Elbolag", "EditCompany", "Admin")</li>
-                    <li>@Html.ActionLink("Lägg till Elavtal", "AddDeal", "Admin")</li>
-                    <li>@Html.ActionLink("Se Elavtal", "DisplayDeals", "Admin")</li>
-                    <li>@Html.ActionLink("Lägg till kund", "AddCustomer", "Admin")</li>
-                    <li>@Html.ActionLink("Se Kunder", "ListCustomers", "Admin")</li>
-                    <li>@Html.ActionLink("Lägg till användare", "Register", "Account")</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Hantera
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @Html.ActionLink("Lägg till Elbolag", "AddCompany", "Admin", new { @class = "dropdown-item" })<br />
+                            @Html.ActionLink("Se Elbolag", "EditCompany", "Admin", new { @class = "dropdown-item" })<br />
+                            @Html.ActionLink("Lägg till Elavtal", "AddDeal", "Admin", new { @class = "dropdown-item" })<br />
+                            @Html.ActionLink("Se Elavtal", "DisplayDeals", "Admin", new { @class = "dropdown-item" })<br />
+                            @Html.ActionLink("Lägg till kund", "AddCustomer", "Admin", new { @class = "dropdown-item" })<br />
+                            @Html.ActionLink("Se Kunder", "ListCustomers", "Admin", new { @class = "dropdown-item" })<br />
+                            @Html.ActionLink("Lägg till användare", "Register", "Account", new { @class = "dropdown-item" })
+                        </div>
+                    </li>
+                    
+                    <li>@Html.ActionLink("Skicka epost", "", "", new { @class = "dropdown-item" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
