@@ -16,7 +16,7 @@ namespace Elmarknad.Repo
             var body = GetEmailTemplate();
             var message = new MailMessage();
             message.To.Add(new MailAddress(model.CustomerInfo.Email));  // replace with valid value 
-            message.From = new MailAddress("billybolero1@gmail.com");  // replace with valid value
+            message.From = new MailAddress("billybolero1@gmail.com", "Elmarknad");  // replace with valid value
             message.Subject = "Tack för att du valt oss";
             message.Body = body;
             message.IsBodyHtml = true;
@@ -42,6 +42,11 @@ namespace Elmarknad.Repo
             string html = File.ReadAllText(path);
             return html;
         }
+
+        private string SerializeToPdf(SignDealViewModel m) {
+            return null;
+        }
+
     }
 }
 

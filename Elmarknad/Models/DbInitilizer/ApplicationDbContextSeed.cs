@@ -62,6 +62,7 @@ namespace DatingSida.Models.DBInitilizer
 
                 usermanager.Create(user);
                 usermanager.AddToRole(user.Id, "Admin");
+                
             }
 
             if (!db.Users.Any(u => u.UserName == "oliwer@elmarknad.se"))
