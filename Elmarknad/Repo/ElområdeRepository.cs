@@ -47,6 +47,7 @@ namespace Elmarknad.Repo
                                     ElområdeId = el1.ElområdeId
                                 };
                                 db.Postnummers.Add(postnummer);
+                                db.SaveChanges();
                                 continue;
                             }
 
@@ -58,6 +59,7 @@ namespace Elmarknad.Repo
                                     ElområdeId = el2.ElområdeId
                                 };
                                 db.Postnummers.Add(postnummer);
+                                db.SaveChanges();
                                 continue;
                             }
 
@@ -69,6 +71,7 @@ namespace Elmarknad.Repo
                                     ElområdeId = el3.ElområdeId
                                 };
                                 db.Postnummers.Add(postnummer);
+                                db.SaveChanges();
                                 continue;
                             }
 
@@ -80,6 +83,7 @@ namespace Elmarknad.Repo
                                     ElområdeId = el4.ElområdeId
                                 };
                                 db.Postnummers.Add(postnummer);
+                                db.SaveChanges();
                                 continue;
                             }
 

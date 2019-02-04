@@ -26,7 +26,7 @@
                     <li>@Html.ActionLink("Jämför Elpriser", "Index", "Home", new { @style = "color: #fff !important; background-color: #1b5b82 !important;" })</li>
                     <li>@Html.ActionLink("Så går det till", "Index", "Admin", new { @style = "color: #fff !important; background-color: #1b5b82 !important;" })</li>
                     <li>@Html.ActionLink("Om Oss", "Index", "Admin", new { @style = "color: #fff !important; background-color: #1b5b82 !important;" })</li>
-                    <li>@Html.ActionLink("Kontakt", "Index", "Admin", new { @style = "color: #fff !important; background-color: #1b5b82 !important;" })</li>
+                    <li>@Html.ActionLink("Kontakt", "Contact", "Home", new { @style = "color: #fff !important; background-color: #1b5b82 !important;" })</li>
                 </ul>
             </div>
         </div>
@@ -36,68 +36,53 @@
         @RenderBody()
 
     </div>
-    <div class="row" style="width: 100% !important;">
-        <div class="row" style="background-color: #f7f7f7 !important; padding-top: 1%; padding-bottom: 1%;">
-            <table class="container">
-                <tr style="color: #1b5b82 !important; font-size: 120%;">
-                    <th>
-                        Våra tjänster
-                    </th>
-                    <th>
-                        Våra tjänster
-                    </th>
-                    <th>
-                        Våra tjänster
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.ActionLink("Jämför Elpriser", "", "", new { @style = "color: #1b5b82 !important; font-weight: 200 !important; font-size: 110%;" })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Frågor och Svar", "", "", new { @style = "color: #1b5b82 !important; font-weight: 200 !important; font-size: 110%;" })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Om Oss", "", "", new { @style = "color: #1b5b82 !important; font-weight: 200 !important; font-size: 110%;" })
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.ActionLink("Så går det till", "", "", new { @style = "color: #1b5b82 !important; font-weight: 200 !important; font-size: 110%;" })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Ordlista", "", "", new { @style = "color: #1b5b82 !important; font-weight: 200 !important; font-size: 110%;" })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Kontakt", "", "", new { @style = "color: #1b5b82 !important; font-weight: 200 !important; font-size: 110%;" })
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.ActionLink("Blogg", "", "", new { @style = "color: #1b5b82 !important; font-weight: 200 !important; font-size: 110%;" })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Vilkor", "", "", new { @style = "color: #1b5b82 !important; font-weight: 200 !important; font-size: 110%;" })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Karriär", "", "", new { @style = "color: #1b5b82 !important; font-weight: 200 !important; font-size: 110%;" })
-                    </td>
-                </tr>
-            </table>
-        </div>
-        
-            <div class="row" style="background-color: #1b5b82;">
-                <p class="text-center" style="color: #fff;">Copyright &copy; 2017 Elmarknad.se</p>
-            </div>
-        
-    </div>
     
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-        @Scripts.Render("~/bundles/moment")
-        @Scripts.Render("~/bundles/datepicker")
+
+    <section id="footer">
+        <div class="container">
+            <div class="row text-center text-xs-center text-sm-left text-md-left">
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h5>Våra tjänster</h5>
+                    <ul class="list-unstyled quick-links">
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Jämför Elpriser</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Så går det till</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Blogg</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h5>Kundservice</h5>
+                    <ul class="list-unstyled quick-links">
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Frågor och Svar</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Ordlista</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Vilkor</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <h5>Elmarknad.se</h5>
+                    <ul class="list-unstyled quick-links">
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Om oss</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Kontakt</a></li>
+                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Karriär</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 0 !important;">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                    <p><u><p class="text-center" style="color: #fff;">Copyright &copy; 2017 Elmarknad.se</p></u></p>
+
+                </div>
+                </hr>
+            </div>
+        </div>
+    </section>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/datepicker")
 
 </body>
 </html>
