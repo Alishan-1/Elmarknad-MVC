@@ -145,16 +145,43 @@ namespace Elmarknad.Controllers
             return View("SignClientDeal", failmodel);
         }
 
+        [HttpGet]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.successMessage = "";
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Contact(CustomerEmailViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var helper = new EmailRepository();
+                helper.CustomerSupportEmail(model);
+                ViewBag.successMessage = "Ditt meddelande har skickats och kommer hanteras så fort som möjligt!";
+                
+                return View();
+            }
+
+            return View(model);
         }
         public ActionResult Thanks()
         {
             return View();
         }
+       
+        public ActionResult MoreInfo()
+        {
+           
+            return View();
+        }
         #endregion
+
+        public ActionResult About()
+        {
+            return View();
+        }
     }
+
 }

@@ -11,11 +11,20 @@
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    #extra-index {
+        width: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 </style>
 
-    <div class="col-md-4">
-        <div class="jumbotron center-block" style="background-color: rgba(255, 255, 255, 0.8); margin-top: 3%;">
+<div class="container-fluid custom">
+    <div class="col-md-4 center-block">
+        <div class="jumbotron center-block" style="background-color: rgba(255, 255, 255, 0.8); margin-top: 30%;margin-bottom: 10%;">
             <h3 style="color: #1b5b82;">Jämför elpriser och byt elavtal</h3>
 
             <div class="col-lg-6" style="font-size: 90%; margin-bottom: 2%;">
@@ -56,8 +65,12 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="submit" value="Sök" class="btn btn-block" style="background-color: #f07451 !important;" />
+                            <input type="submit" value="Sök" class="btn btn-block" id="display-spinner" style="background-color: #f07451 !important;" />
                         </div>
+                    </div>
+                    <div class="preloader" style="display: none;">
+                        <div class="spinner"></div>
+                        <div class="spinner-2"></div>
                     </div>
                 </div>
             }
@@ -65,5 +78,21 @@
         </div>
 
     </div>
+    ´
+</div>
 
+<section style="background-color: #f7f5f3;">
+    <div class="col-lg-12">
+        <p class="text-center">
+            Vi jämför Sveriges elbolag för att du ska hitta det bästa elavtalet. Påbörja en jämförelse av elpriser i ditt elnätsområde och byt elavtal snabbt och kostnadsfritt.
+        </p>
+    </div>
+</section>
 
+@section Scripts {
+<script>
+    $("#display-spinner").on("click", function () {
+        $(".preloader").show();
+    });
+    </script>    
+}

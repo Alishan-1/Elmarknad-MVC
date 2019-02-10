@@ -1,6 +1,6 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -20,7 +20,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 580px;
 }
 /* Footer */
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
@@ -108,6 +108,327 @@ section {
         border-left: transparent;
         padding-bottom: 0px;
         margin-bottom: 10px;
+    }
+}
+
+.paddingTB60 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.bgcolor-skyblue {
+    background: rgba(222, 220, 219, .2);
+}
+
+.image-aboutus-banner {
+    background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url("../Images/bakgrund.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    padding-top: 110px;
+    padding-bottom: 110px;
+}
+
+
+
+.image-aboutus-sm-banner {
+    background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("https://images.pexels.com/photos/556962/pexels-photo-556962.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: #fff;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.lg-text {
+    font-size: 52px;
+    font-weight: 600;
+    text-transform: none;
+    color: #fff;
+}
+
+.image-aboutus-para {
+    color: #fff;
+}
+
+/************************* */
+.plan {
+    background: #f9f9f9;
+    padding: 50px 30px;
+    margin-bottom: 30px;
+}
+
+.plan-header h4 {
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    color: #333;
+    font-weight: 600;
+}
+
+.plan-header {
+    font-weight: 700;
+}
+
+    .plan-header span {
+        color: #fe4819;
+        font-size: 40px;
+    }
+
+.plan li {
+    padding-bottom: 15px;
+}
+
+.plan ul {
+    padding-left: 0;
+    margin-bottom: 15px;
+    list-style: none;
+}
+
+.plan-header p {
+    padding-header: 12px;
+    padding-bottom: 15px;
+}
+
+.col-md-3, .col-md-4 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.bg-pink {
+    background: #f0f0f0;
+}
+
+.bg-blue {
+    background: #d6d6d6;
+    color: #000;
+}
+
+.padding35 {
+    padding: 35px 0 35px;
+}
+
+
+/* Feature-CSS */
+
+.icon {
+    color: #fff;
+    padding: 15px;
+    background: #323232;
+    font-size: 50px;
+    border-radius: 90px;
+    border: 10px solid #323232;
+}
+
+.feature-box {
+    text-align: center;
+    padding: 20px;
+    transition: .5s;
+    margin-bottom: 30px;
+    border: 1px solid #e8e8e8;
+}
+
+    .feature-box:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .feature-box h4 {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 25px 0 15px;
+    }
+
+/* Site Heading */
+.site-heading h3 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.border {
+    background: #e8e8e8;
+    height: 1px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 45px;
+    float: left;
+}
+
+/* padding-margin */
+.paddingTB60 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+
+/* Carousel banner */
+/* Declare heights because of positioning of img element */
+.carousel .item {
+    height: 500px;
+    background-color: #555;
+}
+
+.carousel img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.carousel-caption {
+    margin-bottom: 30px;
+}
+
+    .carousel-caption h1 {
+        margin-bottom: 15px;
+        font-size: 42px;
+        font-weight: 700px;
+    }
+
+    .carousel-caption p {
+        margin-bottom: 20px;
+        font-size: 16px;
+        font-weight: 400px;
+    }
+.cta-padding35 {
+    padding: 35px 0 35px;
+    background-color: #fa752e;
+    color: #fff;
+    margin-bottom: 5%;
+}
+.site-btn {
+    font-size: 14px;
+    padding: 13px 30px;
+    border-radius: 5px;
+    border: 1px solid #1b5b82;
+    min-width: 200px;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    color: #1b5b82;
+    background-color: transparent;
+    transition: all .25s ease-in-out;
+    margin: 10px 0px 10px 0px;
+}
+
+    .site-btn:hover {
+        background: #1b5b82;
+        border: 1px solid #fff;
+        font-weight: 700px;
+    }
+
+@media (max-width:767px) {
+    .site-btn {
+        font-size: 14px;
+        padding: 13px 30px;
+        border-radius: 5px;
+        border: 1px solid #1b5b82;
+        min-width: 200px;
+        width: 90%;
+        display: inline-block;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        color: #1b5b82;
+        background-color: transparent;
+        transition: all .25s ease-in-out;
+        margin: 10px 0px 10px 0px;
+        margin-left: 5%;
+    }
+
+        .site-btn:hover {
+            background: #1b5b82;
+            border: 1px solid #fff;
+            font-weight: 700;
+        }
+}
+.demo-bg {
+    background: none;
+    margin-top: 60px;
+}
+
+.business-hours {
+    background: #1b5b82;
+    padding: 40px 14px;
+    margin-top: -15px;
+    position: relative;
+}
+
+    
+
+    .business-hours .title {
+        font-size: 20px;
+        color: #fff;
+        text-transform: uppercase;
+        padding-left: 5px;
+        border-left: 4px solid #f07451;
+    }
+
+    .business-hours li {
+        color: #c9c5c2;
+        line-height: 30px;
+        border-bottom: 1px solid #c9c5c2;
+    }
+
+        .business-hours li:last-child {
+            border-bottom: none;
+        }
+
+    .business-hours .opening-hours li.today {
+        color: #f07451;
+    }
+
+.preloader {
+    position: relative;
+    height: 75px;
+    width: 75px;
+    margin: 50px auto 0;
+}
+
+.spinner {
+    width: 75px;
+    height: 75px;
+    margin: 0;
+    border-top: 10px solid #1b5b82;
+    box-shadow: 4px 4px 5px #d2d2d2 inset;
+    border-right: 10px solid transparent;
+    border-radius: 50%;
+    animation: 1.5s spin linear infinite;
+}
+
+.spinner-2 {
+    width: 75px;
+    height: 75px;
+    margin: 0;
+    border-top: 10px solid #f07451;
+    border-left: 10px solid transparent;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    animation: 1.5s spin-2 linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin-2 {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
     }
 }
 

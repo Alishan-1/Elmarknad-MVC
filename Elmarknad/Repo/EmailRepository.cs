@@ -47,6 +47,48 @@ namespace Elmarknad.Repo
             return null;
         }
 
+        public void CustomerSupportEmail(CustomerEmailViewModel model) {
+
+            var body = "<html>" +
+                        "<body><table>" +
+                        "<tr>" +
+                        "<th>" + "Avsändare" +
+                            "</th>" +
+                            "<th>" + "Avsändarens epost" +
+                            "</th>" +
+                            "<th>" + "Ämne" +
+                            "</th>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<td>" + model.Sender + "</td>" +
+                        "<td>" + model.Email + "</td>" +
+                        "<td>" + model.Subject + "</td>" +
+                        "</tr>" +
+                        "</table>" + "<p><b>Meddelande: </b>" + model.Message +
+                        "</body></html>";
+
+            var message = new MailMessage();
+            message.To.Add(new MailAddress("samuel@elmarknad.se"));
+            message.To.Add(new MailAddress("oliwer@elmarknad.se"));
+            message.To.Add(new MailAddress("andreas@elmarknad.se")); 
+            message.From = new MailAddress("billybolero1@gmail.com", "Elmarknad");
+            message.Subject = "Nytt meddelande till kundtjänst";
+            message.Body = body;
+            message.IsBodyHtml = true;
+
+            var smtp = new SmtpClient();
+
+            var credential = new NetworkCredential
+            {
+                UserName = "billybolero1@gmail.com",  // replace with valid value
+                Password = "Samuel22."  // replace with valid value
+            };
+            smtp.Credentials = credential;
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            smtp.Send(message);
+        }
     }
 }
 

@@ -1,7 +1,75 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Om Oss";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+    
 
-<p>Use this area to provide additional information.</p>
+    @Html.Partial("HeaderLayout")
+
+
+<div class="aboutus-secktion paddingTB60" style="margin-bottom: 0 !important; padding-bottom: 0%;">
+    <div class="container" style="margin-bottom: 0 !important; padding-bottom: 0%;">
+        <div class="row" style="margin-bottom: 0 !important;">
+            <div class="col-md-6">
+                <h1 class="strong">Att byta till det bästa elavtalet<br> har aldrig varit enklare.</h1>
+                <p class="lead">Idag finns över 130 elbolag och flera tusen elavtal<br>på den svenska elmarknaden. </p>
+            </div>
+            <div class="col-md-6"><br />
+                                        <p>Resultatet av detta är att hundratusentals hushåll betalar onödigt höga avgifter på sina elavtal. Elmarknad.se tillhandahåller en unik tjänst som snabbt och enkelt hjälper dig att jämföra och byta till ett elavtal som passar din unika situation.</p>
+                                        <p>Den främsta anledningen till att hushållen har onödigt höga elkostnader är många konsumenters passivitet. Idag betalar nästan 800.000 hushåll 30-50% mer för sitt el genom att de inte gjort ett aktivt val av elavtal.</p>
+                                        <p>Elmarknad.se jämför elavtal från alla elbolag i Sverige och hjälper dig att hitta det bästa elavtalet på ett enkelt och transparent sätt. Oavsett om du har gjort ett aktivt val av elbolag eller sitter med ett anvisat elpris så lönar det sig att jämföra elavtal idag och gör ett aktivt och medvetet val samtidigt som du har möjlighet att spara pengar på att sänka dina energikostnader.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container team-sektion paddingTB60">
+    <div class="row">
+        <div class="site-heading text-center">
+            <h3>
+                Nöjda kunder
+            </h3>
+            <p>Här hittar du recensioner från några av våra tidigare kunder tillsammans med hur <br> mycket de sparar varje år på göra ett aktivt val och jämföra innan de tecknade sina nya elavtal. </p>
+            <div class="border"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 team-box">
+            <div class="team-img thumbnail">
+                <img src="~/Images/first.jpg">
+                <div class="team-content">
+                    <h3>Philip & Christina</h3>
+                    <div class="border-team"></div>
+                    <small class="text-muted">Sparar 950 kr</small><br />
+                    <p>“Vi kontaktade Elmarknad.se när vi ville byta vårt elavtal. De presenterade tydligt vilka elpriser som fanns i vårt elområde och hjälpte oss att byta till det billigaste elavtalet. Det var jätteskönt att ha ett stöd genom hela processen så man har full koll på vad som gäller.”</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 team-box">
+            <div class="team-img thumbnail">
+                <img src="~/Images/second.jpg">
+                <div class="team-content">
+                    <h3>Lisa med familj</h3>
+                    <div class="border-team"></div>
+                    <small class="text-muted">
+                        Sparar 3500 kr</small>
+                    <p>“Vi blev kontaktade precis när vi flyttade in i vårt nya hus och satt med ett tillsvidareavtal. Om de inte hade ringt oss så hade vi betalat nästan dubbla elpriset. Tack för att ni upplyste oss om det och hjälpte oss att byta.”</p>
+                   
+                </div>
+            </div>
+        </div>
+     
+    </div>
+</div>
+<div class="cta-sektion cta-padding35">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-5 col-sm-5 col-xs-12 ">
+                <a href="~/Home/MoreInfo"><button type="button" class="btn btn-block btn-primary site-btn">Så går det till</button></a>
+            </div>
+            
+            <div class="col-md-offset-1 col-md-5 col-sm-5 col-xs-12 ">
+                <a href="~/Home"><button type="button" class="btn btn-block btn-primary site-btn">Jämför Elpriser</button></a>
+            </div>
+        </div>
+    </div>
+</div>
