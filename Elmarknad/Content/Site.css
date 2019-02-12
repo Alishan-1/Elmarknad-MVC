@@ -121,7 +121,7 @@ section {
 }
 
 .image-aboutus-banner {
-    background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url("../Images/bakgrund.jpg");
+    /*background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url("../Images/bakgrund.jpg");*/
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -133,7 +133,7 @@ section {
 
 
 .image-aboutus-sm-banner {
-    background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("https://images.pexels.com/photos/556962/pexels-photo-556962.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+    /*background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("../Images/bakgrund.jpg");*/
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -432,3 +432,45 @@ section {
     }
 }
 
+.searchbar {
+    margin-bottom: 3%;
+    margin-top: auto;
+    height: 60px;
+    background-color: #1b5b82;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.search_input {
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color: transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_input {
+    padding: 0 10px;
+    width: 450px;
+    caret-color: red;
+    transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_icon {
+    background: white;
+    color: #f07451;
+}
+
+.search_icon {
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+}

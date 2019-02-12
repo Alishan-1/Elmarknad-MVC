@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Ordlista";
+}
+
+@Html.Partial("../Home/HeaderLayout")
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
+<div class="row">
+    <!-- Blog Post Content Column -->
+    <div class="col-lg-12">
+        <hr>
+        <h2>Ordlista</h2>
+        <hr>
+        <p class="lead">Här hittar du en kronologisk lista med ord som berör energiförbrukning, elavtal och elmarknaden överlag</p>
+
+        <p>
+            Om du har
+            några frågor eller saknar någon förklaring är du välkommen att maila in din fråga till <a href="mailto:info@elmarknad.se">info@elmarknad.se</a>
+        </p>
+        <p>
+            Klicka på bokstäverna för att enkelt navigera dig till rätt plats i ordlistan.
+        </p>
+
+        <hr>
+        <div class="container">
+            <div class="h-100">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="searchbar">
+                        <input class="search_input" id="input-words" type="text" name="" placeholder="Sök...">
+                        <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                    </div>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">A</li>
+                <li class="list-group-item active">B</li>
+                <li class="list-group-item"><strong class="info">Beräknad årsförbrukning</strong> – Beräknad elförbrukning för ditt hushåll per år. Detta står vanligtvis på din senaste faktura.</li>
+                <li class="list-group-item" id="c">C</li>
+                <li class="list-group-item active" id="d">D</li>
+                <li class="list-group-item"><strong class="info">Direktverkande elvärme </strong> – När man använder el till att värma hushållet genom t.ex. eldrivna element.</li>
+                <li class="list-group-item active" id="e">E</li>
+                <li class="list-group-item"><strong class="info">Elcertifikat  </strong> – Tillstånd som ges ut av Energimarknadsmyndigheten till elhandelsbolag som vill bedriva elhandel på svenska elmarknaden.</li>
+                <li class="list-group-item"><strong class="info">Elcertifikatpris </strong> – En utgiftspost som används av vissa elbolag.</li>
+                <li class="list-group-item"><strong class="info">Elhandelsbolag </strong> – Elbolag som tillhandahåller leverans av el till hushåll och företag.</li>
+                <li class="list-group-item"><strong class="info">Elnätsbolag </strong> – Elbolag som underhåller elnätet i ett visst elområde.</li>
+                <li class="list-group-item"><strong class="info">Elpris </strong> – Inkluderar kostnaden för energiproduktion, underhåll av elnätet, administration, kundservice och marknadsföring.</li>
+                <li class="list-group-item active" id="f">F</li>
+                <li class="list-group-item"><strong class="info">Fast elpris  </strong> – Avgiftsform där kilowattpris är förbestämt för att undvika kraftiga svängningar i elpriset på en elmarknad.</li>
+                <li class="list-group-item"><strong class="info">Fjärrvärme  </strong> – Centralt uppvärmningssystem till ett flertal bostäder.</li>
+                <li class="list-group-item"><strong class="info">Förnybar energikälla  </strong> – Energi som produceras genom att omvandlas i vårt ekologiska system. Exempel är vattenkraft, solenergi, vindenergi, biobränsle och vågenergi.</li>
+                <li class="list-group-item" id="g">G</li>
+                <li class="list-group-item" id="h">H</li>
+                <li class="list-group-item" id="i">I</li>
+                <li class="list-group-item" id="j">J</li>
+                <li class="list-group-item active" id="k">K</li>
+                <li class="list-group-item"><strong class="info">KwH (Kilowattimme)</strong> – Mätvärde för antal kilowatt som utnyttjas under en timme.</li>
+                <li class="list-group-item" id="l">L</li>
+                <li class="list-group-item" id="m">M</li>
+                <li class="list-group-item" id="n">N</li>
+                <li class="list-group-item" id="o">O</li>
+                <li class="list-group-item" id="p">P</li>
+                <li class="list-group-item" id="q">Q</li>
+                <li class="list-group-item active" id="r">R</li>
+                <li class="list-group-item"><strong class="info">Rörligt elpris </strong> – En avgiftsform som innebär att priset följer inköpspriset på Nord Pool.</li>
+                <li class="list-group-item" id="s">S</li>
+                <li class="list-group-item active" id="t">T</li>
+                <li class="list-group-item"><strong class="info">Tillsvidareavtal </strong> – Benämning för elhandelsavtal där användaren inte har gjort ett aktivt val av elavtal. Dessa avtal är vanligtvis 30-60% dyrare än om man aktivt väljer elavtal.</li>
+                <li class="list-group-item"><strong class="info">Tillsvidarepris </strong> – Avgiftsform där användaren betalar en högre tariff på grund av passivitet i sitt val av elavtal.</li>
+                <li class="list-group-item" id="u">U</li>
+                <li class="list-group-item" id="v">V</li>
+                <li class="list-group-item" id="w">W</li>
+                <li class="list-group-item" id="x">X</li>
+                <li class="list-group-item" id="y">Y</li>
+                <li class="list-group-item" id="z">Z</li>
+                <li class="list-group-item active" id="å">Å</li>
+                <li class="list-group-item"><strong class="info">Årsavgift</strong> – Vanligt benämning för fast årlig avgift som vanligtvis tillkommer på ditt elhandelsavtal.</li>
+                <li class="list-group-item"><strong class="info">Årsförbrukning</strong> – Din beräknade årsförbrukning av el.</li>
+                <li class="list-group-item" id="ä">Ä</li>
+                <li class="list-group-item active" id="ö">Ö</li>
+                <li class="list-group-item"><strong class="info">Överföringsavgift</strong> – Den generella benämningen för den rörliga del av elnätsavgiften.</li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    $("#input-words").on("keyup", function () {
+       
+        
+        var value = $("#input-words").val();
+        if (value.length == 0) {
+            $(".list-group-item").show();
+        } else {
+
+            $(".list-group-item").each(function () {
+                var element = $(this);
+                var info = $(this).find(".info").text().toLowerCase().trim();
+                //alert(company + value)
+                if (!info.startsWith(value)) {
+                    element.hide()
+                }
+
+            });
+        }
+    });
+</script>
+}

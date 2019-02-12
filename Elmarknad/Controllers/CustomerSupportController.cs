@@ -9,7 +9,11 @@ namespace Elmarknad.Controllers
     public class CustomerSupportController : Controller
     {
         // GET: CustomerSupport
-        public ActionResult Index()
+        public ActionResult Faq()
+        {
+            return View();
+        }
+        public ActionResult Dictionary()
         {
             return View();
         }

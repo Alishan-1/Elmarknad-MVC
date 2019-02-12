@@ -249,7 +249,7 @@
     <Compile Include="Models\Webscrape\ElBolag.cs" />
     <Compile Include="Models\Webscrape\Elområde.cs" />
     <Compile Include="Models\UserAdminModels\IdentityModels.cs" />
-    <Compile Include="Models\UserAdminModels\ManageViewModels.cs" />
+    <Compile Include="Models\Webscrape\ManageViewModels.cs" />
     <Compile Include="Models\Webscrape\Postnummer.cs" />
     <Compile Include="Models\Webscrape\ScrapeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -355,8 +355,9 @@
     <Content Include="Views\Shared\Error404.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Error\Error404.cshtml" />
-    <Content Include="Views\CustomerSupport\Index.cshtml" />
+    <Content Include="Views\CustomerSupport\Faq.cshtml" />
     <Content Include="Views\Home\HeaderLayout.cshtml" />
+    <Content Include="Views\CustomerSupport\Dictionary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
