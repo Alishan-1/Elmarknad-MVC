@@ -17,5 +17,13 @@ namespace Elmarknad.Controllers
         {
             return View();
         }
+        public ActionResult Terms()
+        {
+            return View();
+        }
+        public ActionResult Career()
+        {
+            return View();
+        }
     }
 }

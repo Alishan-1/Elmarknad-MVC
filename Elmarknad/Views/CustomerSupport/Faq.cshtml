@@ -4,10 +4,16 @@
 }
 @Html.Partial("../Home/HeaderLayout")
 
-<div class="container" style="margin-top: 5%;">
+<div class="row" style="margin-top: 5%;">
     <div class="col-lg-12">
+        <hr>
+        <h2 style="color:#1b5b82;">@ViewBag.Title</h2>
+        <hr>
+        <p class="lead">Nedan hittar du de vanligast frågorna och svaren till dessa.</p>
+        <p>Hittar du inget svar på din fråga? Klicka vidare till <a href="../Home/Contact">kontaktsidan</a></p>
+        <hr />
         <div class="panel-group" id="faqAccordion">
-            <h2 style="font-weight: 600; color: #1b5b82; margin-bottom: 1%;">Om tjänsten</h2>
+            <h3 style="font-weight: 200; color: #1b5b82; margin-bottom: 1%;">Om tjänsten</h3>
             <div class="panel panel-default ">
                 <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question0">
                     <h4 class="panel-title">
@@ -78,7 +84,7 @@
 
 
         <div class="panel-group" id="faqAccordion">
-            <h2 style="font-weight: 600; color: #1b5b82;  margin-bottom: 1%;">Om elavtal</h2>
+            <h3 style="font-weight: 200; color: #1b5b82;  margin-bottom: 1%;">Om elavtal</h3>
             <div class="panel panel-default ">
                 <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question5">
                     <h4 class="panel-title">
@@ -198,7 +204,7 @@
 
             <!--/panel-group-->
             <div class="panel-group" id="faqAccordion">
-                <h2 style="font-weight: 600; color: #1b5b82;  margin-bottom: 1%;">Om tjänsten</h2>
+                <h3 style="font-weight: 200; color: #1b5b82;  margin-bottom: 1%;">Vid flytt</h3>
                 <div class="panel panel-default ">
                     <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question12">
                         <h4 class="panel-title">
@@ -250,7 +256,7 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
 
 
@@ -265,7 +271,7 @@
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12 Tpadding10">
                 <a href="../Home/Contact" class="btn btn-primary site-btn">Kontakt</a>
-           ' </div>
+            </div>
         </div>
     </div>
 </div>

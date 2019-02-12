@@ -33,14 +33,14 @@
                     <span class="icon-bar" style="color: #fff !important; background-color: #fff !important;"></span>
                     <span class="icon-bar" style="color: #fff !important; background-color: #fff !important;"></span>
                 </button>
-                    <a href="~/Home/Index" class="img-responsive"><img src="~/Images/logo.png" class="img-responsive" style=" width: 30%; margin-top: 4%;" /></a>
+                <a href="~/Home/Index" class="img-responsive"><img src="~/Images/logo.png" class="img-responsive" style=" width: 30%; margin-top: 4%;" /></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Jämför Elpriser", "Index", "Home", new { @style = "color: #fff !important; background-color: #1b5b82 !important;" })</li>
-                    <li>@Html.ActionLink("Så går det till", "MoreInfo", "Home", new { @style = "color: #fff !important; background-color: #1b5b82 !important;" })</li>
-                    <li>@Html.ActionLink("Om Oss", "About", "Home", new { @style = "color: #fff !important; background-color: #1b5b82 !important;" })</li>
-                    <li>@Html.ActionLink("Kontakt", "Contact", "Home", new { @style = "color: #fff !important; background-color: #1b5b82 !important;" })</li>
+                    <li><a href="~/Home/Index" style="color: #fff !important; background-color: #1b5b82 !important;">Jämför Elpriser</a></li>
+                    <li><a href="~/Home/MoreInfo" style="color: #fff !important; background-color: #1b5b82 !important;">Så går det till</a></li>
+                    <li><a href="~/Home/About" style="color: #fff !important; background-color: #1b5b82 !important;">Om Oss</a></li>
+                    <li><a href="~/Home/Contact" style="color: #fff !important; background-color: #1b5b82 !important;">Kontakt</a></li>
                 </ul>
             </div>
         </div>
@@ -54,8 +54,8 @@
                 <div class="col-xs-12 col-sm-4 col-md-4">
                     <h5>Våra tjänster</h5>
                     <ul class="list-unstyled quick-links">
-                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Jämför Elpriser</a></li>
-                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Så går det till</a></li>
+                        <li><a href="~/Home/Index"><i class="fa fa-angle-double-right"></i>Jämför Elpriser</a></li>
+                        <li><a href="~/Home/MoreInfo"><i class="fa fa-angle-double-right"></i>Så går det till</a></li>
                         <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Blogg</a></li>
                     </ul>
                 </div>
@@ -64,15 +64,15 @@
                     <ul class="list-unstyled quick-links">
                         <li><a href="~/CustomerSupport/Faq"><i class="fa fa-angle-double-right"></i>Frågor och Svar</a></li>
                         <li><a href="~/CustomerSupport/Dictionary"><i class="fa fa-angle-double-right"></i>Ordlista</a></li>
-                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Vilkor</a></li>
+                        <li><a href="~/CustomerSupport/Terms"><i class="fa fa-angle-double-right"></i>Vilkor</a></li>
                     </ul>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-4">
                     <h5>Elmarknad.se</h5>
                     <ul class="list-unstyled quick-links">
-                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Om oss</a></li>
-                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Kontakt</a></li>
-                        <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Karriär</a></li>
+                        <li><a href="~/Home/About"><i class="fa fa-angle-double-right"></i>Om oss</a></li>
+                        <li><a href="~/Home/Contact"><i class="fa fa-angle-double-right"></i>Kontakt</a></li>
+                        <li><a href="~/CustomerSupport/Career"><i class="fa fa-angle-double-right"></i>Karriär</a></li>
                     </ul>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                     <p><u><p class="text-center" style="color: #fff;">Copyright &copy; 2017 Elmarknad.se</p></u></p>
 
                 </div>
-                
+
             </div>
         </div>
     </section>
@@ -92,6 +92,7 @@
     @RenderSection("scripts", required: false)
     @Scripts.Render("~/bundles/moment")
     @Scripts.Render("~/bundles/datepicker")
+    @Scripts.Render("~/bundles/imagepicker")
 
 </body>
 </html>

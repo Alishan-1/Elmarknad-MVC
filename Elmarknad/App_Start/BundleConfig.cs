@@ -18,6 +18,10 @@ namespace Elmarknad
                         "~/Scripts/moment.min.js"
                         ));
 
+            bundles.Add(new ScriptBundle("~/bundles/imagepicker").Include(
+                        "~/Scripts/imagepicker.js"
+                        ));
+
             bundles.Add(new ScriptBundle("~/bundles/datepicker").Include(
                         "~/Scripts/bootstrap-datetimepicker.js"));
 
@@ -33,6 +37,8 @@ namespace Elmarknad
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap-datetimepicker.min.css"));
+
+            
         }
     }
 }
