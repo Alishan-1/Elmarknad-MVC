@@ -1,0 +1,233 @@
+﻿
+@{
+    ViewBag.Title = "Uppdatera Databas";
+    Layout = "_LayoutAdmin.cshtml";
+}
+
+<h2>Admin Start</h2>
+<div class="col-sm-12"><h3>Skrapning av data</h3></div>
+<hr />
+@if(User.Identity.Name == "samuel@elmarknad.se") {
+<div class="col-lg-12">
+    <div class="col-lg-4" style="border: 1px solid #000">
+        <h3>Uppdatera postnummer<br /> Från fil(JSON) <br /> Varning! Tar lång tid</h3>
+        <button class="btn btn-default" id="update-post">Uppdatera</button>
+    </div>
+</div>
+}
+<div class="col-lg-12" style="margin-top: 2%;">
+    <div class="col-lg-4" style="border: 1px solid #000">
+        <h3>Skrapa Elområde 1 - 4 <br /> Rörligt <br /> 2000Kwh</h3>
+        <button class="btn btn-default" id="r2000el14">Uppdatera</button>
+    </div>
+    <div class="col-lg-4" style="border: 1px solid #000">
+        <h3>Skrapa Elområde 1 - 4 <br /> Rörligt <br /> 5000Kwh</h3>
+        <button class="btn btn-default" id="r5000el14">Uppdatera</button>
+    </div>
+    <div class="col-lg-4" style="border: 1px solid #000">
+        <h3>Skrapa Elområde 1 - 4 <br /> Rörligt <br /> 20 000Kwh</h3>
+        <button class="btn btn-default" id="r20000el14">Uppdatera</button>
+    </div>
+</div>
+
+<div class="col-lg-12" style="margin-top: 2%;">
+    <div class="col-lg-4" style="border: 1px solid #000">
+        <h3>Skrapa Elområde 1 - 4 <br /> Fast <br /> 2000Kwh</h3>
+        <button class="btn btn-default" id="f2000el14">Uppdatera</button>
+    </div>
+    <div class="col-lg-4" style="border: 1px solid #000">
+        <h3>Skrapa Elområde 1 - 4 <br /> Fast <br /> 5000Kwh</h3>
+        <button class="btn btn-default" id="f5000el14">Uppdatera</button>
+    </div>
+    <div class="col-lg-4" style="border: 1px solid #000">
+        <h3>Skrapa Elområde 1 - 4 <br /> Fast <br /> 20 000Kwh</h3>
+        <button class="btn btn-default" id="f20000el14">Uppdatera</button>
+    </div>
+</div>
+
+<div class="col-lg-12" style="margin-top: 2%;">
+    <div class="col-lg-4" style="border: 1px solid #000">
+        <h3>Skrapa Elområde 1 - 4 <br /> Mix <br /> 2000Kwh</h3>
+        <button class="btn btn-default" id="m2000el14">Uppdatera</button>
+    </div>
+    <div class="col-lg-4" style="border: 1px solid #000">
+        <h3>Skrapa Elområde 1 - 4 <br /> Mix <br /> 5000Kwh</h3>
+        <button class="btn btn-default" id="m5000el14">Uppdatera</button>
+    </div>
+    <div class="col-lg-4" style="border: 1px solid #000">
+        <h3>Skrapa Elområde 1 - 4 <br /> Mix <br /> 20 000Kwh</h3>
+        <button class="btn btn-default" id="m20000el14">Uppdatera</button>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#update-post").on("click", function () {
+            alert("Lämna inte sidan förän du meddelats att allt är klart")
+            $.ajax({
+                url: "/api/scrape/numbers",
+                type: "Post",
+                data: JSON.stringify(["bool-message"]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+
+                    alert("Postnummer uppdaterat från fil");
+                },
+                error: function () {
+                    alert("Något har gått fel. Försök igen eller kontakta systemadministratören")
+                }
+            })
+        });
+        $("#r2000el14").on("click", function () {
+            alert("Lämna inte sidan förän du meddelats att allt är klart")
+            $.ajax({
+                url: "/api/scrape/r2000el14",
+                type: "Post",
+                data: JSON.stringify(["bool-message"]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+
+                    alert("Databasen har uppdaterats");
+                },
+                error: function () {
+                    alert("Något har gått fel. Försök igen eller kontakta systemadministratören")
+                }
+            })
+        });
+        $("#r5000el14").on("click", function () {
+            alert("Lämna inte sidan förän du meddelats att allt är klart")
+            $.ajax({
+                url: "/api/scrape/r5000el14",
+                type: "Post",
+                data: JSON.stringify(["bool-message"]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+
+                    alert("Databasen har uppdaterats");
+                },
+                error: function () {
+                    alert("Något har gått fel. Försök igen eller kontakta systemadministratören")
+                }
+            })
+        });
+
+        $("#r20000el14").on("click", function () {
+            alert("Lämna inte sidan förän du meddelats att allt är klart")
+            $.ajax({
+                url: "/api/scrape/r20000el14",
+                type: "Post",
+                data: JSON.stringify(["bool-message"]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+
+                    alert("Databasen har uppdaterats");
+                },
+                error: function () {
+                    alert("Något har gått fel. Försök igen eller kontakta systemadministratören")
+                }
+            })
+        });
+
+        $("#f2000el14").on("click", function () {
+            alert("Lämna inte sidan förän du meddelats att allt är klart")
+            $.ajax({
+                url: "/api/scrape/f2000el14",
+                type: "Post",
+                data: JSON.stringify(["bool-message"]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+
+                    alert("Databasen har uppdaterats");
+                },
+                error: function () {
+                    alert("Något har gått fel. Försök igen eller kontakta systemadministratören")
+                }
+            })
+        });
+        $("#f5000el14").on("click", function () {
+            alert("Lämna inte sidan förän du meddelats att allt är klart")
+            $.ajax({
+                url: "/api/scrape/f5000el14",
+                type: "Post",
+                data: JSON.stringify(["bool-message"]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+
+                    alert("Databasen har uppdaterats");
+                },
+                error: function () {
+                    alert("Något har gått fel. Försök igen eller kontakta systemadministratören")
+                }
+            })
+        });
+        $("#f20000el14").on("click", function () {
+            alert("Lämna inte sidan förän du meddelats att allt är klart")
+            $.ajax({
+                url: "/api/scrape/f20000el14",
+                type: "Post",
+                data: JSON.stringify(["bool-message"]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+
+                    alert("Databasen har uppdaterats");
+                },
+                error: function () {
+                    alert("Något har gått fel. Försök igen eller kontakta systemadministratören")
+                }
+            })
+        });
+
+        $("#m2000el14").on("click", function () {
+            alert("Lämna inte sidan förän du meddelats att allt är klart")
+            $.ajax({
+                url: "/api/scrape/m2000el14",
+                type: "Post",
+                data: JSON.stringify(["bool-message"]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+
+                    alert("Databasen har uppdaterats");
+                },
+                error: function () {
+                    alert("Något har gått fel. Försök igen eller kontakta systemadministratören")
+                }
+            })
+        });
+        $("#m5000el14").on("click", function () {
+            alert("Lämna inte sidan förän du meddelats att allt är klart")
+            $.ajax({
+                url: "/api/scrape/m5000el14",
+                type: "Post",
+                data: JSON.stringify(["bool-message"]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+
+                    alert("Databasen har uppdaterats");
+                },
+                error: function () {
+                    alert("Något har gått fel. Försök igen eller kontakta systemadministratören")
+                }
+            })
+        });
+
+        $("#m20000el14").on("click", function () {
+            alert("Lämna inte sidan förän du meddelats att allt är klart")
+            $.ajax({
+                url: "/api/scrape/m20000el14",
+                type: "Post",
+                data: JSON.stringify(["bool-message"]),
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+
+                    alert("Databasen har uppdaterats");
+                },
+                error: function () {
+                    alert("Något har gått fel. Försök igen eller kontakta systemadministratören")
+                }
+            })
+        });
+
+
+    </script>
+
+}

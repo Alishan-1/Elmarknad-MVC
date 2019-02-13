@@ -20,6 +20,11 @@ namespace Elmarknad.Controllers
         {
             return View();
         }
+        public ActionResult Scrape()
+        {
+            return View();
+        }
+
 
         public ActionResult AddCompany()
         {

@@ -341,7 +341,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Scrape.cshtml" />
     <Content Include="Views\Admin\AddCompany.cshtml" />
     <Content Include="Views\Admin\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\EditCompany.cshtml" />
@@ -363,6 +363,7 @@
     <Content Include="Views\CustomerSupport\Dictionary.cshtml" />
     <Content Include="Views\CustomerSupport\Terms.cshtml" />
     <Content Include="Views\CustomerSupport\Career.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

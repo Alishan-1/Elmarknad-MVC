@@ -6,14 +6,14 @@
     <title>@ViewBag.Title - AdminMode</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="../Content/admin-layout.css" type="text/css" rel="stylesheet">
+    <link href="~/Content/admin-layout.css" type="text/css" rel="stylesheet">
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #000 !important;">
+        <div class="container" style="background-color: #000 !important;">
+            <div class="navbar-header" style="background-color: #000 !important;">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"  style="background-color: #000 !important;">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -26,12 +26,13 @@
             </div>
         </div>
     </div>
+    @if(User.IsInRole("Admin")) { 
     <div class="main col-lg-2" style="padding-left: 0!important;">
         <aside>
             <div class="sidebar left ">
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="../Images/marknad.png" class="rounded-circle" alt="User Image">
+                        <img src="~/Images/marknad.png" class="rounded-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p>Elmarknad Admin</p>
@@ -44,10 +45,10 @@
                         <ul class="sub-menu collapse" id="dashboard">
                             <li class="active">@Html.ActionLink("Lägg till Elbolag", "AddCompany", "Admin")</li>
                             <li>@Html.ActionLink("Se Elbolag", "EditCompany", "Admin")</li>
-                          
+
                         </ul>
                     </li>
-                    <li> <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">Skrapning</span></a> </li>
+                    <li> <a href="~/Admin/Scrape"><i class="fa fa-diamond"></i> <span class="nav-label">Skrapning</span></a> </li>
                     <li>
                         <a href="#" data-toggle="collapse" data-target="#products" class="collapsed active"> <i class="fa fa-bar-chart-o"></i> <span class="nav-label">Hantera Elavtal</span> <span class="fa fa-chevron-left pull-right"></span> </a>
                         <ul class="sub-menu collapse" id="products">
@@ -63,18 +64,32 @@
                             <li> @Html.ActionLink("Se Kunder", "ListCustomers", "Admin")</li>
                         </ul>
                     </li>
-                    
-                    <li> <a href=""><i class="fa fa-pie-chart"></i> <span class="nav-label">Statistik</span> </a></li>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#statistic" class="collapsed active"><i class="fa fa-pie-chart"></i> <span class="nav-label">Statistik</span> <span class="fa fa-chevron-left pull-right"></span></a>
+                        <ul class="sub-menu collapse" id="statistic">
+                            <li>@Html.ActionLink("Dagens kunder", "TodaysDeals")</li>
+
+                        </ul>
+                    </li>
+
+
                     <li> <a href="~/Home/Index"><i class="fa fa-files-o"></i> <span class="nav-label">Jämför elpriser</span></a> </li>
                     <li> <a href="~/Home/Contact"><i class="fa fa-files-o"></i> <span class="nav-label">Kontakta oss</span></a> </li>
                     <li> <a href="~/Blog/"><i class="fa fa-files-o"></i> <span class="nav-label">Blogg</span></a> </li>
                     <li> <a href="~/Home/MoreInfo"><i class="fa fa-files-o"></i> <span class="nav-label">Så går det till</span></a> </li>
                     <li> <a href="~/CustomerSupport/Faq"><i class="fa fa-files-o"></i> <span class="nav-label">Faq</span></a> </li>
+                    <li> <a href="~/CustomerSupport/Dictionary"><i class="fa fa-files-o"></i> <span class="nav-label">OrdLista</span></a> </li>
+                    <li> <a href="~/CustomerSupport/Terms"><i class="fa fa-files-o"></i> <span class="nav-label">Vilkor</span></a> </li>
+                    <li> <a href="~/Home/About"><i class="fa fa-files-o"></i> <span class="nav-label">Om Oss</span></a> </li>
+                    <li> <a href="~/CustomerSupport/Career"><i class="fa fa-files-o"></i> <span class="nav-label">Karriär</span></a> </li>
+                    <li> <a href="~/Home/Contact"><i class="fa fa-files-o"></i> <span class="nav-label">Kontakt</span></a> </li>
+                    <li> <a href="~/Error"><i class="fa fa-files-o"></i> <span class="nav-label">Felsida</span></a> </li>
+                    <li> <a href="~/Error/Error404"><i class="fa fa-files-o"></i> <span class="nav-label">Felsida 404</span></a> </li>
                 </ul>
             </div>
         </aside>
     </div>
-    
+    }
     <div class="container body-content col-lg-10">
         @RenderBody()
         <hr />
@@ -102,10 +117,7 @@
         </div>
     </div>
     @Scripts.Render("~/bundles/jquery")
-
     @Scripts.Render("~/bundles/bootstrap")
-
-
     @RenderSection("scripts", required: false)
     @Scripts.Render("~/bundles/moment")
     @Scripts.Render("~/bundles/datepicker")
