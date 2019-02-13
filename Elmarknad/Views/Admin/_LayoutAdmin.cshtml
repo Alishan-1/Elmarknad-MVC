@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - AdminMode</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="../Content/admin-layout.css" type="text/css" rel="stylesheet">
 
 </head>
 <body>
@@ -20,30 +21,61 @@
                 @Html.ActionLink("Admin", "Index", "Admin", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Hantera
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            @Html.ActionLink("Lägg till Elbolag", "AddCompany", "Admin")<br />
-                            @Html.ActionLink("Se Elbolag", "EditCompany", "Admin")<br />
-                            @Html.ActionLink("Lägg till Elavtal", "AddDeal", "Admin")<br />
-                            @Html.ActionLink("Se Elavtal", "DisplayDeals", "Admin")<br />
-                            @Html.ActionLink("Lägg till kund", "AddCustomer", "Admin")<br />
-                            @Html.ActionLink("Se Kunder", "ListCustomers", "Admin")<br />
-                            @Html.ActionLink("Lägg till användare", "Register", "Account")
-                        </div>
-                    </li>
-
-                    <li>@Html.ActionLink("Skicka epost", "", "", new { @class = "dropdown-item" })</li>
-                    
-                </ul>
+               
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="main col-lg-2" style="padding-left: 0!important;">
+        <aside>
+            <div class="sidebar left ">
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="../Images/marknad.png" class="rounded-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>Elmarknad Admin</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <ul class="list-sidebar bg-defoult">
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#dashboard" class="collapsed active"> <i class="fa fa-th-large"></i> <span class="nav-label"> Hantera Elbolag</span> <span class="fa fa-chevron-left pull-right"></span> </a>
+                        <ul class="sub-menu collapse" id="dashboard">
+                            <li class="active">@Html.ActionLink("Lägg till Elbolag", "AddCompany", "Admin")</li>
+                            <li>@Html.ActionLink("Se Elbolag", "EditCompany", "Admin")</li>
+                          
+                        </ul>
+                    </li>
+                    <li> <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">Skrapning</span></a> </li>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#products" class="collapsed active"> <i class="fa fa-bar-chart-o"></i> <span class="nav-label">Hantera Elavtal</span> <span class="fa fa-chevron-left pull-right"></span> </a>
+                        <ul class="sub-menu collapse" id="products">
+                            <li> @Html.ActionLink("Lägg till Elavtal", "AddDeal", "Admin")</li>
+                            <li>@Html.ActionLink("Se Elavtal", "DisplayDeals", "Admin")</li>
+                        </ul>
+                    </li>
+                    <li> <a href="~/Account/Register"><i class="fa fa-laptop"></i> <span class="nav-label">Lägg till användare</span></a> </li>
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#tables" class="collapsed active"><i class="fa fa-table"></i> <span class="nav-label">Hantera Kunder</span><span class="fa fa-chevron-left pull-right"></span></a>
+                        <ul class="sub-menu collapse" id="tables">
+                            <li>@Html.ActionLink("Lägg till kund", "AddCustomer", "Admin")</li>
+                            <li> @Html.ActionLink("Se Kunder", "ListCustomers", "Admin")</li>
+                        </ul>
+                    </li>
+                    
+                    <li> <a href=""><i class="fa fa-pie-chart"></i> <span class="nav-label">Statistik</span> </a></li>
+                    <li> <a href="~/Home/Index"><i class="fa fa-files-o"></i> <span class="nav-label">Jämför elpriser</span></a> </li>
+                    <li> <a href="~/Home/Contact"><i class="fa fa-files-o"></i> <span class="nav-label">Kontakta oss</span></a> </li>
+                    <li> <a href="~/Blog/"><i class="fa fa-files-o"></i> <span class="nav-label">Blogg</span></a> </li>
+                    <li> <a href="~/Home/MoreInfo"><i class="fa fa-files-o"></i> <span class="nav-label">Så går det till</span></a> </li>
+                    <li> <a href="~/CustomerSupport/Faq"><i class="fa fa-files-o"></i> <span class="nav-label">Faq</span></a> </li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+    
+    <div class="container body-content col-lg-10">
         @RenderBody()
         <hr />
         <footer>
