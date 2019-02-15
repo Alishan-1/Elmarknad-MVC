@@ -25,5 +25,21 @@ namespace Elmarknad.Controllers.Api
                 return BadRequest();
             }
         }
+
+        [Route("removepost")]
+        [HttpPost]
+        public IHttpActionResult DeleteBlogPost(List<string> id)
+        {
+            var helper = new BlogRepository();
+            try
+            {
+                helper.RemovePost(int.Parse(id[0]));
+                return Ok(); ;
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
     }
 }

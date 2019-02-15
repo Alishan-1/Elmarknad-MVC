@@ -1,0 +1,48 @@
+﻿@model Elmarknad.Models.ViewModels.DisplayBlogPostViewModel
+
+@{
+    ViewBag.Title = Model.Header;
+}
+@Html.Partial("../Home/HeaderPartial")
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 post-title-block">
+
+                <h1 class="text-center">@ViewBag.Title</h1>
+                <ul class="list-inline text-center">
+                    <li>Av Elmarknad.se |</li>
+                    <li>Blogg</li>
+                    <li>| @Model.Timestamp |</li>
+                </ul>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 custom-margin">
+                <p class="lead"><b>@Model.Ingress</b></p>
+                @Html.Raw(Model.HtmlContent)
+
+                <div class="image-block">
+                    @if (Model.ImagePath != null)
+                    {
+                        <img src="~/@Model.ImagePath" class="img-responsive">
+                    }
+                    else
+                    {
+                        <img class="img-responsive" src="~/Images/default.jpg" alt="">
+                    }
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-3 col-sm-12 custom-margin">
+                <div class="well">
+                    <h2>Blogg om elmarknaden</h2>
+                    <p>I vår blogg hittar du tips och nyheter som hjälper dig att förstå elmarknaden & spara pengar. Tveka inte att höra av dig om du har några frågor.</p>
+                </div>
+                <div class="well" style="background-color: #fff !important; border: none !important;">
+                    <a href="~/Home/Index"><img class="img-responsive" src="~/Images/payment.png" /></a>
+                </div>
+            
+            </div>
+        </div>
+
+    </div> <!-- /container -->
+

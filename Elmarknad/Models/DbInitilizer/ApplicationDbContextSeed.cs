@@ -9,7 +9,7 @@ using System.Web;
 
 namespace DatingSida.Models.DBInitilizer
 {
-    public class ApplicationDbContextSeed : System.Data.Entity.CreateDatabaseIfNotExists<ApplicationDbContext>
+    public class ApplicationDbContextSeed : System.Data.Entity.DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext db)
         {

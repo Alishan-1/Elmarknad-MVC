@@ -9,6 +9,7 @@ using System.IO;
 using Elmarknad.Models;
 using Elmarknad.Repo;
 using System.Text;
+using System.Diagnostics;
 
 namespace Elmarknad.Repo
 {
@@ -26,14 +27,21 @@ namespace Elmarknad.Repo
                 string path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Models/Webscrape/"), "jsonEl.json");
                 if (File.Exists(path))
                     {
-                   
+                    var watch1 = new Stopwatch();
+                    watch1.Start();
                     dynamic json = JsonConvert.DeserializeObject(File.ReadAllText(path, Encoding.UTF8));
-
+                    watch1.Stop();
+                    System.Diagnostics.Debug.WriteLine("Läsa in fil: " + watch1.Elapsed);
 
                     var el1 = db.Elområden.Single(i => i.Area == "SE01");
                     var el2 = db.Elområden.Single(i => i.Area == "SE02");
                     var el3 = db.Elområden.Single(i => i.Area == "SE03");
                     var el4 = db.Elområden.Single(i => i.Area == "SE04");
+
+                    var watch2 = new Stopwatch();
+                    watch2.Start();
+
+                    var list = new List<Postnummer>();
 
                     foreach (var obj in json)
                 {
@@ -46,8 +54,8 @@ namespace Elmarknad.Repo
                                     Number = obj.Postnummer,
                                     ElområdeId = el1.ElområdeId
                                 };
-                                db.Postnummers.Add(postnummer);
-                                db.SaveChanges();
+                                list.Add(postnummer);
+                                
                                 continue;
                             }
 
@@ -58,8 +66,8 @@ namespace Elmarknad.Repo
                                     Number = obj.Postnummer,
                                     ElområdeId = el2.ElområdeId
                                 };
-                                db.Postnummers.Add(postnummer);
-                                db.SaveChanges();
+                                list.Add(postnummer);
+                               
                                 continue;
                             }
 
@@ -70,31 +78,35 @@ namespace Elmarknad.Repo
                                     Number = obj.Postnummer,
                                     ElområdeId = el3.ElområdeId
                                 };
-                                db.Postnummers.Add(postnummer);
-                                db.SaveChanges();
+                                list.Add(postnummer);
+                                
                                 continue;
-                            }
-
-                            if ( obj.Elomrade == "SE04")
+                        }
+                        else
+                        {
+                            
+                            var postnummer = new Postnummer
                             {
-                                var postnummer = new Postnummer
-                                {
-                                    Number = obj.Postnummer,
-                                    ElområdeId = el4.ElområdeId
-                                };
-                                db.Postnummers.Add(postnummer);
-                                db.SaveChanges();
-                                continue;
-                            }
+                                Number = obj.Postnummer,
+                                ElområdeId = el4.ElområdeId
+                            };
+                            list.Add(postnummer);
 
-                        
+                            continue;
+                        }
+
                    
                 }
+                    watch2.Stop();
+                    System.Diagnostics.Debug.WriteLine("Sortera poster: " + watch2.Elapsed);
 
-                db.SaveChanges();
-                
-                
-             
+                    var watch3 = new Stopwatch();
+                    watch3.Start();
+                    db.Postnummers.AddRange(list);
+                    db.SaveChanges();
+                    watch3.Stop();
+                    System.Diagnostics.Debug.WriteLine("Spara i databasen: " + watch3.Elapsed);
+
                 }
             }
             catch (Exception exc){
@@ -105,6 +117,9 @@ namespace Elmarknad.Repo
 
         private void FillDbEl()
         {
+            var watch = new Stopwatch();
+            watch.Start();
+
             var list = db.Elområden.ToList();
             db.Elområden.RemoveRange(list);
             db.SaveChanges();
@@ -132,6 +147,10 @@ namespace Elmarknad.Repo
             db.Elområden.Add(Elområde3);
             db.Elområden.Add(Elområde4);
             db.SaveChanges();
+
+            watch.Stop();
+            System.Diagnostics.Debug.WriteLine("Ta bort poster: " + watch.Elapsed);
+
         }
     }
 }

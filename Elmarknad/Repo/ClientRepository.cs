@@ -1,4 +1,5 @@
-﻿using Elmarknad.Models.ViewModels;
+﻿using Elmarknad.Models.UserAdminModels;
+using Elmarknad.Models.ViewModels;
 using Elmarknad.Models.Webscrape;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace Elmarknad.Repo
             db.SaveChanges();
         }
 
-        private string SaveImage(HttpPostedFileBase img) {
+        public string SaveImage(HttpPostedFileBase img) {
             if (img != null)
             {
                 //för att göra sökvägen helt unik används GUID

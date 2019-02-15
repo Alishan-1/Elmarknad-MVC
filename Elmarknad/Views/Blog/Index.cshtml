@@ -1,0 +1,74 @@
+﻿@using Elmarknad.Models.ViewModels
+@model List<IndexBlogViewModel>
+
+@{
+    ViewBag.Title = "Blogg";
+}
+
+@Html.Partial("../Home/HeaderLayout")
+
+<div class="container">
+
+    <!-- Page Heading -->
+    <hr />
+    <h2 class="my-4">
+        Elmarknad Blogg
+        <small>Ta del av elmarknadens nyheter</small>
+    </h2>
+    <hr />
+    @foreach (var item in Model)
+    {
+        <!-- Project One -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    @if (item.ImagePath != null)
+                    {
+                        <img class="img-responsive" src="../@item.ImagePath" alt="">
+                    }
+                    else
+                    {
+                        <img class="img-responsive" src="~/Images/default.jpg" alt="">
+                    }
+
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>@item.Header</h3><small> @item.Timestamp</small>
+                <p>@item.Ingress</p>
+                <a class="btn btn-primary" href="~/Blog/ReadBlogPost/@item.BlogModelId">Läs inlägg</a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+    }
+
+    <!-- Pagination -->
+    @*<ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#">3</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>*@
+
+</div>
+
+

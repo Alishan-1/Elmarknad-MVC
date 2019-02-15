@@ -168,5 +168,57 @@ namespace Elmarknad.Controllers
             return View("ListCustomers", model);
         }
 
+        public ActionResult WritePost()
+        {
+            var model = new AddBlogPostViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult WritePost(AddBlogPostViewModel model)
+        {
+            var helper = new BlogRepository();
+            if (ModelState.IsValid)
+            {
+                helper.SavePost(model);
+                return RedirectToAction("Index", "Blog");
+            }
+            return View(model);
+        }
+        public ActionResult ListBlogPosts()
+        {
+            var helper = new BlogRepository();
+            var model = helper.GetAllPosts();
+            return View(model);
+        }
+        public ActionResult EditBlogPost(int id)
+        {
+            var helper = new BlogRepository();
+            var obj = helper.GetSinglePost(id);
+            var model = new AddBlogPostViewModel
+            {
+                BlogModelId = obj.BlogModelId,
+                Header = obj.Header,
+                HtmlContent = obj.HtmlContent,
+                Ingress = obj.Ingress,
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditBlogPost(AddBlogPostViewModel model)
+        {
+            var helper = new BlogRepository();
+            if (ModelState.IsValid)
+            {
+                helper.UpdatePost(model);
+                return RedirectToAction("Index", "Blog");
+            }
+            return View(model);
+        }
+
+      
     }
 }

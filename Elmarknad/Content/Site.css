@@ -474,3 +474,45 @@ section {
     border-radius: 50%;
     color: white;
 }
+
+section {
+    width: 100%;
+    float: left;
+}
+
+.banner-section {
+    background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("../Images/information.png");
+    background-size: cover;
+    height: 380px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    background-position: 0;
+}
+
+.post-title-block {
+    padding: 5%;
+}
+
+    .post-title-block h1 {
+        color: #fff;
+        font-size: 40px;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+
+    .post-title-block li {
+        font-size: 20px;
+        color: #fff;
+    }
+
+.image-block {
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+@media (min-width:1080px) {
+    .custom-margin {
+        margin-top: 10%;
+    }
+}

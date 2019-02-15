@@ -1,0 +1,40 @@
+﻿@model Elmarknad.Models.ViewModels.AddBlogPostViewModel
+
+@{
+                ViewBag.Title = "Redigera inlägg";
+                Layout = "_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("EditBlogPost", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <h4>Skriv Inlägg</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Header, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Header, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Ingress, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(m => m.Ingress, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.HtmlContent, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(m => m.HtmlContent, new { @class = "form-control" })
+            </div>
+            @Html.HiddenFor(i => i.BlogModelId)
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Spara" />
+            </div>
+        </div>
+    </div>
+}
+

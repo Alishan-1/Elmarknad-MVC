@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Elmarknad.Models.UserAdminModels;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace Elmarknad.Models.Webscrape
         public virtual DbSet<ClientModel> ClientModels { get; set; }
         public virtual DbSet<ElBolag> Companies { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<BlogModel> BlogPosts { get; set; }
 
         public DbEl() : base() {
           

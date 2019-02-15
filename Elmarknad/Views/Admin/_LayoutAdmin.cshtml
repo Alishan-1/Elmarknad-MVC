@@ -57,6 +57,15 @@
                         </ul>
                     </li>
                     <li> <a href="~/Account/Register"><i class="fa fa-laptop"></i> <span class="nav-label">Lägg till användare</span></a> </li>
+                   
+                    <li>
+                        <a href="#" data-toggle="collapse" data-target="#blog" class="collapsed active"><i class="fa fa-pencil"></i> <span class="nav-label">Hantera Blogg</span> <span class="fa fa-chevron-left pull-right"></span></a>
+                        <ul class="sub-menu collapse" id="blog">
+                            <li>@Html.ActionLink("Skriv Inlägg", "WritePost")</li>
+                            <li>@Html.ActionLink("Redigera Inlägg", "ListBlogPosts")</li>
+                        </ul>
+                    </li>
+
                     <li>
                         <a href="#" data-toggle="collapse" data-target="#tables" class="collapsed active"><i class="fa fa-table"></i> <span class="nav-label">Hantera Kunder</span><span class="fa fa-chevron-left pull-right"></span></a>
                         <ul class="sub-menu collapse" id="tables">
@@ -107,7 +116,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Vill du verkligen ta bort användaren?
+                    Är du säker att du vill radera?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Ångra</button>

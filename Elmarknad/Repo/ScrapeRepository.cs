@@ -66,7 +66,7 @@ namespace Elmarknad.Repo
 
 
 
-
+            var list = new List<ScrapeModel>();
             for (int i = 0; i < Links.Count; i++)
             {
                 var model = new ScrapeModel();
@@ -101,8 +101,9 @@ namespace Elmarknad.Repo
                 model.Uppsägningstid = ExtraAttributes[15];
                 model.Automatiskförlängning = ExtraAttributes[16];
                 model.Omteckningsrätt = ExtraAttributes[17];
-                db.ScrapeModels.Add(model);
+                list.Add(model);
             }
+            db.ScrapeModels.AddRange(list);
             db.SaveChanges();
             return true;
            
