@@ -254,6 +254,7 @@
     <Compile Include="Models\UserAdminModels\IdentityModels.cs" />
     <Compile Include="Models\Webscrape\ManageViewModels.cs" />
     <Compile Include="Models\Webscrape\Postnummer.cs" />
+    <Compile Include="Models\Webscrape\RemovedUserModel.cs" />
     <Compile Include="Models\Webscrape\ScrapeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\BlogRepository.cs" />
@@ -374,6 +375,7 @@
     <Content Include="Views\Home\HeaderPartial.cshtml" />
     <Content Include="Views\Admin\ListBlogPosts.cshtml" />
     <Content Include="Views\Admin\EditBlogPost.cshtml" />
+    <Content Include="Views\Admin\ListDeletedCustomers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

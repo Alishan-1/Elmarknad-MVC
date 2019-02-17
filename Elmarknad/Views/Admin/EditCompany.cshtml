@@ -5,33 +5,46 @@
 }
 <h2>Visar alla Elbolag</h2>
 <div class="col-md-12 center-block">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Bild</th>
-                <th scope="col">Namn</th>
-                <th scope="col">Nummer</th>
-                <th scope="col">Ta bort</th>
-                <th scope="col">Redigera</th>
-            </tr>
-        </thead>
-        <tbody>
+  
 
             @foreach (var item in Model.ElBolag)
             {
-                <tr>
-                    <td class="col-md-3">@if (item.Image != null)
-                    {<img src="../@item.Image" style="width: 20%;" class="img-responsive" />}</td>
-                    <td class="col-md-3">@item.Name</td>
-                    <td class="col-md-2">@if (item.Phone != null)
-                    {@item.Phone}</td>
-                    <td class="col-md-2"><btn class="btn btn-danger delete-post" id="@item.ElBolagId">Ta Bort</btn></td>
-                    <td class="col-md-2">@Html.ActionLink("Redigera", "ManageCompany", new { id = item.ElBolagId }, htmlAttributes: new { @class = "btn btn-default" })</td>
-                </tr>
-            }
+               
+        <div class="row">
+            <div class="col-lg-10" style="border: 2px double #edebe9; padding: 1%;">
+                <h3>Elbolag <small>ElbolagsID: @item.ElBolagId.ToString()</small></h3>
+                <hr />
+                <div class="col-md-5">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            @if (item.Image != null)
+                            {<img src="../@item.Image" style="" class="img-responsive" />}
+                                            </li>
+                        <li class="list-group-item">Namn: @item.Name</li>
+                        <li class="list-group-item">Antal aktiva avtal: @item.ElAvtal.Count.ToString()st</li>
+                        <li class="list-group-item">
+                            @if (item.Phone != null)
+                            {@item.Phone}
+                        </li>
+                    </ul>
+                    
 
-        </tbody>
-    </table>
+                </div>
+                <div class="col-md-5">
+                    <btn class="btn btn-block btn-danger delete-post" id="@item.ElBolagId">Ta Bort</btn>
+                    @Html.ActionLink("Redigera", "ManageCompany", new { id = item.ElBolagId }, htmlAttributes: new { @class = "btn btn-block btn-default" })
+                </div>
+
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+    }
+
+        
 
 </div>
 @section scripts{

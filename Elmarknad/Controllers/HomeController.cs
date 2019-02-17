@@ -102,6 +102,7 @@ namespace Elmarknad.Controllers
                 var model = new AddCustomerAdminViewModel();
                 model = m.CustomerInfo;
                 model.IpAdress = Request.UserHostAddress;
+                model.ScrapeId = m.ScrapeId;
                 Customer.SaveCustomerAdminModel(model);
                 _email.SendEmailAsync(m);
                 return RedirectToAction("Thanks");
@@ -136,6 +137,8 @@ namespace Elmarknad.Controllers
                 var model = new AddCustomerAdminViewModel();
                 model = m.CustomerInfo;
                 model.IpAdress = Request.UserHostAddress;
+                model.ClientId = m.ScrapeId;
+                
                 Customer.SaveCustomerAdminModel(model);
                 _email.SendEmailAsync(m);
                 return RedirectToAction("Thanks");

@@ -218,6 +218,12 @@ namespace Elmarknad.Controllers
             }
             return View(model);
         }
+        public ActionResult ListDeletedCustomers()
+        {
+            var helper = new CustomerRepository();
+            var model = helper.GetDeletedUsers();
+            return View(model);
+        }
 
       
     }

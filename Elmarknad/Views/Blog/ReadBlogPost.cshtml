@@ -17,25 +17,27 @@
                     <li>| @Model.Timestamp |</li>
                 </ul>
             </div>
-            <div class="col-lg-9 col-md-9 col-sm-12 custom-margin">
+            <div class="col-lg-9 col-md-9 col-sm-12" style="margin-top: 10% !important;">
                 <p class="lead"><b>@Model.Ingress</b></p>
                 @Html.Raw(Model.HtmlContent)
 
                 <div class="image-block">
                     @if (Model.ImagePath != null)
                     {
-                        <img src="~/@Model.ImagePath" class="img-responsive">
+                        <img src="~/@Model.ImagePath" class="img-responsive"><br />
                     }
                     else
                     {
-                        <img class="img-responsive" src="~/Images/default.jpg" alt="">
+                        <img class="img-responsive" src="~/Images/default.jpg" alt=""><br />
                     }
                 </div>
             </div>
-            <div class="col-lg-3  col-md-3 col-sm-12 custom-margin">
-                <div class="well">
-                    <h2>Blogg om elmarknaden</h2>
-                    <p>I vår blogg hittar du tips och nyheter som hjälper dig att förstå elmarknaden & spara pengar. Tveka inte att höra av dig om du har några frågor.</p>
+            <div class="col-lg-3  custom-margin">
+                <div class="well text-center">
+                    @*<img src="~/Images/marknad.png" class="img-responsive" />*@
+                    <h3 style="color: #1b5b82;">Blogg om elmarknaden</h3>
+                    <p style="margin-bottom: 20%;">I vår blogg hittar du tips och nyheter som hjälper dig att förstå elmarknaden & spara pengar. Tveka inte att höra av dig om du har några frågor.</p>
+                    <p class="text-left">Maila dina frågor till <a href="mailto:info@elmarknad.se">info@elmarknad.se</a> eller besök vår <a href="~/Home/Contact">kontaktsida</a></p>
                 </div>
                 <div class="well" style="background-color: #fff !important; border: none !important;">
                     <a href="~/Home/Index"><img class="img-responsive" src="~/Images/payment.png" /></a>

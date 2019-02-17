@@ -57,7 +57,7 @@
                         </ul>
                     </li>
                     <li> <a href="~/Account/Register"><i class="fa fa-laptop"></i> <span class="nav-label">Lägg till användare</span></a> </li>
-                   
+
                     <li>
                         <a href="#" data-toggle="collapse" data-target="#blog" class="collapsed active"><i class="fa fa-pencil"></i> <span class="nav-label">Hantera Blogg</span> <span class="fa fa-chevron-left pull-right"></span></a>
                         <ul class="sub-menu collapse" id="blog">
@@ -71,6 +71,7 @@
                         <ul class="sub-menu collapse" id="tables">
                             <li>@Html.ActionLink("Lägg till kund", "AddCustomer", "Admin")</li>
                             <li> @Html.ActionLink("Se Kunder", "ListCustomers", "Admin")</li>
+                            <li> @Html.ActionLink("Se borttagna kunder", "ListDeletedCustomers", "Admin")</li>
                         </ul>
                     </li>
                     <li>
@@ -94,6 +95,7 @@
                     <li> <a href="~/Home/Contact"><i class="fa fa-files-o"></i> <span class="nav-label">Kontakt</span></a> </li>
                     <li> <a href="~/Error"><i class="fa fa-files-o"></i> <span class="nav-label">Felsida</span></a> </li>
                     <li> <a href="~/Error/Error404"><i class="fa fa-files-o"></i> <span class="nav-label">Felsida 404</span></a> </li>
+                    <li> <a href="~/Home/Thanks"><i class="fa fa-files-o"></i> <span class="nav-label">Tack för köpet</span></a> </li>
                 </ul>
             </div>
         </aside>

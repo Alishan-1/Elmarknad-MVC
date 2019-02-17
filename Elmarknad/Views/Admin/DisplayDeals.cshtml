@@ -5,127 +5,59 @@
 }
 
 <h2>Alla avtal</h2>
-<div class="col-lg-12">
-    <table class="table table-dark">
-       
 
-       
-        
+<hr />
+@foreach (var item in Model.Deals)
+{
 
-            @foreach (var item in Model.Deals)
-            {
-        <tbody style="border: 2px solid #000; margin-top: 2%; margin-bottom: 2%;">
-            <tr>
-                <th scope="col">Pris</th>
-                <th scope="col">Kontrakt</th>
-                <th scope="col">Elförbrukning</th>
-                <th scope="col">Typ</th>
-                <th scope="col">Extra info</th>
-                <th scope="col">Kundbetyg</th>
-                <th scope="col">Årlig avgift</th>
-                <th scope="col">Engångsavgift</th>
-                <th scope="col">Fastpris</th>
-                <th scope="col">RörligtInköpsPris</th>
-            </tr>
-            <tr>
-                <td>
-                    @if (item.Price != null)
-                    {@item.Price}
-                </td>
-                <td>
-                    @if (item.Contract != null)
-                    {@item.Contract}
-                </td>
-                <td>
-                    @item.Förbrukning
-                </td>
-                <td>
-                    @if (item.Typ != null)
-                    {@item.Typ}
-                </td>
-                <td>
-                    @if (item.ExtraInfo != null)
-                    {@item.ExtraInfo}
-                </td>
-                <td>
-                    @item.Rating
-                </td>
-                <td>
-                    @if (item.ÅrsAvgift != null)
-                    {@item.ÅrsAvgift}
-                </td>
-                <td>
-                    @if (item.Engångsavgift != null)
-                    {@item.Engångsavgift}
-                </td>
-                <td>
-                    @if (item.Fastpris != null)
-                    {@item.Fastpris}
-                </td>
-                <td>
-                    @if (item.RörligtInköpsPris != null)
-                    {@item.RörligtInköpsPris}
-                </td>
-            </tr>
-            <tr>
-                <th scope="col">RörligtPåslag</th>
-                <th scope="col">Miljöpåslag</th>
-                <th scope="col">Rabatt</th>
-                <th scope="col">Moms</th>
-                <th scope="col">Uppsägningstid</th>
-                <th scope="col">Automatiskförlängning</th>
-                <th scope="col">Omteckningsrätt</th>
-                <th scope="col">Elområde</th>
-                <th scope="col">Elbolag</th>
-                <th scope="col">Radera</th>
-            </tr>
-            <tr>
-                <td>
-                    @if (item.RörligtPåslag != null)
-                    {@item.RörligtPåslag}
-                </td>
-                <td>
-                    @if (item.Miljöpåslag != null)
-                    {@item.Miljöpåslag}
-                </td>
-                <td>
-                    @if (item.Rabatt != null)
-                    {@item.Rabatt}
-                </td>
-                <td>
-                    @if (item.Moms != null)
-                    {@item.Moms}
-                </td>
-                <td>
-                    @if (item.Uppsägningstid != null)
-                    {@item.Uppsägningstid}
-                </td>
-                <td>
-                    @if (item.Automatiskförlängning != null)
-                    {@item.Automatiskförlängning}
-                </td>
-                <td>
-                    @if (item.Omteckningsrätt != null)
-                    {@item.Omteckningsrätt}
-                </td>
-                <td>
-                    @if (item.Elområde.Area != null)
-                    {@item.Elområde.Area}
-                </td>
-                <td>
-                    @if (item.ElBolag.Name != null)
-                    {@item.ElBolag.Name}
-                </td>
-                <td class="col-md-2"><btn class="btn btn-danger delete-post" id="@item.ClientId">Ta Bort</btn></td>
-            </tr>
-        </tbody>
+    <div class="row">
+        <div class="col-lg-10" style="border: 2px double #edebe9; padding: 1%;">
+            <h3>Elavtal <small>AvtalsID: @item.ClientId.ToString()</small></h3>
+            <hr />
+            <div class="col-md-5">
+                <ul class="list-group">
+                    <li class="list-group-item">Automatisk förlängning: @item.Automatiskförlängning</li>
+                    <li class="list-group-item">Avtal: @item.Contract</li>
+                    <li class="list-group-item">Elbolag: @item.ElBolag.Name</li>
+                    <li class="list-group-item">Elområde: @item.Elområde.Area</li>
+                    <li class="list-group-item">Engångsavgift: @item.Engångsavgift kwH</li>
+                    <li class="list-group-item">Information: @item.ExtraInfo</li>
+                    <li class="list-group-item">Fastpris: @item.Fastpris kwH</li>
+                    <li class="list-group-item">Elförbrukning: @item.Förbrukning</li>
+                    <li class="list-group-item">Miljöpåslag: @item.Miljöpåslag kwH</li>
+                    <li class="list-group-item">Moms: @item.Moms kwH</li>
+                    <li class="list-group-item">Omteckningsrätt: @item.Omteckningsrätt</li>
+                    <li class="list-group-item"><b>Totalt pris:</b> @item.Price</li>
 
-            }
+                </ul>
 
-        
-    </table>
+            </div>
+            <div class="col-md-5">
+                <ul class="list-group">
+                    <li class="list-group-item">Rabatt: @item.Rabatt.ToString() kwH</li>
+                    <li class="list-group-item">Betyg: @item.Rating</li>
+                    <li class="list-group-item">Rörligt Inköpspris: @item.RörligtInköpsPris kwH</li>
+                    <li class="list-group-item">Rörligt Miljöpåslag: @item.RörligtMiljöpåslag kwH</li>
+                    <li class="list-group-item">Rörligt Påslag: @item.RörligtPåslag kwH</li>
+                    <li class="list-group-item">Avtalstyp: @item.Typ</li>
+                    <li class="list-group-item">Uppsägningstid: @item.Uppsägningstid dagar</li>
+                    <li class="list-group-item">ÅrsAvgift: @item.ÅrsAvgift kwH</li>
+                </ul>
+                <btn class="btn btn-block btn-danger delete-post" id="@item.ClientId">Ta Bort</btn>
+            </div>
 
-</div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+}
+
+
+
 
 @section scripts{
     <script>

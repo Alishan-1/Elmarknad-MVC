@@ -16,6 +16,7 @@ namespace Elmarknad.Models.Webscrape
         public virtual DbSet<ElBolag> Companies { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<BlogModel> BlogPosts { get; set; }
+        public virtual DbSet<RemovedUserModel> DeletedCustomer { get; set; }
 
         public DbEl() : base() {
           

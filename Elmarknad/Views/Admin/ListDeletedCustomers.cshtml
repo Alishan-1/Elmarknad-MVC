@@ -1,0 +1,91 @@
+﻿@using Elmarknad.Models.Webscrape
+@model List<RemovedUserModel>
+
+@{
+    ViewBag.Title = "Lista Kunder";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+
+<h2>Listar Avslutade Kunder</h2>
+
+
+@foreach (var item in Model)
+{
+    <!-- Project One -->
+    <div class="row">
+        <div class="col-lg-10" style="border: 2px double #edebe9; padding: 1%;">
+            <h3>Kundkort <small>Användaren flyttades av: @item.AdminName @item.DateMoved</small></h3>
+            <hr />
+            <div class="col-md-5">
+                <ul class="list-group">
+                    <li class="list-group-item">Namn: @item.Firstname @item.Lastname</li>
+                    <li class="list-group-item">Personnummer: @item.SocialSecurity</li>
+                    <li class="list-group-item">Adress: @item.Address</li>
+                    <li class="list-group-item">Epost: @item.Email</li>
+                    <li class="list-group-item">Adress: @item.Address</li>
+                    <li class="list-group-item">Postnummer: @item.Postnumber</li>
+                    <li class="list-group-item">Stad: @item.City</li>
+                    <li class="list-group-item">Tidpunkt vid signerande: @item.DaySigned</li>
+                    <li class="list-group-item">Personnummer: @item.SocialSecurity</li>
+                    <li class="list-group-item">Postnummer: @item.Postnumber</li>
+                    <li class="list-group-item">Betalmetod: @item.Paymentmethod</li>
+                    <li class="list-group-item">IP-adress: @item.IpAdress</li>
+                    <li class="list-group-item">Postnummer: @item.Postnumber.ToString()</li>
+                    @if (item.HasConfirmed)
+                    {
+                        <li class="list-group-item"><b>Kunden har godkänt våra avtal</b></li>
+                    }
+                    @if (item.LetUsGetInfo)
+                    {
+                        <li class="list-group-item"><b>Kunden har godkänt att vi inhämtar uppgifter</b></li>
+                    }
+                    else
+                    {
+                        <li class="list-group-item">OmrådesID: @item.AreaCode</li>
+                        <li class="list-group-item">AnläggningsID: @item.PropertyCode</li>
+                        <li class="list-group-item">Startdatum: @item.StartDate.ToString()</li>
+                    }
+                </ul>
+
+            </div>
+            <div class="col-md-5">
+
+                @if (item.IsClient)
+                {
+
+                <ul class="list-group">
+                    <li class="list-group-item active"><h5>Kunden har valt ett kampanjavtal</h5></li>
+                    <li class="list-group-item">Elbolag: @item.Company</li>
+                    <li class="list-group-item">Elområde: @item.Elområde</li>
+                    <li class="list-group-item">Pris: @item.Price</li>
+                    <li class="list-group-item">Typ: @item.Typ</li>
+                    <li class="list-group-item">Kontrakt: @item.Contract</li>
+                    <li class="list-group-item">Förbrukning: @item.Förbrukning</li>
+                    <li class="list-group-item">Mer Info: @item.ExtraInfo</li>
+                </ul>
+                }
+                else if (!item.IsClient)
+                {
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-warning"><h5>Kunden har valt ett skrapat avtal</h5></li>
+                    <li class="list-group-item">Elbolag: @item.Company</li>
+                    <li class="list-group-item">Elområde: @item.Elområde</li>
+                    <li class="list-group-item">Pris: @item.Price</li>
+                    <li class="list-group-item">Typ: @item.Typ</li>
+                    <li class="list-group-item">Kontrakt: @item.Contract</li>
+                    <li class="list-group-item">Förbrukning: @item.Förbrukning</li>
+                    <li class="list-group-item">Mer Info: @item.ExtraInfo</li>
+                </ul>
+                }
+               
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+    <hr>
+}

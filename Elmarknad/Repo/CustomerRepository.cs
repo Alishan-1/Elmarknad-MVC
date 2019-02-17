@@ -150,7 +150,8 @@ namespace Elmarknad.Repo
 
 
         public List<ListCustomerViewModel> GetCustomers() {
-            var customers = db.Customers.ToList();
+            var _db = new DbEl();
+            var customers = _db.Customers.OrderByDescending(i => i.DaySigned).ToList();
             var list = new List<ListCustomerViewModel>();
             foreach (var item in customers) {
                 var model = new ListCustomerViewModel {
@@ -161,7 +162,18 @@ namespace Elmarknad.Repo
                     Address = item.Address,
                     City = item.City,
                     Email = item.Email,
-                    Postnumber = item.Postnumber
+                    Postnumber = item.Postnumber,
+                    ClientDeal = item.ClientModel != null ? item.ClientModel : null,
+                    ScrapeDeal = item.ScrapeModel != null ? item.ScrapeModel : null,
+                    Timestamp = item.DaySigned.ToString(),
+                    AreaCode = item.AreaCode != null ? item.AreaCode : null,
+                    HasConfirmed = item.HasConfirmed,
+                    IpAdress = item.IpAdress,
+                    LetUsGetInfo = item.LetUsGetInfo,
+                    Paymentmethod = item.Paymentmethod,
+                    PropertyCode = item.PropertyCode != null ? item.PropertyCode : null,
+                    StartDate = item.StartDate
+
                 };
                 list.Add(model);
             }
@@ -187,7 +199,17 @@ namespace Elmarknad.Repo
                     Address = item.Address,
                     City = item.City,
                     Email = item.Email,
-                    Postnumber = item.Postnumber
+                    Postnumber = item.Postnumber,
+                    ClientDeal = item.ClientModel != null ? item.ClientModel : null,
+                    ScrapeDeal = item.ScrapeModel != null ? item.ScrapeModel : null,
+                    Timestamp = item.DaySigned.ToString(),
+                    AreaCode = item.AreaCode != null ? item.AreaCode : null,
+                    HasConfirmed = item.HasConfirmed,
+                    IpAdress = item.IpAdress,
+                    LetUsGetInfo = item.LetUsGetInfo,
+                    Paymentmethod = item.Paymentmethod,
+                    PropertyCode = item.PropertyCode != null ? item.PropertyCode : null,
+                    StartDate = item.StartDate
                 };
                 list.Add(model);
             }
@@ -196,8 +218,92 @@ namespace Elmarknad.Repo
 
         public void DeleteUser(int userId) {
             var cust = db.Customers.Find(userId);
-            db.Customers.Remove(cust);
-            db.SaveChanges();
+            if (this.MoveCustomer(cust)) {
+                db.Customers.Remove(cust);
+                db.SaveChanges();
+                return;
+            }
+            throw new Exception();
+        }
+
+        private bool MoveCustomer(Customer c)
+        {
+            var httpContext = HttpContext.Current;
+            var db = new DbEl();
+            if (c.ScrapeId != null)
+            {
+                var deleted = new RemovedUserModel
+                {
+                    Address = c.Address,
+                    AdminName = httpContext.User.Identity.Name,
+                    AreaCode = c.AreaCode,
+                    City = c.City,
+                    Company = c.ScrapeModel.Company,
+                    Contract = c.ScrapeModel.Contract,
+                    DateMoved = DateTime.Now.ToString(),
+                    DaySigned = c.DaySigned,
+                    Email = c.Email,
+                    ExtraInfo = c.ScrapeModel.ExtraInfo,
+                    Firstname = c.Firstname,
+                    Förbrukning = c.ScrapeModel.Förbrukning,
+                    HasConfirmed = c.HasConfirmed,
+                    IpAdress = c.IpAdress,
+                    Lastname = c.Lastname,
+                    LetUsGetInfo = c.LetUsGetInfo,
+                    Paymentmethod = c.Paymentmethod,
+                    Postnumber = c.Postnumber,
+                    Price = c.ScrapeModel.Price,
+                    PropertyCode = c.PropertyCode,
+                    SocialSecurity = c.SocialSecurity,
+                    StartDate = c.StartDate,
+                    Typ = c.ScrapeModel.Typ,
+                    IsClient = false,
+                    Elområde = c.ScrapeModel.Elområde.Area
+                };
+                db.DeletedCustomer.Add(deleted);
+                db.SaveChanges();
+                return true;
+            } else if(c.ClientId != null)
+            {
+                var deleted = new RemovedUserModel
+                {
+                    Address = c.Address,
+                    AdminName = httpContext.User.Identity.Name,
+                    AreaCode = c.AreaCode,
+                    City = c.City,
+                    Company = c.ClientModel.ElBolag.Name,
+                    Contract = c.ClientModel.Contract,
+                    DateMoved = DateTime.Now.ToString(),
+                    DaySigned = c.DaySigned,
+                    Email = c.Email,
+                    ExtraInfo = c.ClientModel.ExtraInfo,
+                    Firstname = c.Firstname,
+                    Förbrukning = c.ClientModel.Förbrukning,
+                    HasConfirmed = c.HasConfirmed,
+                    IpAdress = c.IpAdress,
+                    Lastname = c.Lastname,
+                    LetUsGetInfo = c.LetUsGetInfo,
+                    Paymentmethod = c.Paymentmethod,
+                    Postnumber = c.Postnumber,
+                    Price = c.ClientModel.Price.ToString(),
+                    PropertyCode = c.PropertyCode,
+                    SocialSecurity = c.SocialSecurity,
+                    StartDate = c.StartDate,
+                    Typ = c.ClientModel.Typ,
+                    IsClient = true,
+                    Elområde = c.ClientModel.Elområde.Area
+                };
+                db.DeletedCustomer.Add(deleted);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public List<RemovedUserModel> GetDeletedUsers()
+        {
+            var db = new DbEl();
+            return db.DeletedCustomer.OrderByDescending(i => i.DaySigned).ToList();
         }
 
     }
