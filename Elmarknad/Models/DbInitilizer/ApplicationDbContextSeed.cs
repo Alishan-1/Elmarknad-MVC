@@ -1,5 +1,6 @@
 ﻿
 using Elmarknad.Models;
+using Elmarknad.Repo;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -9,10 +10,12 @@ using System.Web;
 
 namespace DatingSida.Models.DBInitilizer
 {
-    public class ApplicationDbContextSeed : System.Data.Entity.DropCreateDatabaseIfModelChanges<ApplicationDbContext>
+    public class ApplicationDbContextSeed : System.Data.Entity.CreateDatabaseIfNotExists<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext db)
         {
+
+           
 
             var passwordhash = new PasswordHasher();
             var HasRoleOrName = false;

@@ -148,7 +148,24 @@ section {
     text-transform: none;
     color: #fff;
 }
+@media (max-width:1080px) {
+    .image-aboutus-banner {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        color: #fff;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        height: 20%;
+    }
 
+    .lg-text {
+        font-size: 32px;
+        font-weight: 400;
+        text-transform: none;
+        color: #fff;
+    }
+}
 .image-aboutus-para {
     color: #fff;
 }
