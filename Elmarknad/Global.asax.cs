@@ -17,7 +17,7 @@ namespace Elmarknad
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<DbEl>(new DropCreateDatabaseIfModelChanges<DbEl>());
+            //Database.SetInitializer<DbEl>(new DropCreateDatabaseIfModelChanges<DbEl>());
             Database.SetInitializer(
             new ApplicationDbContextSeed()
             );

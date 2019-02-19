@@ -230,6 +230,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902171609418_InitialCreate.cs" />
+    <Compile Include="Migrations\201902171609418_InitialCreate.Designer.cs">
+      <DependentUpon>201902171609418_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902191357240_UpdateOfDatabase.cs" />
+    <Compile Include="Migrations\201902191357240_UpdateOfDatabase.Designer.cs">
+      <DependentUpon>201902191357240_UpdateOfDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DbInitilizer\ApplicationDbContextSeed.cs" />
     <Compile Include="Models\UserAdminModels\AccountViewModels.cs" />
     <Compile Include="Models\UserAdminModels\BlogModel.cs" />
@@ -398,6 +407,14 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902171609418_InitialCreate.resx">
+      <DependentUpon>201902171609418_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191357240_UpdateOfDatabase.resx">
+      <DependentUpon>201902191357240_UpdateOfDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

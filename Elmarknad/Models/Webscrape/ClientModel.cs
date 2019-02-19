@@ -36,5 +36,19 @@ namespace Elmarknad.Models.Webscrape
         public virtual int ElBolagId { get; set; }
         public virtual ElBolag ElBolag { get; set; }
 
+        public virtual bool Autogiro { get; set; } = false;
+        public virtual bool EFaktura { get; set; } = false;
+        public virtual bool Pappersfaktura { get; set; } = false;
+
+        public virtual bool House { get; set; } = false;
+        public virtual bool Appartment { get; set; } = false;
+
+        public virtual bool Sol { get; set; } = false;
+        public virtual bool Vind { get; set; } = false;
+        public virtual bool Vatten { get; set; } = false;
+        public virtual bool Bio { get; set; } = false;
+        public virtual bool Miljömärkt { get; set; } = false;
+
+
     }
 }

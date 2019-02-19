@@ -89,6 +89,30 @@ namespace Elmarknad.Repo
                                      .Where(node => node.GetAttributeValue("class", "")
                                      .StartsWith("value")).Select(node => node.InnerText.Trim()).ToList();
 
+                var PaymentMethod = htmlDoc.DocumentNode.Descendants("td")
+                                    .Where(node => node.GetAttributeValue("class", "")
+                                    .Equals("well")).Select(x => x.InnerText).ToList();
+
+                var SunSource = htmlDoc.DocumentNode.Descendants("li")
+                                   .Where(node => node.GetAttributeValue("class", "")
+                                   .Equals("epk-energy-type epk-energy-solar")).Select(x => x.InnerText).ToList();
+
+                var WindSource = htmlDoc.DocumentNode.Descendants("li")
+                                   .Where(node => node.GetAttributeValue("class", "")
+                                   .Equals("epk-energy-type epk-energy-wind")).Select(x => x.InnerText).ToList();
+
+                var WaterSource = htmlDoc.DocumentNode.Descendants("li")
+                                   .Where(node => node.GetAttributeValue("class", "")
+                                   .Equals("epk-energy-type epk-energy-water")).Select(x => x.InnerText).ToList();
+
+                var BioSource = htmlDoc.DocumentNode.Descendants("li")
+                                   .Where(node => node.GetAttributeValue("class", "")
+                                   .Equals("epk-energy-type epk-energy-bio")).Select(x => x.InnerText).ToList();
+
+                var EnvironmentalSource = htmlDoc.DocumentNode.Descendants("li")
+                                          .Where(node => node.GetAttributeValue("class", "")
+                                          .Equals("epk-energy-type epk-bramiljoval")).Select(x => x.InnerText).ToList();
+
                 model.ÅrsAvgift = ExtraAttributes[0];
                 model.Engångsavgift = ExtraAttributes[1];
                 model.Fastpris = ExtraAttributes[2];
