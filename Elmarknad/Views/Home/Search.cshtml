@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Lägsta priset i ditt område";
-    int antalAvtal = Model.Clients.Count + Model.Scraped.Count;
+    int antalAvtal = Model.Agreements.Count;
 }
 <div class="col-lg-12 center-block" style="background-color: #f7f7f7 !important; margin-top: 1%; margin-bottom: 1%;">
     <h2 class="text-center" style="color: #1b5b82;">Visar alla elavtal med postnummer @Model.Postnummer</h2>
@@ -31,74 +31,67 @@
 
 </div>
 
-<div class="col-lg-12">
+<div class="col-lg-12 custom-filter">
+    <div class="preloader" style="display: none;">
+        <div class="spinner"></div>
+        <div class="spinner-2"></div>
+    </div>
+    <hr />
+    @foreach (var item in Model.Agreements)
+    {
 
-    <table class="table table-striped search-table">
-        <thead style="background-color: #1b5b82;">
-            <tr>
-                <th scope="col" style="color: #fff;">Elbolag</th>
-                <th scope="col" style="color: #fff;">Vilkor</th>
-                <th scope="col" style="color: #fff;">Om Avtalet</th>
-                <th scope="col" style="color: #fff;">Pris</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Clients)
-            {
-                <tr class="to-hide-client search-tool">
-                    <td>
-                        <ul style="list-style: none">
-                            <li><img src="../@item.Image" class="img-responsive" style="width: 40%;" /></li>
-                            <li class="comp-name">@item.Company</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Avtalstyp: @Model.Typ</li>
-                            <li>Avtalstid: 12 månader</li>
-                            <li>Uppsägningstid: @item.Uppsägningstid</li>
-                            <li>Kundbetyg: @item.Rating</li>
-                        </ul>
-                    </td>
-                    <td>
-                        @item.Contract
-                    </td>
-                    <td>
-                        @item.Price
-                    </td>
-                    <td>
-                        @Html.ActionLink("Teckna avtal", "TecknaKampanjAvtal", new { id = item.SearchId }, new { @class = "btn btn-primary", @style = "background-color: #f07451 !important;" })
-                    </td>
-                </tr>
-            }
-            @foreach (var item in Model.Scraped)
-            {
-                <tr class="to-hide-scrape search-tool">
-                    <td class="comp-name">
-                        @item.Company
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Avtalstyp: @Model.Typ</li>
-                            <li>Avtalstid: 12 månader</li>
-                            <li>Uppsägningstid: @item.Uppsägningstid</li>
-                            <li>Kundbetyg: @item.Rating</li>
-                        </ul>
-                    </td>
-                    <td>
-                        @item.Contract
-                    </td>
-                    <td>
-                        @item.Price
-                    </td>
-                    <td>
-                        @Html.ActionLink("Teckna avtal", "TecknaAvtal", new { id = item.SearchId }, new { @class = "btn btn-primary", @style = "background-color: #f07451 !important;" })
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        <div class="row to-hide center-block search-tool" style="border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;">
+            <div class="col-md-2">
+                @if (item.Image != null)
+                {
+                    <img class="img-responsive" src="~/@item.Image" alt="">
+                }
+                else
+                {
+                    <img class="img-responsive" src="~/Images/searchDefault.jpg" alt="" style="margin-bottom: 1%;">
+                }
+            </div>
+
+            <div class="col-md-5">
+                <h3 class="comp-name">@item.Company</h3>
+                <small>@item.Contract</small>
+                <ul class="list-group" style="font-size: 120%;">
+                    <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign"></i></span>Avtalstyp: @Model.Typ</li>
+                    <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign"></i></span>Avtalstid: 12 månader</li>
+                    <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign"></i></span>@item.ExtraInfo</li>
+                </ul>
+
+            </div>
+            <div class="col-md-5">
+                <h2 style="font-size: 150%;"><b>@item.Price kwh</b></h2>
+                <ul class="list-group" style="font-size: 100%;">
+                    <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-hand-right"></i></span>Automatiskförlängning: @item.AutomatiskFörlängning</li>
+                    <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-hand-right"></i></span>Omteckningsrätt: @item.Omteckningsrätt</li>
+                    <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-hand-right"></i></span>Uppsägningstid: @item.Uppsägningstid</li>
+                    @if (item.Rating != 0)
+                    {
+                        <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-hand-right"></i></span>Kundbetyg: @item.Rating</li>
+                    }
+                </ul>
+
+                @if (item.IsClient)
+                {
+                    @Html.ActionLink("Teckna avtal", "TecknaKampanjAvtal", new { id = item.Id }, new { @class = "btn btn-primary", @style = "background-color: #f07451 !important; margin-bottom: 1%;" })
+
+                }
+                else
+                {
+                    @Html.ActionLink("Teckna avtal", "TecknaAvtal", new { id = item.Id }, new { @class = "btn btn-primary", @style = "background-color: #f07451 !important; margin-bottom: 1%;" })
+
+                }
+            </div>
+
+        </div>
+
+    }
+
+
+
 </div>
 <div class="col-lg-12">
     <div class="center-block"><button class="btn btn-success center-block" id="show-all" style="margin-bottom: 10%;">Visa Mer <br /> @antalAvtal Avtal </button></div>
@@ -116,15 +109,15 @@
         });
 
         $(document).ready(function () {
-            $(".to-hide-client:gt(2)").css("display", "none");
-            $(".to-hide-scrape:gt(2)").css("display", "none");
+            $(".to-hide:gt(5)").css("display", "none");
+
         });
 
     $("#search-comp").on("keyup", function () {
-        $(".to-hide-client:gt(2)").show();
-        $(".to-hide-scrape:gt(2)").show();;
+        $(".to-hide:gt(5)").show();
+
         $("#show-all").hide();
-            var value = $("#search-comp").val();
+        var value = $("#search-comp").val().toLowerCase();
             if (value.length == 0) {
                 $(".search-tool").show();
             } else {
@@ -140,15 +133,18 @@
                 });
             }
     });
-    
+
 
     $("#show-all").on("click", function () {
-        $(".to-hide-client:gt(2)").show();
-        $(".to-hide-scrape:gt(2)").show();;
+        $(".to-hide:gt(5)").show();
+
         $("#show-all").hide();
         });
 
-        $("#price").on("click", function () {
+    $("#price").on("click", function () {
+        $(".preloader").show();
+        $(".to-hide").remove();
+        $("#show-all").hide();
             var typ = "@Html.Raw(@Model.Typ)";
             $("#show-all").hide();
             $("#search-comp").val("");
@@ -158,33 +154,51 @@
                 data: JSON.stringify([@Model.Förbrukning, typ, @Model.ElId]),
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
+                    $("#show-all").hide();
+                    $(".to-hide").remove();
+                    $(".preloader").hide();
 
-                    $(".to-hide-client").remove();
-                    $(".to-hide-scrape").remove();
-                    for (var i = 0; i < data.Clients.length; i++) {
-                        $(".search-table").append("<tr class='to-hide-client search-tool'><td><ul style='list-style: none'>" +
-                            "<li><img src=" + "'../" + data.Clients[i].Image + "'" + "class='img-responsive' style='width: 15%;' /></li>" +
-                            "<li class='comp-name'>" + data.Clients[i].Company + "</li > </ul></td >" +
-                            "<td><ul><li>Avtalstyp: " + data.Typ + "</li >" +
-                            "<li>Avtalstid: 12 månader</li>" +
-                            "<li>Uppsägningstid: " + data.Clients[i].Uppsägningstid + "</li>" +
-                            "<li>Kundbetyg: " + data.Clients[i].Rating + "</li >" +
-                            "</ul></td><td>" + data.Clients[i].Contract + "</td >" +
-                            "<td>" + data.Clients[i].Price + "</td ><td>" +
-                            "<a class='btn btn-primary' href='/Home/tecknakampanjavtal/" + data.Clients[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
+                    for (var i = 0; i < data.Agreements.length; i++) {
+                        var image = "<img>"
+                        if (data.Agreements[i].Image != null) {
+                            image = "<img class='img-responsive' src='../" + data.Agreements[i].Image + "' alt=''>";
+                        } else {
+                            image = "<img class='img-responsive' src='../Images/searchDefault.jpg' alt='' style='margin-bottom: 1%;'>";
+                        }
+                        var rating = "<li></li>";
+                        if (data.Agreements[i].Rating != 0) {
+                            rating = "<li style='list-style: none;'><span style='margin-right: 1%;'><i class='glyphicon glyphicon-hand-right'></i></span>Kundbetyg: " + data.Agreements[i].Rating + "</li>";
+                        } else {
+                            rating = "<li></li>";
+                        }
+
+                        var route = "<a></a>";
+                        if (data.Agreements[i].IsClient == true) {
+                            route = "<a class='btn btn-primary' href = '/Home/tecknakampanjavtal/" + data.Agreements[i].Id + "'" + "style ='background-color: #f07451 !important;margin-bottom: 1%;' >" + "Teckna avtal" + "</a>";
+
+                        } else {
+                            route = "<a class='btn btn-primary' href = '/Home/tecknaavtal/" + data.Agreements[i].Id + "'" + "  style ='background-color: #f07451 !important; margin-bottom: 1%;'> Teckna avtal</a>";
+
+                        }
+
+                        $(".custom-filter").append("<div class='row to-hide search-tool' style='border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;'>" +
+                            "<div class='col-md-2'>" + image + "</div>" +
+                            "<div class='col-md-5'>" +
+                            "<h3 class='comp-name'>" + data.Agreements[i].Company + "</h3><small>" + data.Agreements[i].Contract + "</small >" +
+                            "<ul class='list-group' style='font-size: 120 %;'>" +
+                            "<li style='list-style: none;'><span style='margin-right: 1%;'><i class='glyphicon glyphicon-plus-sign'></i></span>Avtalstyp: " + data.Typ + "</li>" +
+                            "<li style='list-style: none;'><span  style='margin-right: 1%;'><i class='glyphicon glyphicon-plus-sign'></i></span>Avtalstid: 12 månader</li>" +
+                            "<li style='list-style: none;'><span style='margin-right: 1%;'><i class='glyphicon glyphicon-plus-sign'></i></span>" + data.Agreements[i].ExtraInfo + "</li>" +
+                            "</ul></div>" +
+                            "<div class='col-md-5'>" +
+                            "<h2 style='font-size: 150%;'> <b>" + data.Agreements[i].Price + " kwh</b></h2>" +
+                            "<ul class='list-group' style='font-size: 100%;'>" +
+                            "<li style='list-style: none;'><span style='margin-right: 1%;'><i class='glyphicon glyphicon-hand-right'></i></span>Uppsägningstid: " + data.Agreements[i].Uppsägningstid + "</li>" +
+                            "<li style='list-style: none;'><span style='margin-right: 1%;'><i class='glyphicon glyphicon-hand-right'></i></span>Omteckningsrätt: " + data.Agreements[i].Omteckningsrätt + "</li>" +
+                            "<li style='list-style: none;'><span style='margin-right: 1%;'><i class='glyphicon glyphicon-hand-right'></i></span>Uppsägningstid: " + data.Agreements[i].Uppsägningstid + "</li>" +
+                            rating + "</ul>" + route + "</div></div>");
+
                     }
-
-                    for (var i = 0; i < data.Scraped.length; i++) {
-                        $(".search-table").append("<tr class='to-hide-client search-tool'><td  class='comp-name'>" + data.Scraped[i].Company + "</td >" +
-                            "<td><ul><li>Avtalstyp: " + data.Typ + "</li >" +
-                            "<li>Avtalstid: 12 månader</li>" +
-                            "<li>Uppsägningstid: " + data.Scraped[i].Uppsägningstid + "</li>" +
-                            "<li>Kundbetyg: " + data.Scraped[i].Rating + "</li >" +
-                            "</ul></td><td>" + data.Scraped[i].Contract + "</td >" +
-                            "<td>" + data.Scraped[i].Price + "</td ><td>" +
-                            "<a class='btn btn-primary' href='/Home/tecknaavtal/" + data.Scraped[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
-                    }
-
                 },
                 error: function () {
 
@@ -192,7 +206,10 @@
             })
         });
 
-        $("#rating").on("click", function () {
+    $("#rating").on("click", function () {
+        $(".preloader").show();
+            $(".to-hide").remove();
+            $("#show-all").hide();
             var typ = "@Html.Raw(@Model.Typ)";
             $("#search-comp").val("");
             $.ajax({
@@ -202,31 +219,51 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     $("#show-all").hide();
-                    $(".to-hide-client").remove();
-                    $(".to-hide-scrape").remove();
-                    for (var i = 0; i < data.Clients.length; i++) {
-                        $(".search-table").append("<tr class='to-hide-client search-tool'><td><ul style='list-style: none'>" +
-                            "<li><img src=" + "'../" + data.Clients[i].Image + "'" + "class='img-responsive' style='width: 15%;' /></li>" +
-                            "<li class='comp-name'>" + data.Clients[i].Company + "</li > </ul></td >" +
-                            "<td><ul><li>Avtalstyp: " + data.Typ + "</li >" +
-                            "<li>Avtalstid: 12 månader</li>" +
-                            "<li>Uppsägningstid: " + data.Clients[i].Uppsägningstid + "</li>" +
-                            "<li>Kundbetyg: " + data.Clients[i].Rating + "</li >" +
-                            "</ul></td><td>" + data.Clients[i].Contract + "</td >" +
-                            "<td>" + data.Clients[i].Price + "</td ><td>" +
-                            "<a class='btn btn-primary' href='/Home/tecknakampanjavtal/" + data.Clients[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
-                    }
+                    $(".to-hide").remove();
+                    $(".preloader").hide();
 
-                    for (var i = 0; i < data.Scraped.length; i++) {
-                        $(".search-table").append("<tr class='to-hide-client search-tool'><td class='comp-name'>" + data.Scraped[i].Company + "</td >" +
-                            "<td><ul><li>Avtalstyp: " + data.Typ + "</li >" +
-                            "<li>Avtalstid: 12 månader</li>" +
-                            "<li>Uppsägningstid: " + data.Scraped[i].Uppsägningstid + "</li>" +
-                            "<li>Kundbetyg: " + data.Scraped[i].Rating + "</li >" +
-                            "</ul></td><td>" + data.Scraped[i].Contract + "</td >" +
-                            "<td>" + data.Scraped[i].Price + "</td ><td>" +
-                            "<a class='btn btn-primary' href='/Home/tecknaavtal/" + data.Scraped[i].SearchId + "'" + "  style='background-color: #f07451 !important;'>Teckna avtal</a></td></tr>");
-                    }
+                    for (var i = 0; i < data.Agreements.length; i++) {
+                        var image = "<img>"
+                        if (data.Agreements[i].Image != null) {
+                            image = "<img class='img-responsive' src='../" + data.Agreements[i].Image + "' alt=''>";
+                        } else {
+                            image = "<img class='img-responsive' src='../Images/searchDefault.jpg' alt='' style='margin-bottom: 1%;'>";
+                        }
+                        var rating = "<li></li>";
+                        if (data.Agreements[i].Rating != 0) {
+                            rating = "<li style='list-style: none;'><span style='margin-right: 1%;'><i class='glyphicon glyphicon-hand-right'></i></span>Kundbetyg: " + data.Agreements[i].Rating + "</li>";
+                        } else {
+                            rating = "<li></li>";
+                        }
+
+                        var route = "<a></a>";
+                        if (data.Agreements[i].IsClient == true) {
+                            route = "<a class='btn btn-primary' href = '/Home/tecknakampanjavtal/" + data.Agreements[i].Id + "'" + "style ='background-color: #f07451 !important;margin-bottom: 1%;' >" +  "Teckna avtal" + "</a>";
+
+                        } else {
+                            route = "<a class='btn btn-primary' href = '/Home/tecknaavtal/" + data.Agreements[i].Id + "'" + "  style ='background-color: #f07451 !important; margin-bottom: 1%;'> Teckna avtal</a>";
+
+                        }
+
+                        $(".custom-filter").append("<div class='row to-hide search-tool' style='border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;'>" +
+                        "<div class='col-md-2'>" + image + "</div>" +
+                        "<div class='col-md-5'>" +
+                            "<h3 class='comp-name'>" + data.Agreements[i].Company + "</h3><small>" + data.Agreements[i].Contract + "</small >" +
+                        "<ul class='list-group' style='font-size: 120 %;'>" +
+                        "<li style='list-style: none;'><span style='margin-right: 1%;'><i class='glyphicon glyphicon-plus-sign'></i></span>Avtalstyp: " + data.Typ + "</li>" +
+                            "<li style='list-style: none;'><span  style='margin-right: 1%;'><i class='glyphicon glyphicon-plus-sign'></i></span>Avtalstid: 12 månader</li>" +
+                            "<li style='list-style: none;'><span style='margin-right: 1%;'><i class='glyphicon glyphicon-plus-sign'></i></span>" + data.Agreements[i].ExtraInfo + "</li>" +
+                        "</ul></div>" +
+                        "<div class='col-md-5'>" +
+                        "<h2 style='font-size: 150%;'> <b>" + data.Agreements[i].Price + " kwh</b></h2>" +
+                        "<ul class='list-group' style='font-size: 100%;'>" +
+                        "<li style='list-style: none;'><span style='margin-right: 1%;'><i class='glyphicon glyphicon-hand-right'></i></span>Uppsägningstid: " + data.Agreements[i].Uppsägningstid + "</li>" +
+                        "<li style='list-style: none;'><span style='margin-right: 1%;'><i class='glyphicon glyphicon-hand-right'></i></span>Omteckningsrätt: " + data.Agreements[i].Omteckningsrätt + "</li>" +
+                        "<li style='list-style: none;'><span style='margin-right: 1%;'><i class='glyphicon glyphicon-hand-right'></i></span>Uppsägningstid: " + data.Agreements[i].Uppsägningstid + "</li>" +
+                         rating + "</ul>" + route + "</div></div>");
+                        
+                        }
+
 
                 },
                 error: function () {

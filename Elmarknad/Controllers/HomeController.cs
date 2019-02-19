@@ -35,8 +35,7 @@ namespace Elmarknad.Controllers
                     {
                         Förbrukning = model.Förbrukning,
                         Typ = model.Typ,
-                        Clients = new List<SearchResultViewModel>(),
-                        Scraped = new List<SearchResultViewModel>()
+                        Agreements = new List<SearchResultViewModel>()
                     };
                     return View(m);
 

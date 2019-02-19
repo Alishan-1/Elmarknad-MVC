@@ -77,7 +77,7 @@ namespace Elmarknad.Repo
                 model.Typ = typ;
                 model.Förbrukning = förbrukning;
                 model.ElområdeId = ElområdeId;
-                model.Rating = r.Next(45,99);
+                model.Rating = 0;
                 var extraUrl = "https://www.ei.se" + Links[i];
                 var extraClient = new HttpClient();
                 var extraHtml = await httpClient.GetStringAsync(extraUrl);

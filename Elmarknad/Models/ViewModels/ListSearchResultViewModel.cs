@@ -8,8 +8,8 @@ namespace Elmarknad.Models.ViewModels
 {
     public class ListSearchResultViewModel
     {
-        public List<SearchResultViewModel> Clients { get; set; }
-        public List<SearchResultViewModel> Scraped { get; set; }
+        public List<SearchResultViewModel> Agreements { get; set; }
+        
         public string Typ { get; set; }
         private Dictionary<string, string> _Typ = new Dictionary<string, string>
         {

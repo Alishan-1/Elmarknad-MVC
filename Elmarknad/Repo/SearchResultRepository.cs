@@ -15,8 +15,8 @@ namespace Elmarknad.Repo
             var elId = GetElområdeId(m.Postnummer);
             var model = new ListSearchResultViewModel();
 
-            model.Clients = GetClients(m.Typ, m.Förbrukning, elId);
-            model.Scraped = GetScraped(m.Typ, m.Förbrukning, elId);
+            model.Agreements = GetClients(m.Typ, m.Förbrukning, elId);
+            model.Agreements.AddRange(GetScraped(m.Typ, m.Förbrukning, elId));
             model.Förbrukning = m.Förbrukning;
             model.Typ = m.Typ;
             model.ElId = elId;
@@ -26,11 +26,13 @@ namespace Elmarknad.Repo
 
         public ListSearchResultViewModel FilterByRating(int förbrukning, string typ, int elId)
         {
-           
+
             var model = new ListSearchResultViewModel();
 
-            model.Clients = GetClients(typ, förbrukning, elId).OrderByDescending(i => i.Rating).ToList();
-            model.Scraped = GetScraped(typ, förbrukning, elId).OrderByDescending(i => i.Rating).ToList();
+            model.Agreements = GetClients(typ, förbrukning, elId);
+            model.Agreements.AddRange(GetScraped(typ, förbrukning, elId));
+
+            model.Agreements = model.Agreements.OrderByDescending(i => i.Rating).ToList();
             model.Typ = typ;
             return model;
         }
@@ -39,9 +41,12 @@ namespace Elmarknad.Repo
         {
 
             var model = new ListSearchResultViewModel();
+            
+            model.Agreements = GetClients(typ, förbrukning, elId);
+            model.Agreements.AddRange(GetScraped(typ,förbrukning, elId));
 
-            model.Clients = GetClients(typ, förbrukning, elId).ToList();
-            model.Scraped = GetScraped(typ, förbrukning, elId).ToList();
+            model.Agreements = model.Agreements.OrderBy(i => i.Price).ToList();
+
             model.Typ = typ;
             return model;
         }
@@ -53,15 +58,18 @@ namespace Elmarknad.Repo
             foreach (var item in clients) {
                 var model = new SearchResultViewModel
                 {
-                    SearchId = item.ClientId,
+                    Id = item.ClientId,
                     Company = item.ElBolag.Name,
                     Rating = (decimal)item.Rating,
                     Avtalstid = 12,
                     Contract = item.Contract,
                     ExtraInfo = item.ExtraInfo,
                     Image = item.ElBolag.Image,
-                    Price = item.Price.ToString(),
-                    Uppsägningstid = item.Uppsägningstid
+                    Price = item.Price,
+                    Uppsägningstid = item.Uppsägningstid,
+                    IsClient = true,
+                    AutomatiskFörlängning = item.Automatiskförlängning,
+                    Omteckningsrätt = item.Omteckningsrätt
                 };
                 list.Add(model);
             }
@@ -80,18 +88,27 @@ namespace Elmarknad.Repo
             {
                 var model = new SearchResultViewModel
                 {
-                    SearchId = item.ScrapeId,
+                    Id = item.ScrapeId,
                     Company = item.Company,
                     Rating = (decimal)item.Rating,
                     Avtalstid = 12,
                     Contract = item.Contract,
                     ExtraInfo = item.ExtraInfo,
-                    Price = item.Price,
-                    Uppsägningstid = item.Uppsägningstid
+                    Price = ConvertPrice(item.Price),
+                    IsClient = false,
+                    Image = null,
+                    Uppsägningstid = item.Uppsägningstid,
+                    AutomatiskFörlängning = item.Omteckningsrätt,
+                    Omteckningsrätt = item.Omteckningsrätt
                 };
                 list.Add(model);
             }
             return list;
+        }
+
+        private decimal ConvertPrice(string price)
+        {
+            return decimal.Parse(price.Split(' ')[0]);
         }
 
         private int GetElområdeId(int postnummer) {
