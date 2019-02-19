@@ -238,6 +238,10 @@
     <Compile Include="Migrations\201902191357240_UpdateOfDatabase.Designer.cs">
       <DependentUpon>201902191357240_UpdateOfDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902191417378_DittNamnPåÄndringen.cs" />
+    <Compile Include="Migrations\201902191417378_DittNamnPåÄndringen.Designer.cs">
+      <DependentUpon>201902191417378_DittNamnPåÄndringen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DbInitilizer\ApplicationDbContextSeed.cs" />
     <Compile Include="Models\UserAdminModels\AccountViewModels.cs" />
@@ -414,6 +418,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902191357240_UpdateOfDatabase.resx">
       <DependentUpon>201902191357240_UpdateOfDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191417378_DittNamnPåÄndringen.resx">
+      <DependentUpon>201902191417378_DittNamnPåÄndringen.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
