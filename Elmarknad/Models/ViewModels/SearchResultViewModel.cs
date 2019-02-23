@@ -20,5 +20,11 @@ namespace Elmarknad.Models.ViewModels
         public string AutomatiskFörlängning { get; set; }
         public string Omteckningsrätt { get; set; }
 
+        public virtual bool Sol { get; set; } = false;
+        public virtual bool Vind { get; set; } = false;
+        public virtual bool Vatten { get; set; } = false;
+        public virtual bool Bio { get; set; } = false;
+        public virtual bool Miljömärkt { get; set; } = false;
+
     }
 }

@@ -12,7 +12,10 @@ namespace Elmarknad.Models.Webscrape
         public virtual int ClientId { get; set; }
         public virtual decimal Price { get; set; }
         public virtual string Contract { get; set; }
+
+        public virtual int MinFörbrukning { get; set; }
         public virtual int Förbrukning { get; set; }
+
         public virtual string Typ { get; set; }
         public virtual string ExtraInfo { get; set; }
 

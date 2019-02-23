@@ -15,24 +15,49 @@ namespace Elmarknad.Models.ViewModels
         [Display(Name = "Pris")]
         public virtual decimal Price { get; set; }
 
+        public int ClientId { get; set; }
+
         [Required]
         [Display(Name = "Kontrakt")]
         public virtual string Contract { get; set; }
 
         [Required]
-        [Display(Name = "Elförbrukning")]
-        public virtual int Förbrukning { get; set; }
-        private Dictionary<int, int> _Förbrukning = new Dictionary<int, int>
-        {
-            {2000, 2000 },
-            {5000, 5000 },
-            {20000, 20000 },
-        };
+        [Range(1, 20000)]
+        [Display(Name = "Minimum Elförbrukning")]
+        public virtual int MinFörbrukning { get; set; }
 
-        public IEnumerable<SelectListItem> FörbrukningList
-        {
-            get { return new SelectList(_Förbrukning, "Key", "Value", "Välj förbrukning"); }
-        }
+        [Required]
+        [Range(1, 20000)]
+        [Display(Name = "Max Elförbrukning")]
+        public virtual int MaxFörbrukning { get; set; }
+
+        [Required]
+        public virtual bool Autogiro { get; set; } = false;
+        [Required]
+        [Display(Name = "E-Faktura")]
+        public virtual bool EFaktura { get; set; } = false;
+        [Required]
+        [Display(Name = "Pappersfaktura")]
+        public virtual bool Pappersfaktura { get; set; } = false;
+
+        [Required]
+        [Display(Name = "Hus")]
+        public virtual bool House { get; set; }
+        [Required]
+        [Display(Name = "Lägenhet")]
+        public virtual bool Appartment { get; set; }
+
+        [Required]
+        public virtual bool Sol { get; set; } = false;
+        [Required]
+        public virtual bool Vind { get; set; } = false;
+        [Required]
+        public virtual bool Vatten { get; set; } = false;
+        [Required]
+        public virtual bool Bio { get; set; } = false;
+        [Required]
+        public virtual bool Miljömärkt { get; set; } = false;
+
 
         [Required]
         [Display(Name = "Typ av avtal")]
@@ -43,6 +68,7 @@ namespace Elmarknad.Models.ViewModels
             {"Fast", "Fast"},
             {"Mix", "Mix"},
         };
+
 
         public IEnumerable<SelectListItem> TypList
         {
@@ -82,6 +108,9 @@ namespace Elmarknad.Models.ViewModels
             get { return new SelectList(Elområde, "ElområdeId", "Area"); }
         
         }
+
+        [Display(Name = "Kopiera till alla elområden")]
+        public bool HasAllAreas { get; set; }
 
         [Required]
         [Display(Name = "Elbolag")]

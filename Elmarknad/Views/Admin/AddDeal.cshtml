@@ -10,117 +10,208 @@
 </ul>
 @using (Html.BeginForm("AddDeal", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div class="form-horizontal">
-        <h4>Lägg till ett avtal</h4>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
-            </div>
+<div class="form-horizontal">
+    <h4>Lägg till ett avtal</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Contract, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Contract, new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Contract, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Contract, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Förbrukning, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Förbrukning, Model.FörbrukningList, "Välj elförbrukning", new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Rating, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Rating, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Typ, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Typ, Model.TypList, "Välj typ", new { @class = "form-control" })
-            </div>
+    </div>
+    <hr />
+    <h3>Betalningsmetod</h3>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Autogiro, new { @class = "col-md-2 control-label" })
+        <div class="col-md-1">
+            @Html.CheckBoxFor(m => m.Autogiro, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.ExtraInfo, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.ExtraInfo, new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.EFaktura, new { @class = "col-md-2 control-label" })
+        <div class="col-md-1">
+            @Html.CheckBoxFor(m => m.EFaktura, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.ÅrsAvgift, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.ÅrsAvgift, new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Pappersfaktura, new { @class = "col-md-2 control-label" })
+        <div class="col-md-1">
+            @Html.CheckBoxFor(m => m.Pappersfaktura, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Engångsavgift, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Engångsavgift, new { @class = "form-control" })
-            </div>
+    </div>
+
+    <hr />
+    <h3>Energikälla</h3>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Sol, new { @class = "col-md-2 control-label" })
+        <div class="col-md-1">
+            @Html.CheckBoxFor(m => m.Sol, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Fastpris, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Fastpris, new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Vind, new { @class = "col-md-2 control-label" })
+        <div class="col-md-1">
+            @Html.CheckBoxFor(m => m.Vind, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.RörligtInköpsPris, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.RörligtInköpsPris, new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Vatten, new { @class = "col-md-2 control-label" })
+        <div class="col-md-1">
+            @Html.CheckBoxFor(m => m.Vatten, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.RörligtPåslag, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.RörligtPåslag, new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Bio, new { @class = "col-md-2 control-label" })
+        <div class="col-md-1">
+            @Html.CheckBoxFor(m => m.Bio, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Miljöpåslag, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Miljöpåslag, new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Miljömärkt, new { @class = "col-md-2 control-label" })
+        <div class="col-md-1">
+            @Html.CheckBoxFor(m => m.Miljömärkt, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.RörligtMiljöpåslag, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.RörligtMiljöpåslag, new { @class = "form-control" })
-            </div>
+    </div>
+    <hr />
+    <h3>Typ av bostad</h3>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Appartment, new { @class = "col-md-2 control-label" })
+        <div class="col-md-1">
+            @Html.CheckBoxFor(m => m.Appartment, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Rabatt, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Rabatt, new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.House, new { @class = "col-md-2 control-label" })
+        <div class="col-md-1">
+            @Html.CheckBoxFor(m => m.House, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Moms, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Moms, new { @class = "form-control" })
-            </div>
+    </div>
+
+    <hr />
+
+    <h3>Förbrukning</h3>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MinFörbrukning, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.MinFörbrukning, new { @class = "form-control", @type = "number" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Uppsägningstid, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Uppsägningstid, new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MaxFörbrukning, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.MaxFörbrukning, new { @class = "form-control", @type = "number" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Automatiskförlängning, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Automatiskförlängning, new { @class = "form-control" })
-            </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Typ, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.Typ, Model.TypList, "Välj typ", new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Omteckningsrätt, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Omteckningsrätt, new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ExtraInfo, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ExtraInfo, new { @class = "form-control" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.ElområdeId, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.ElområdeId, Model.ElområdeList, "Välj elområde", new { @class = "form-control" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ÅrsAvgift, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ÅrsAvgift, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Engångsavgift, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Engångsavgift, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Fastpris, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Fastpris, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RörligtInköpsPris, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.RörligtInköpsPris, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RörligtPåslag, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.RörligtPåslag, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Miljöpåslag, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Miljöpåslag, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RörligtMiljöpåslag, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.RörligtMiljöpåslag, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Rabatt, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Rabatt, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Moms, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Moms, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Uppsägningstid, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Uppsägningstid, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Automatiskförlängning, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Automatiskförlängning, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Omteckningsrätt, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Omteckningsrätt, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ElområdeId, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.ElområdeId, Model.ElområdeList, "Välj elområde", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.HasAllAreas, new { @class = "col-md-2 control-label" })
+        <div class="col-md-1">
+            @Html.CheckBoxFor(m => m.HasAllAreas, new { @class = "form-control" })
+        </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.ElBolagId, new { @class = "col-md-2 control-label" })

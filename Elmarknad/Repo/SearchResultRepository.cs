@@ -69,7 +69,12 @@ namespace Elmarknad.Repo
                     Uppsägningstid = item.Uppsägningstid,
                     IsClient = true,
                     AutomatiskFörlängning = item.Automatiskförlängning,
-                    Omteckningsrätt = item.Omteckningsrätt
+                    Omteckningsrätt = item.Omteckningsrätt,
+                    Bio = item.Bio,
+                    Miljömärkt = item.Miljömärkt,
+                    Sol = item.Sol,
+                    Vatten = item.Vatten,
+                    Vind = item.Vind
                 };
                 list.Add(model);
             }
@@ -99,7 +104,12 @@ namespace Elmarknad.Repo
                     Image = null,
                     Uppsägningstid = item.Uppsägningstid,
                     AutomatiskFörlängning = item.Omteckningsrätt,
-                    Omteckningsrätt = item.Omteckningsrätt
+                    Omteckningsrätt = item.Omteckningsrätt,
+                    Bio = item.Bio,
+                    Miljömärkt = item.Miljömärkt,
+                    Sol = item.Sol,
+                    Vatten = item.Vatten,
+                    Vind = item.Vind
                 };
                 list.Add(model);
             }

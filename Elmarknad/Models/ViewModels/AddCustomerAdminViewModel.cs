@@ -41,6 +41,22 @@ namespace Elmarknad.Models.ViewModels
         [Display(Name = "Ort")]
         public virtual string City { get; set; }
 
+        
+        [MaxLength(80, ErrorMessage = "Adress får inte vara längre än 80 tecken"), MinLength(10, ErrorMessage = "Adress får inte vara kortare än 10 tecken")]
+        [Display(Name = "Faktura adress")]
+        public virtual string FakturaAddress { get; set; }
+
+        [RegularExpression(@"^\d{3}\d{2}$", ErrorMessage = "Uppge ett riktigt postnummer")]
+        [Display(Name = "Faktura Postnummer")]
+        public virtual string FakturaPostnumber { get; set; }
+
+        [MaxLength(50, ErrorMessage = "Ort får inte vara längre än 50 tecken"), MinLength(2, ErrorMessage = "Ort får inte vara kortare än 2 tecken")]
+        [Display(Name = "Faktura Ort")]
+        public virtual string FakturaCity { get; set; }
+
+        public bool HasDifferentAdress { get; set; }
+        public bool IsMoving { get; set; }
+
         [Required(ErrorMessage = "Du måste uppge din epost")]
         [EmailAddress(ErrorMessage = "Ange en giltig epost")]
         public virtual string Email { get; set; }

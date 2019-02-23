@@ -29,6 +29,11 @@ namespace Elmarknad.Models.Webscrape
         public virtual bool HasConfirmed { get; set; }
         public virtual bool LetUsGetInfo { get; set; }
 
+        public virtual string PaymentAddress { get; set; }
+        public virtual string PaymentPostnumber { get; set; }
+        public virtual string PaymentCity { get; set; }
+        public virtual bool IsMoving { get; set; }
+
         public virtual int? ClientId { get; set; }
         public virtual ClientModel ClientModel { get; set; }
 

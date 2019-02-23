@@ -127,7 +127,16 @@ namespace Elmarknad.Controllers
         public ActionResult AddDeal(AddDealViewModel model)
         {
             if (ModelState.IsValid) {
-                Deal.SaveDeal(model);
+
+                if (model.HasAllAreas)
+                {
+                    Deal.SaveDealAllAreas(model);
+                }
+                else
+                {
+                    Deal.SaveDeal(model);
+                }
+                
                 return RedirectToAction("DisplayDeals");
             }
             var failmodel = Deal.FillDealModel();
@@ -137,6 +146,71 @@ namespace Elmarknad.Controllers
             var model = Deal.FillAllDealsModel();
             return View(model);
         }
+
+        public ActionResult EditDeal(int id)
+        {
+            var client = Deal.GetSingleClient(id);
+
+            var model = Deal.FillDealModel();
+            model.Appartment = client.Appartment;
+            model.Autogiro = client.Autogiro;
+            model.Automatiskförlängning = client.Automatiskförlängning;
+            model.Bio = client.Bio;
+            model.Contract = client.Contract;
+            model.EFaktura = client.EFaktura;
+            model.ElBolagId = client.ElBolagId;
+            model.ElområdeId = client.ElområdeId;
+            model.Engångsavgift = client.Engångsavgift;
+            model.ExtraInfo = client.ExtraInfo;
+            model.Fastpris = client.Fastpris;
+            model.House = client.House;
+            model.MaxFörbrukning = client.Förbrukning;
+            model.Miljömärkt = client.Miljömärkt;
+            model.Miljöpåslag = client.Miljöpåslag;
+            model.MinFörbrukning = client.MinFörbrukning;
+            model.Moms = client.Moms;
+            model.Omteckningsrätt = client.Omteckningsrätt;
+            model.Pappersfaktura = client.Pappersfaktura;
+            model.Price = client.Price;
+            model.Rabatt = client.Rabatt;
+            model.Rating = (decimal)client.Rating;
+            model.RörligtInköpsPris = client.RörligtInköpsPris;
+            model.RörligtMiljöpåslag = client.RörligtMiljöpåslag;
+            model.RörligtPåslag = client.RörligtPåslag;
+            model.Sol = client.Sol;
+            model.Typ = client.Typ;
+            model.Uppsägningstid = client.Uppsägningstid;
+            model.Vatten = client.Vatten;
+            model.Vind = client.Vind;
+            model.ÅrsAvgift = client.ÅrsAvgift;
+            model.ClientId = client.ClientId;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditDeal(AddDealViewModel model)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Deal.UpdateClientDeal(model);
+                    return RedirectToAction("DisplayDeals");
+                }
+                catch(Exception ex)
+                {
+                    ModelState.AddModelError("", "Du måste attestera kunderna som tecknat detta avtal innan det kan ändras.");
+                    model = Deal.FillDealModel();
+                }
+               
+            }
+            return View(model);
+        }
+
+
 
         public ActionResult AddCustomer()
         {

@@ -242,6 +242,10 @@
     <Compile Include="Migrations\201902191417378_DittNamnPåÄndringen.Designer.cs">
       <DependentUpon>201902191417378_DittNamnPåÄndringen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902231435317_MorePropClient.cs" />
+    <Compile Include="Migrations\201902231435317_MorePropClient.Designer.cs">
+      <DependentUpon>201902231435317_MorePropClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DbInitilizer\ApplicationDbContextSeed.cs" />
     <Compile Include="Models\UserAdminModels\AccountViewModels.cs" />
@@ -389,6 +393,7 @@
     <Content Include="Views\Admin\ListBlogPosts.cshtml" />
     <Content Include="Views\Admin\EditBlogPost.cshtml" />
     <Content Include="Views\Admin\ListDeletedCustomers.cshtml" />
+    <Content Include="Views\Admin\EditDeal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -421,6 +426,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902191417378_DittNamnPåÄndringen.resx">
       <DependentUpon>201902191417378_DittNamnPåÄndringen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902231435317_MorePropClient.resx">
+      <DependentUpon>201902231435317_MorePropClient.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

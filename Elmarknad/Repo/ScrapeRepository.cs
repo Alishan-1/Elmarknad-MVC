@@ -91,27 +91,38 @@ namespace Elmarknad.Repo
 
                 var PaymentMethod = htmlDoc.DocumentNode.Descendants("td")
                                     .Where(node => node.GetAttributeValue("class", "")
-                                    .Equals("well")).Select(x => x.InnerText).ToList();
+                                    .Equals("well")).Select(x => x.InnerText).ToList()[5].Split(',');
+
+                model.Autogiro = PaymentMethod.Any(p => p.Trim().Equals("Autogiro")) ? true : false;
+                model.EFaktura = PaymentMethod.Any(p => p.Trim().Equals("E-faktura")) ? true : false;
+                model.Pappersfaktura = PaymentMethod.Any(p => p.Trim().Equals("Traditionell")) ? true : false;
+
 
                 var SunSource = htmlDoc.DocumentNode.Descendants("li")
                                    .Where(node => node.GetAttributeValue("class", "")
                                    .Equals("epk-energy-type epk-energy-solar")).Select(x => x.InnerText).ToList();
+                model.Sol = SunSource.Count > 0 ? true : false;
 
                 var WindSource = htmlDoc.DocumentNode.Descendants("li")
                                    .Where(node => node.GetAttributeValue("class", "")
                                    .Equals("epk-energy-type epk-energy-wind")).Select(x => x.InnerText).ToList();
+                model.Vind = WindSource.Count > 0 ? true : false;
 
                 var WaterSource = htmlDoc.DocumentNode.Descendants("li")
                                    .Where(node => node.GetAttributeValue("class", "")
                                    .Equals("epk-energy-type epk-energy-water")).Select(x => x.InnerText).ToList();
+                model.Vatten = WaterSource.Count > 0 ? true : false;
 
                 var BioSource = htmlDoc.DocumentNode.Descendants("li")
                                    .Where(node => node.GetAttributeValue("class", "")
                                    .Equals("epk-energy-type epk-energy-bio")).Select(x => x.InnerText).ToList();
+                model.Bio = BioSource.Count > 0 ? true : false;
 
                 var EnvironmentalSource = htmlDoc.DocumentNode.Descendants("li")
                                           .Where(node => node.GetAttributeValue("class", "")
                                           .Equals("epk-energy-type epk-bramiljoval")).Select(x => x.InnerText).ToList();
+                model.Miljömärkt = EnvironmentalSource.Count > 0 ? true : false;
+
 
                 model.ÅrsAvgift = ExtraAttributes[0];
                 model.Engångsavgift = ExtraAttributes[1];

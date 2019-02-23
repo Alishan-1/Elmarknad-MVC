@@ -44,6 +44,7 @@
                     <li class="list-group-item">ÅrsAvgift: @item.ÅrsAvgift kwH</li>
                 </ul>
                 <btn class="btn btn-block btn-danger delete-post" id="@item.ClientId">Ta Bort</btn>
+                @Html.ActionLink("Redigera", "EditDeal", new { id = item.ClientId }, htmlAttributes: new { @class = "btn btn-block btn-warning", @style="margin-top: 1%;" })
             </div>
 
 
@@ -63,7 +64,8 @@
     <script>
         $(".delete-post").on("click", function (e) {
             var id = e.target.getAttribute("id");
-
+            var IsCorrect = confirm("Är du säker?");
+            if (IsCorrect)
             $.ajax({
                 url: "/api/company/deleteclient",
                 type: "Post",
