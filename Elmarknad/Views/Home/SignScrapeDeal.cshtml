@@ -15,14 +15,25 @@
 
 @*<link href="./Checkout example for Bootstrap_files/bootstrap.min.css" rel="stylesheet">*@
 <div class="container">
-    <div class="site-heading">
+    <div class="site-heading goto">
         <hr />
         <h2 style="color: #1b5b82;">
             Teckna avtal helt kostnadsfrit
         </h2>
         <hr />
-        <p class="lead">Nedan hittar du all information om ditt valda avtal.</p>
-       
+        <p><i class="glyphicon glyphicon-hand-right" style="color: #1b5b82;"></i>
+            Kostnadsfritt byte
+        </p>
+        <p><i class="glyphicon glyphicon-hand-right" style="color: #1b5b82;"></i>
+            14 dagars ångerrätt
+        </p>
+        <p><i class="glyphicon glyphicon-hand-right" style="color: #1b5b82;"></i>
+        Inga avbrott av el i hemmet
+        </p>
+        <p><i class="glyphicon glyphicon-hand-right" style="color: #1b5b82;"></i>
+        Inga anläggningsuppgifter? Vi hämtar dem åt dig!
+        </p>
+
         <hr />
     </div>
 
@@ -36,8 +47,8 @@
                 }
                 else
                 {
-            <img src="~/Images/searchDefault.jpg" class="img-thumbnail" style="width: 50%; margin-bottom: 1%;" /><br />
-        }
+                    <img src="~/Images/searchDefault.jpg" class="img-thumbnail" style="width: 50%; margin-bottom: 1%;" /><br />
+                }
                 <span class="text-muted">Ditt pris</span>
                 <span class="badge badge-secondary badge-pill" style="background-color: #1b5b82;">@Model.Price</span>
 
@@ -146,7 +157,30 @@
                             <th class="text-muted">Kundbetyg</th>
                             <td>@Model.Rating</td>
                         </tr>
+                        
                     </table>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    @if (Model.Bio)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Energi från biologiskt avfall"><img src="~/Images/bio.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                    @if (Model.Sol)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Energi från solceller"><img src="~/Images/sol.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                    @if (Model.Miljömärkt)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Ett bra miljöval"><img src="~/Images/miljöval.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                    @if (Model.Vatten)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Energi från vattenkraft"><img src="~/Images/vatten.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                    @if (Model.Vind)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Energi från vindkraft"><img src="~/Images/vind.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
                 </li>
 
                 <li class="list-group-item d-flex justify-content-between">
@@ -161,6 +195,7 @@
         {
 
             @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new { @class = "text-danger" })
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Teckna detta avtal</h4>
                 <hr class="mb-4">
@@ -228,67 +263,88 @@
                 <div class="mb-3">
 
 
-                    @Html.EditorFor(m => m.CustomerInfo.LetUsGetInfo, new { @class = "custom-control-input" })
+                    @Html.EditorFor(m => m.CustomerInfo.HasDifferentAdress, new { @class = "custom-control-input" })
 
+                    @Html.LabelFor(m => m.CustomerInfo.HasDifferentAdress)
+                    @Html.ValidationMessageFor(m => m.CustomerInfo.HasDifferentAdress, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="mb-3 hidden-prop" style="display: none;">
+                    @Html.LabelFor(m => m.CustomerInfo.FakturaAddress)
+
+                    @Html.TextBoxFor(m => m.CustomerInfo.FakturaAddress, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CustomerInfo.FakturaAddress, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="mb-3 hidden-prop" style="display: none;">
+                    @Html.LabelFor(m => m.CustomerInfo.FakturaPostnumber)
+                    @Html.TextBoxFor(m => m.CustomerInfo.FakturaPostnumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CustomerInfo.FakturaPostnumber, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="mb-3 hidden-prop" style="display: none;">
+                    @Html.LabelFor(m => m.CustomerInfo.FakturaCity)
+
+                    @Html.TextBoxFor(m => m.CustomerInfo.FakturaCity, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CustomerInfo.FakturaCity, "", new { @class = "text-danger" })
+
+                </div>
+
+                <hr class="mb-4">
+                <div class="mb-4">
+
+                    @Html.EditorFor(m => m.CustomerInfo.LetUsGetInfo, new { @class = "custom-control-input" })
                     @Html.LabelFor(m => m.CustomerInfo.LetUsGetInfo)
                     @Html.ValidationMessageFor(m => m.CustomerInfo.LetUsGetInfo, "", new { @class = "text-danger" })
-                  
                 </div>
-
-                    <hr class="mb-4">
-                    <div class="mb-4">
-
-                        @Html.EditorFor(m => m.CustomerInfo.LetUsGetInfo, new { @class = "custom-control-input" })
-                        @Html.LabelFor(m => m.CustomerInfo.LetUsGetInfo)
-                        @Html.ValidationMessageFor(m => m.CustomerInfo.LetUsGetInfo, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="mb-4">
+                <div class="mb-4">
 
 
-                        @Html.LabelFor(m => m.CustomerInfo.AreaCode)
+                    @Html.LabelFor(m => m.CustomerInfo.AreaCode)
 
-                        @Html.TextBoxFor(m => m.CustomerInfo.AreaCode, new { @class = "form-control disable-prop" })
-                        @Html.ValidationMessageFor(m => m.CustomerInfo.AreaCode, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="mb-4">
-                        @Html.LabelFor(m => m.CustomerInfo.PropertyCode)
+                    @Html.TextBoxFor(m => m.CustomerInfo.AreaCode, new { @class = "form-control disable-prop" })
+                    @Html.ValidationMessageFor(m => m.CustomerInfo.AreaCode, "", new { @class = "text-danger" })
+                </div>
+                <div class="mb-4">
+                    @Html.LabelFor(m => m.CustomerInfo.PropertyCode)
 
-                        @Html.TextBoxFor(m => m.CustomerInfo.PropertyCode, "", new { @class = "form-control disable-prop" })
-                        @Html.ValidationMessageFor(m => m.CustomerInfo.PropertyCode, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="mb-4">
+                    @Html.TextBoxFor(m => m.CustomerInfo.PropertyCode, "", new { @class = "form-control disable-prop" })
+                    @Html.ValidationMessageFor(m => m.CustomerInfo.PropertyCode, "", new { @class = "text-danger" })
+                </div>
+                <div class="mb-4">
 
-                        @Html.LabelFor(m => m.CustomerInfo.StartDate)
+                    @Html.LabelFor(m => m.CustomerInfo.StartDate)
 
-                        @Html.TextBoxFor(m => m.CustomerInfo.StartDate, "", new { @class = "form-control disable-prop", @id = "datetimepicker4" })
-                        @Html.ValidationMessageFor(m => m.CustomerInfo.StartDate, "", new { @class = "text-danger" })
-                    </div>
-                    <hr class="mb-4">
-                    <div class="mb-4">
-                        @Html.LabelFor(m => m.CustomerInfo.Paymentmethod)
+                    @Html.TextBoxFor(m => m.CustomerInfo.StartDate, "", new { @class = "form-control disable-prop", @id = "datetimepicker4" })
+                    @Html.ValidationMessageFor(m => m.CustomerInfo.StartDate, "", new { @class = "text-danger" })
+                </div>
+                <hr class="mb-4">
+                <div class="mb-4">
+                    @Html.LabelFor(m => m.CustomerInfo.Paymentmethod)
 
-                        @Html.DropDownListFor(m => m.CustomerInfo.Paymentmethod, Model.CustomerInfo.PaymentList, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.CustomerInfo.Paymentmethod, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(m => m.ScrapeId)
-
-                    </div>
-                    <hr />
-                    <div class="mb-4">
-                        @Html.LabelFor(m => m.CustomerInfo.HasConfirmed)<br />
-
-                        @Html.EditorFor(m => m.CustomerInfo.HasConfirmed, new { @class = "form-control force-check" })
-                        @Html.ValidationMessageFor(m => m.CustomerInfo.HasConfirmed, "", new { @class = "text-danger" })
-                        <span class="" style="font-size: 80%;">Jag godkänner <a class="btn-link policy" style="cursor: pointer;">användarvillkoren</a> och att Elmarknad.se <br />inhämtar kompletterande uppgifter från mitt elnätsbolag</span>
-
-                    </div>
-                    <div class="mb-4">
-
-                        <input type="submit" class="btn btn-block btn-success" value="Teckna Avtal" />
-
-                    </div>
-                    <hr />
+                    @Html.DropDownListFor(m => m.CustomerInfo.Paymentmethod, Model.CustomerInfo.PaymentList, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CustomerInfo.Paymentmethod, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(m => m.ScrapeId)
 
                 </div>
+                <hr />
+                <div class="mb-4">
+                    @Html.LabelFor(m => m.CustomerInfo.HasConfirmed)<br />
+
+                    @Html.EditorFor(m => m.CustomerInfo.HasConfirmed, new { @class = "form-control force-check" })
+                    @Html.ValidationMessageFor(m => m.CustomerInfo.HasConfirmed, "", new { @class = "text-danger" })
+                    <span class="" style="font-size: 80%;">Jag godkänner <a class="btn-link policy" style="cursor: pointer;">användarvillkoren</a> och att Elmarknad.se <br />inhämtar kompletterande uppgifter från mitt elnätsbolag</span>
+
+                </div>
+                <div class="mb-4">
+
+                    <input type="submit" class="btn btn-block btn-success" value="Teckna Avtal" />
+
+                </div>
+                <hr />
+
+            </div>
         }
 
         <div class="row">
@@ -365,7 +421,22 @@
             }
 
         });
+        $(document).ready(function () {
+            if ($("#CustomerInfo_HasDifferentAdress").is(":checked")) {
+                $(".hidden-prop").show();
+            } else {
+                $(".hidden-prop").hide();
+            }
+        });
+        $("#CustomerInfo_HasDifferentAdress").on("click", function () {
+            if ($(this).is(":checked")) {
+                $(".hidden-prop").slideDown(500);
+            } else {
+                $(".hidden-prop").slideUp(500);
+            }
 
+        });
+        
         $(function () {
             $('#datetimepicker4').datetimepicker({
                 format: 'YYYY/MM/DD'
@@ -374,7 +445,14 @@
         });
 
         //format: 'YYYY/MM/DD'
-       
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        $(document).ready(function () {
+            $("html, body").animate({ scrollTop: 400 }, "slow");
+            return false;
+        });
     </script>
 }
 

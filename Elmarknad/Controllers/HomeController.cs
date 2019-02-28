@@ -108,6 +108,7 @@ namespace Elmarknad.Controllers
             }
             var helper = new CustomerDealRepository();
             var failmodel = helper.GetScrapedModel(m.ScrapeId);
+            failmodel.CustomerInfo.HasDifferentAdress = m.CustomerInfo.HasDifferentAdress;
             return View("SignScrapeDeal", failmodel);
         }
 

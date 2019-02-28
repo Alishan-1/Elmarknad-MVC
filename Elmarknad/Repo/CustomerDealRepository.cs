@@ -37,8 +37,26 @@ namespace Elmarknad.Repo
                     Typ = deal.Typ,
                     Uppsägningstid = deal.Uppsägningstid,
                     ÅrsAvgift = deal.ÅrsAvgift,
+                    Bio = deal.Bio,
+                    Miljömärkt = deal.Miljömärkt,
+                    Sol = deal.Sol,
+                    Vatten = deal.Vatten,
+                    Vind = deal.Vind,
                     CustomerInfo = new AddCustomerAdminViewModel()
                 };
+                if (deal.Pappersfaktura)
+                {
+                    model.CustomerInfo._Payment.Add("Pappersfaktura", "Pappersfaktura");
+                }
+                if (deal.EFaktura)
+                {
+                    model.CustomerInfo._Payment.Add("E-Faktura", "E-Faktura");
+                }
+                if (deal.Autogiro)
+                {
+                    model.CustomerInfo._Payment.Add("Autogiro", "Autogiro");
+                }
+                
                 return model;
             }
             catch {
@@ -75,8 +93,25 @@ namespace Elmarknad.Repo
                     Uppsägningstid = deal.Uppsägningstid,
                     ÅrsAvgift = deal.ÅrsAvgift.ToString(),
                     CustomerInfo = new AddCustomerAdminViewModel(),
-                    Image = deal.ElBolag.Image
+                    Image = deal.ElBolag.Image,
+                    Bio = deal.Bio,
+                    Miljömärkt = deal.Miljömärkt,
+                    Sol = deal.Sol,
+                    Vatten = deal.Vatten,
+                    Vind = deal.Vind
                 };
+                if (deal.Pappersfaktura)
+                {
+                    model.CustomerInfo._Payment.Add("Pappersfaktura", "Pappersfaktura");
+                }
+                if (deal.EFaktura)
+                {
+                    model.CustomerInfo._Payment.Add("E-Faktura", "E-Faktura");
+                }
+                if (deal.Autogiro)
+                {
+                    model.CustomerInfo._Payment.Add("Autogiro", "Autogiro");
+                }
                 return model;
 
             }

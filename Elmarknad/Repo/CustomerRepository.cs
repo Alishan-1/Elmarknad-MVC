@@ -63,7 +63,10 @@ namespace Elmarknad.Repo
                     Postnumber = model.Postnumber,
                     ClientId = model.ClientId,
                     LetUsGetInfo = model.LetUsGetInfo,
-                    DaySigned = DateTime.Now
+                    DaySigned = DateTime.Now,
+                    PaymentAddress = model.FakturaAddress != null ? model.FakturaAddress : model.Address,
+                    PaymentCity = model.FakturaCity != null ? model.FakturaCity : model.City,
+                    PaymentPostnumber = model.FakturaPostnumber != null ? model.FakturaPostnumber : model.Postnumber
                 };
                 db.Customers.Add(customer);
                 db.SaveChanges();
@@ -87,7 +90,10 @@ namespace Elmarknad.Repo
                     LetUsGetInfo = model.LetUsGetInfo,
                     AreaCode = model.AreaCode,
                     StartDate = model.StartDate,
-                    PropertyCode = model.PropertyCode
+                    PropertyCode = model.PropertyCode,
+                    PaymentAddress = model.FakturaAddress != null ? model.FakturaAddress : model.Address,
+                    PaymentCity = model.FakturaCity != null ? model.FakturaCity : model.City,
+                    PaymentPostnumber = model.FakturaPostnumber != null ? model.FakturaPostnumber : model.Postnumber
                 };
 
                 db.Customers.Add(customer);
@@ -114,7 +120,10 @@ namespace Elmarknad.Repo
                     Postnumber = model.Postnumber,
                     ScrapeId = model.ScrapeId,
                     LetUsGetInfo = model.LetUsGetInfo,
-                    DaySigned = DateTime.Now
+                    DaySigned = DateTime.Now,
+                    PaymentAddress = model.FakturaAddress != null ? model.FakturaAddress : model.Address,
+                    PaymentCity = model.FakturaCity != null ? model.FakturaCity : model.City,
+                    PaymentPostnumber = model.FakturaPostnumber != null ? model.FakturaPostnumber : model.Postnumber
                 };
                 db.Customers.Add(customer);
                 db.SaveChanges();
@@ -138,7 +147,10 @@ namespace Elmarknad.Repo
                     LetUsGetInfo = model.LetUsGetInfo,
                     AreaCode = model.AreaCode,
                     StartDate = model.StartDate,
-                    PropertyCode = model.PropertyCode
+                    PropertyCode = model.PropertyCode,
+                    PaymentAddress = model.FakturaAddress != null ? model.FakturaAddress : model.Address,
+                    PaymentCity = model.FakturaCity != null ? model.FakturaCity : model.City,
+                    PaymentPostnumber = model.FakturaPostnumber != null ? model.FakturaPostnumber : model.Postnumber
                 };
 
                 db.Customers.Add(customer);

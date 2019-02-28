@@ -54,6 +54,7 @@ namespace Elmarknad.Models.ViewModels
         [Display(Name = "Faktura Ort")]
         public virtual string FakturaCity { get; set; }
 
+        [Display(Name = "Jag har en annan faktura adress")]
         public bool HasDifferentAdress { get; set; }
         public bool IsMoving { get; set; }
 
@@ -102,12 +103,8 @@ namespace Elmarknad.Models.ViewModels
         [Required(ErrorMessage = "Du måste välja vilken betalningsmetod")]
         [Display(Name = "Betalningsmetod")]
         public virtual string Paymentmethod { get; set; }
-        private Dictionary<string, string> _Payment = new Dictionary<string, string>
-        {
-            {"Pappersfaktura", "Pappersfaktura"},
-            {"Autogiro", "Autogiro"},
-            {"E-Faktura", "E-Faktura" },
-        };
+        public Dictionary<string, string> _Payment = new Dictionary<string, string>();
+       
         public IEnumerable<SelectListItem> PaymentList
         {
             get { return new SelectList(_Payment, "Key", "Value"); }
