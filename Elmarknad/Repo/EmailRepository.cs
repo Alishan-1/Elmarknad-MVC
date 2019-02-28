@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Mail;
 using Elmarknad.Models.ViewModels;
 using System.IO;
+using Elmarknad.Models.Webscrape;
 
 namespace Elmarknad.Repo
 {
@@ -13,7 +14,7 @@ namespace Elmarknad.Repo
     {
         public void SendEmailAsync(SignDealViewModel model) {
 
-            var body = GetEmailTemplate();
+            var body = GetEmailTemplate(model);
             var message = new MailMessage();
             message.To.Add(new MailAddress(model.CustomerInfo.Email));  // replace with valid value 
             message.From = new MailAddress("billybolero1@gmail.com", "Elmarknad");  // replace with valid value
@@ -36,16 +37,128 @@ namespace Elmarknad.Repo
                 
             
         }
+        private SignDealViewModel GetCompany(SignDealViewModel model)
+        {
+            SignDealViewModel sign;
 
-        private string GetEmailTemplate() {
+            var helper = new CustomerDealRepository();
+            if (model.IsClient)
+            {
+
+                sign = helper.GetClientModel(model.ScrapeId);
+
+            }
+            else
+            {
+                sign = helper.GetScrapedModel(model.ScrapeId);
+            }
+            return sign;
+        }
+        
+        private string GetEmailTemplate(SignDealViewModel model) {
+
+
+            var company = GetCompany(model);
+
             string path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Repo/"), "EmailTemplate.html");
             string html = File.ReadAllText(path);
-            return html;
+            string pathFooter = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/Repo/"), "EmailTemplateFooter.html");
+            string htmlFooter = File.ReadAllText(pathFooter);
+            var email = html + "<tr>" +
+                        "<td align='center' valign='top' style='border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 10px; padding-right: 10px;' class='floaters'>" +
+                            "<table width='400' border='0' cellpadding='0' cellspacing='0' align='right' valign='top' style='border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0; margin: 0; padding: 0; display: inline-table; float: none;' class='floater'>" +
+                                "<tr>" +
+                                    "<td align='center' valign='top' style='border-collapse: collapse;border:2px solid #808080; border-spacing: 0; margin: 0; padding: 0; padding-left: 15px; padding-right: 15px; font-size: 17px; font-weight: 400; line-height: 160%;" +
+                                    "padding-top: 30px;padding-bottom: 30px;" +
+                                    "font-family: sans-serif;" +
+                                    "color: #000000;'>" +
+                                    "<h3 style='color:#0B5073; text-decoration: underline;'>Uppgifter från dig</h3>" +
+                                        "<br />" +
+                                        "<table style='border: 1px solid #f9f9f9; list-style:none;'>" +
+                                            "<tr align='left'>" +
+                                                "<th>Namn: </th>" +
+                                                "<td>" + model.CustomerInfo.Firstname + " " + model.CustomerInfo.Lastname + "</td>" +
+                                            "</tr>" +
+                                            "<tr align='left'>" +
+                                                "<th>Personummer: </th>" +
+                                                "<td>" + model.CustomerInfo.SocialSecurity + "</td>" +
+                                            "</tr>" +
+                                            "<tr align='left'>" +
+                                                "<th>Epost: </th>" +
+                                                "<td>" + model.CustomerInfo.Email +  "</td>" +
+                                            "</tr>" +
+                                            "<tr align='left'>" +
+                                                "<th>Adress: </th>" +
+                                                "<td>" + model.CustomerInfo.Address  + "</td>" +
+                                            "</tr>" +
+                                            "<tr align='left'>" +
+                                                "<th>Postnummer: </th>" +
+                                                "<td>" + model.CustomerInfo.Postnumber +  "</td>" +
+                                            "</tr>" +
+                                            "<tr align='left'>" +
+                                                "<th>Ort: </th>" +
+                                                "<td>" + model.CustomerInfo.City + "</td>" +
+                                            "</tr>" +
+                                            "<tr align='left'>" +
+                                                "<th>Betalmetod: </th>" +
+                                                "<td>" + model.CustomerInfo.Paymentmethod +  "</td>" +
+                                            "</tr>" +
+                                        "</table>" +
+                                    "</td>" +
+                                "</tr>" +
+                            "</table>" +
+                             "<table width='400' border='0' cellpadding='0' cellspacing='0' align='right' valign='top' style='border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0; margin: 0; padding: 0; display: inline-table; float: none;' class='floater'>" +
+                                "<tr>" +
+                                    "<td align='center' valign='top' style='border-collapse: collapse;border:2px solid #808080; border-spacing: 0; margin: 0; padding: 0; padding-left: 15px; padding-right: 15px; font-size: 17px; font-weight: 400; line-height: 160%;" +
+                                    "padding-top: 30px;padding-bottom: 30px;" +
+                                    "font-family: sans-serif;" +
+                                    "color: #000000;'>" +
+                                    "<h3 style='color:#0B5073; text-decoration: underline;'>Uppgifter om ditt elavtal</h3>" +
+                                        "<br />" +
+                                        "<table style='border: 1px solid #f9f9f9; list-style:none;'>" +
+                                            "<tr align='left'>" +
+                                                "<th>Elbolag: </th>" +
+                                                "<td>" + company.Company +  "</td>" +
+                                            "</tr>" +
+                                            "<tr align='left'>" +
+                                                "<th>Avtal: </th>" +
+                                                "<td>" + company.Contract + "</td>" +
+                                            "</tr>" +
+                                            "<tr align='left'>" +
+                                                "<th>Totalt Pris: </th>" +
+                                                "<td>" + company.Price + "</td>" +
+                                            "</tr>" +
+                                            "<tr align='left'>" +
+                                                "<th>Automatiskförlängning: </th>" +
+                                                "<td>" + company.Automatiskförlängning + "</td>" +
+                                            "</tr>" +
+                                            "<tr align='left'>" +
+                                                "<th>Omteckningsrätt: </th>" +
+                                                "<td>" + company.Omteckningsrätt + " </td>" +
+                                            "</tr>" +
+                                            "<tr align='left'>" +
+                                                "<th>Uppsägningstid: </th>" +
+                                                "<td>" + company.Uppsägningstid + "</td>" +
+                                            "</tr>" +
+                                            "<tr align='left'>" +
+                                                "<th>Övrig info: </th>" +
+                                                "<td>" + company.ExtraInfo + "</td>" +
+                                            "</tr>" +
+                                        "</table>" +
+                                    "</td>" +
+                                "</tr>" +
+                            "</table></td></tr>" + htmlFooter;
+
+            
+            
+            return email;
         }
 
         private string SerializeToPdf(SignDealViewModel m) {
             return null;
         }
+
+        
 
         public void CustomerSupportEmail(CustomerEmailViewModel model) {
 

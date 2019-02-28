@@ -31,6 +31,8 @@ namespace Elmarknad.Models.ViewModels
         public virtual string Omteckningsrätt { get; set; }
         public virtual string Image { get; set; }
 
+        public virtual bool IsClient { get; set; }
+
         public virtual bool Sol { get; set; } = false;
         public virtual bool Vind { get; set; } = false;
         public virtual bool Vatten { get; set; } = false;
