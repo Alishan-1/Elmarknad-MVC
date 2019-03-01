@@ -44,5 +44,7 @@ namespace Elmarknad.Models.ViewModels
         {
             get { return new SelectList(_Förbrukning, "Key", "Value", "Välj förbrukning"); }
         }
+        public bool Test1 { get; set; } = false;
+        public bool Test2 { get; set; } = false;
     }
 }

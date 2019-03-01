@@ -2,6 +2,7 @@
 using Elmarknad.Models.Webscrape;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -118,7 +119,12 @@ namespace Elmarknad.Repo
 
         private decimal ConvertPrice(string price)
         {
-            return decimal.Parse(price.Split(' ')[0]);
+            
+            CultureInfo culture = new CultureInfo("sv-SE");
+            decimal result = Convert.ToDecimal(price.Replace(" öre/kWh", ""), culture);
+
+            
+            return result;
         }
 
         private int GetElområdeId(int postnummer) {

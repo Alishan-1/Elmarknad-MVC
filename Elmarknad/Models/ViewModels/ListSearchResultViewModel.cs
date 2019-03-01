@@ -38,5 +38,7 @@ namespace Elmarknad.Models.ViewModels
        
         public string Postnummer { get; set; }
         public int ElId { get; set; }
+
+        
     }
 }

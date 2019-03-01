@@ -398,6 +398,10 @@
 @section scripts{
     <script>
         $(document).ready(function () {
+            var d = new Date();
+            var strDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+            $("#datetimepicker4").val(strDate);
+
             if ($("#CustomerInfo_LetUsGetInfo").is(":checked")) {
                 $(".disable-prop").val("");
                 $(".disable-prop").prop('disabled', true);

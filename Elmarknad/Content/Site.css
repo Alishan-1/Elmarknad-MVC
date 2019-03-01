@@ -559,4 +559,8 @@ section {
     .custom-margin {
         margin-top: 50%;
     }
+    .search-tool {
+        border-top: 3px solid #e8e6e4;
+        
+    }
 }
