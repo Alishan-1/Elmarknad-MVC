@@ -1,14 +1,34 @@
-﻿@model Elmarknad.Models.ViewModels.SearchViewModel
+﻿@model Elmarknad.Models.ViewModels.EnhancedSearchViewModel
 @{
     ViewBag.Title = "Start";
 }
+
+@*<div class="multiselect">
+    <div class="selectBox" onclick="showCheckboxes()">
+        <select class="form-control">
+            <option>Select an option</option>
+        </select>
+        <div class="overSelect"></div>
+    </div>
+    <div id="checkboxes">
+        <label for="Test2">
+            @Html.CheckBoxFor(i => i.Test2) Test
+        </label>
+        <label for="two">
+            <input type="checkbox" id="two" />Second checkbox
+        </label>
+        <label for="three">
+            <input type="checkbox" id="three" />Third checkbox
+        </label>
+    </div>
+</div>*@
 <style>
     .custom {
-        width: 100% !important;
-        height: 100% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+        width: 100% ;
+        height: 100% ;
+        display: flex ;
+        align-items: center ;
+        justify-content: center ;
         margin: 0;
         padding: 0;
     }
@@ -57,63 +77,29 @@
             }
 </style>
 
-<div class="container-fluid custom" id="first-page"> 
+<div class="container-fluid custom" id="first-page" > 
     <div class="col-md-4 center-block">
-        <div class="jumbotron center-block" style="background-color: rgba(255, 255, 255, 0.8); margin-top: 30%;margin-bottom: 10%;">
+        <div class="jumbotron center-block" style="background-color: rgba(255, 255, 255, 0.8); margin-top: 15%;margin-bottom: 10%;">
             <h3 class="text-center" style="color: #1b5b82;">Jämför elpriser och byt elavtal</h3>
+            <hr />
+            <small> Nam aliquet id erat nec viverra. Morbi sagittis volutpat tellus, vitae consectetur libero laoreet vitae. Vestibulum eget rhoncus nunc. In hac habitasse platea dictumst.</small>
+            <hr />
 
+           
+            <div class="form-horizontal">
 
+                <div class="col-md-offset-1 center-block">
 
-            @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
-            {
-
-
-            <div class="col-md-offset-1 center-block">
-
-                <div class="form-group center-block">
-                    <div class="col-md-12">
-                        @Html.TextBoxFor(m => m.Postnummer, "{0:#.#}", new { @class = "form-control", @placeholder = "Postnummer.." })
-                        @Html.ValidationMessageFor(m => m.Postnummer, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group center-block">
-                    <div class="col-md-12">
-                        @Html.DropDownListFor(m => m.Förbrukning, Model.FörbrukningList, "Välj din förbrukning", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Förbrukning, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group center-block">
-                    <div class="col-md-12">
-                        @Html.DropDownListFor(m => m.Typ, Model.TypList, "Välj typ av avtal", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Typ, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group center-block">
-                    <div class="col-md-12">
-                        <div class="multiselect">
-                            <div class="selectBox" onclick="showCheckboxes()">
-                                <select class="form-control">
-                                    <option>Select an option</option>
-                                </select>
-                                <div class="overSelect"></div>
-                            </div>
-                            <div id="checkboxes">
-                                <label for="Test2">
-                                    @Html.CheckBoxFor(i => i.Test2) Test
-                                </label>
-                                <label for="two">
-                                    <input type="checkbox" id="two" />Second checkbox
-                                </label>
-                                <label for="three">
-                                    <input type="checkbox" id="three" />Third checkbox
-                                </label>
-                            </div>
+                    <div class="form-group center-block">
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(m => m.Postnummer, "{0:#.#}", new { @class = "form-control", @placeholder = "Postnummer..", @type = "number" })
+                            @Html.ValidationMessageFor(m => m.Postnummer, "", new { @class = "text-danger error-postnumber" })
                         </div>
                     </div>
-                    </div>
+
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="submit" value="Sök" class="btn btn-block" id="display-spinner" style="background-color: #f07451 !important;" />
+                            <button class="btn btn-block btn-success display-spinner" id="btn-postnumber">Sök</button>
                         </div>
                     </div>
                     <div class="preloader" style="display: none;">
@@ -121,8 +107,8 @@
                         <div class="spinner-2"></div>
                     </div>
                 </div>
-            }
-
+            </div>
+           
         </div>
 
     </div>
@@ -130,48 +116,39 @@
 </div>
 <div class="container-fluid custom" id="second-page" style="display: none !important;">
     <div class="col-md-4 center-block">
-        <div class="jumbotron center-block" style="background-color: rgba(255, 255, 255, 0.8); margin-top: 30%;margin-bottom: 10%;">
-            <h3 style="color: #1b5b82;">Jämför elpriser och byt elavtal</h3>
-
-            <div class="col-lg-6" style="font-size: 90%; margin-bottom: 2%;">
-                Hos elmarknad.se jämför du elpriser från alla elbolag. Fyll i dina uppgifter och byt enkelt till det bästa elavtalet.
-            </div>
-            <div class="col-lg-6">
-                <ul class="list-group">
-                    <li style="list-style: none;"><span><i class="glyphicon glyphicon-chevron-down" style="color: #f07451 !important;"></i></span>Jämför alla elbolag</li>
-                    <li style="list-style: none; margin-top: 2%;"><span><i class="glyphicon glyphicon-chevron-down" style="color: #f07451 !important;"></i></span>Snabbt & enkelt</li>
-                    <li style="list-style: none;  margin-top: 2%;"><span><i class="glyphicon glyphicon-chevron-down" style="color: #f07451 !important;"></i></span>Helt kostnadsfritt</li>
-                </ul>
-            </div>
+        <div class="jumbotron center-block" style="background-color: rgba(255, 255, 255, 0.8); margin-top: 15%;margin-bottom: 10%;">
+            <h3 class="text-center" style="color: #1b5b82;">Uppge elförbrukning och önskad avtalstyp</h3>
+            <hr />
+            <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel mauris sed elit hendrerit efficitur. Duis et euismod eros. Proin cursus accumsan ante non elementum.</small>
+            <hr />
 
 
-            @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("Prislista", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
             {
 
 
-                <div class="col-md-offset-1">
+                <div class="col-md-offset-1 center-block">
 
                     <div class="form-group center-block">
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Postnummer, "{0:#.#}", new { @class = "form-control", @placeholder = "Postnummer.." })
-                            @Html.ValidationMessageFor(m => m.Postnummer, "", new { @class = "text-danger" })
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(m => m.Förbrukning, "{0:#.#}", new { @class = "form-control", @placeholder = "Din elförbrukning", @type = "number" })
+                            @Html.ValidationMessageFor(m => m.Förbrukning, "", new { @class = "text-danger val-forbrukning" })
                         </div>
-                    </div>
-                    <div class="form-group center-block">
-                        <div class="col-md-10">
-                            @Html.DropDownListFor(m => m.Förbrukning, Model.FörbrukningList, "Välj din förbrukning", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Förbrukning, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group center-block">
-                        <div class="col-md-10">
+                        <div class="col-md-6">
                             @Html.DropDownListFor(m => m.Typ, Model.TypList, "Välj typ av avtal", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Typ, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(m => m.Typ, "", new { @class = "text-danger val-typ" })
+                            <input id="ElområdeId" name="ElområdeId" type="hidden" value="">
+                            <input id="hidden-number" name="Postnummer" type="hidden" value="">
                         </div>
                     </div>
+
+
                     <div class="form-group">
-                        <div class="col-md-10">
-                            <input type="submit" value="Sök" class="btn btn-block" id="display-spinner" style="background-color: #f07451 !important;" />
+                        <div class="col-md-6">
+                            <input type="submit" value="Sök nu" class="btn btn-block btn-success" />
+                        </div>
+                        <div class="col-md-6">
+                            <button value="next" class="btn btn-block btn-success display-spinner" id="enhanced-search">Utökad sökning</button>
                         </div>
                     </div>
                     <div class="preloader" style="display: none;">
@@ -188,48 +165,39 @@
 </div>
 <div class="container-fluid custom" id="third-page" style="display: none !important;">
     <div class="col-md-4 center-block">
-        <div class="jumbotron center-block" style="background-color: rgba(255, 255, 255, 0.8); margin-top: 30%;margin-bottom: 10%;">
-            <h3 style="color: #1b5b82;">Jämför elpriser och byt elavtal</h3>
-
-            <div class="col-lg-6" style="font-size: 90%; margin-bottom: 2%;">
-                Hos elmarknad.se jämför du elpriser från alla elbolag. Fyll i dina uppgifter och byt enkelt till det bästa elavtalet.
-            </div>
-            <div class="col-lg-6">
-                <ul class="list-group">
-                    <li style="list-style: none;"><span><i class="glyphicon glyphicon-chevron-down" style="color: #f07451 !important;"></i></span>Jämför alla elbolag</li>
-                    <li style="list-style: none; margin-top: 2%;"><span><i class="glyphicon glyphicon-chevron-down" style="color: #f07451 !important;"></i></span>Snabbt & enkelt</li>
-                    <li style="list-style: none;  margin-top: 2%;"><span><i class="glyphicon glyphicon-chevron-down" style="color: #f07451 !important;"></i></span>Helt kostnadsfritt</li>
-                </ul>
-            </div>
-
+        <div class="jumbotron center-block" style="background-color: rgba(255, 255, 255, 0.8); margin-top: 15%;margin-bottom: 10%;">
+            <h3 class="text-center" style="color: #1b5b82;">Utökad sökning</h3>
+            <hr />
+            <small> Nam aliquet id erat nec viverra. Morbi sagittis volutpat tellus, vitae consectetur libero laoreet vitae. Vestibulum eget rhoncus nunc. In hac habitasse platea dictumst.</small>
+            <hr />
 
             @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
             {
 
 
-                <div class="col-md-offset-1">
+                <div class="col-md-offset-1 center-block">
 
                     <div class="form-group center-block">
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Postnummer, "{0:#.#}", new { @class = "form-control", @placeholder = "Postnummer.." })
-                            @Html.ValidationMessageFor(m => m.Postnummer, "", new { @class = "text-danger" })
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(m => m.Source, Model.SourceList, "Specificera energikälla", new { @class = "form-control" })
+                           
                         </div>
                     </div>
                     <div class="form-group center-block">
-                        <div class="col-md-10">
-                            @Html.DropDownListFor(m => m.Förbrukning, Model.FörbrukningList, "Välj din förbrukning", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Förbrukning, "", new { @class = "text-danger" })
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(m => m.PaymentMethod, Model.PaymentList, "Specificera betalningsmetod", new { @class = "form-control" })
+                       
                         </div>
                     </div>
                     <div class="form-group center-block">
-                        <div class="col-md-10">
-                            @Html.DropDownListFor(m => m.Typ, Model.TypList, "Välj typ av avtal", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Typ, "", new { @class = "text-danger" })
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(m => m.Property, Model.PropertyList, "Specificera vilken typ av bostad", new { @class = "form-control" })
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <div class="col-md-10">
-                            <input type="submit" value="Sök" class="btn btn-block" id="display-spinner" style="background-color: #f07451 !important;" />
+                        <div class="col-md-12">
+                            <input type="submit" value="Sök" class="btn btn-success btn-block display-spinner"/>
                         </div>
                     </div>
                     <div class="preloader" style="display: none;">
@@ -254,21 +222,93 @@
 
 @section Scripts {
 <script>
-    $("#display-spinner").on("click", function () {
+    
+    formStorage = {
+        avtal: "",
+        postnr: "",
+        betalmetod: "",
+        elfbr: "",
+        energikälla: "",
+        bostadsform: ""
+    }
+    function saveAsJson() {
+        dataToSave = JSON.stringify(formStorage);
+        localStorage.setItem("userdata", dataToSave);
+    }
+    $(".display-spinner").on("click", function () {
         $(".preloader").show();
     });
 
     var expanded = false;
+    $("#enhanced-search").on("click", function (e) {
+        e.preventDefault();
+        $(".val-forbrukning").empty();
+        $(".val-typ").empty();
+        var IsValid = true;
+        var förbrukning = $("#F_rbrukning").val();
 
-    function showCheckboxes() {
-        var checkboxes = document.getElementById("checkboxes");
-        if (!expanded) {
-            checkboxes.style.display = "block";
-            expanded = true;
-        } else {
-            checkboxes.style.display = "none";
-            expanded = false;
+        if (förbrukning < 1) {
+            IsValid = false;
+            $(".val-forbrukning").append("Din elförbrukning är kwh-timmar per år. Måste vara över 0.");
         }
-    }
+        
+        var avtalstyp = $("#Typ").val();
+        if (avtalstyp.length < 1) {
+            IsValid = false;
+            $(".val-typ").append("Du måste välja avtalstyp. Vill du ha ett rörligt, fast eller ett mixat avtal?. ");
+        }
+        if (IsValid) {
+            $("#second-page").hide();
+            $("#third-page").fadeIn(500);
+        }
+        $(".preloader").hide();
+    })
+    $(document).ready(function () {
+        var postnumber = $("#Postnummer").val();
+        
+        if (postnumber.length > 0) {
+            
+            $("#first-page").hide();
+            $("#second-page").fadeIn(500);
+        }
+    })
+    $("#PaymentMethod").on("change", function () {
+        formStorage.betalmetod = $("#PaymentMethod").val();
+        saveAsJson();
+        
+    });
+    $("#btn-postnumber").on("click", function () {
+        $(".preloader").show();
+        $(".error-postnumber").empty();
+        var postnumber = $("#Postnummer").val();
+        var isCorrect = /^\d{3}\d{2}$/.test(postnumber);
+        if (isCorrect) {
+            formStorage.postnr = postnumber;
+            saveAsJson();
+            $.ajax({
+                url: "/api/search/area",
+                type: "Get",
+                data: { Postnumber: postnumber },
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    $(".preloader").hide();
+                    $("#ElområdeId").val(data);
+                    $("#hidden-number").val(postnumber);
+                    $("#first-page").hide();
+                    $("#second-page").fadeIn(500);
+                },
+                error: function () {
+                    $(".preloader").hide();
+                }
+            })
+        } else {
+            $(".error-postnumber").append("Ange ett riktigt postnumber");
+            $(".preloader").hide();
+            return false;
+        }
+
+        
+       
+        });
     </script>    
 }

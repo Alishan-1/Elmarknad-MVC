@@ -258,6 +258,7 @@
     <Compile Include="Models\ViewModels\DisplayDealsViewModel.cs" />
     <Compile Include="Models\ViewModels\EditElbolagViewModel.cs" />
     <Compile Include="Models\ViewModels\ElBolagViewModel.cs" />
+    <Compile Include="Models\ViewModels\EnhancedSearchViewModel.cs" />
     <Compile Include="Models\ViewModels\ListCustomerViewModel.cs" />
     <Compile Include="Models\ViewModels\ListSearchResultViewModel.cs" />
     <Compile Include="Models\ViewModels\SearchResultViewModel.cs" />

@@ -15,8 +15,8 @@ namespace Elmarknad.Controllers
 
         public ActionResult Index()
         {
-            var model = new SearchViewModel();
-           
+            var model = new EnhancedSearchViewModel();
+
             return View(model);
         }
         #region ShowResult
@@ -40,7 +40,35 @@ namespace Elmarknad.Controllers
                     return View(m);
 
                 }
-                
+
+            }
+
+            return View("Index", model);
+        }
+        #region ShowResult
+        [HttpGet]
+        public ActionResult Prislista(EnhancedSearchViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var searchmodel = _searchRepo.FillEnhancedSearchResultModel(model);
+                    return View("Search", searchmodel);
+                }
+                catch
+                {
+                    var m = new ListSearchResultViewModel
+                    {
+                        Förbrukning = model.Förbrukning,
+                        Typ = model.Typ,
+                        Agreements = new List<SearchResultViewModel>()
+                    };
+                    return View(m);
+
+                }
+
             }
 
             return View("Index", model);
@@ -64,7 +92,7 @@ namespace Elmarknad.Controllers
             }
         }
 
-        
+
         public ActionResult TecknaKampanjAvtal(int id)
         {
             try
@@ -164,7 +192,7 @@ namespace Elmarknad.Controllers
                 var helper = new EmailRepository();
                 helper.CustomerSupportEmail(model);
                 ViewBag.successMessage = "Ditt meddelande har skickats och kommer hanteras så fort som möjligt!";
-                
+
                 return View();
             }
 
@@ -174,10 +202,10 @@ namespace Elmarknad.Controllers
         {
             return View();
         }
-       
+
         public ActionResult MoreInfo()
         {
-           
+
             return View();
         }
         #endregion
@@ -187,5 +215,5 @@ namespace Elmarknad.Controllers
             return View();
         }
     }
-
 }
+#endregion
