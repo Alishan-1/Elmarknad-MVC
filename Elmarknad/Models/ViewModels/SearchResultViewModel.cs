@@ -26,5 +26,13 @@ namespace Elmarknad.Models.ViewModels
         public virtual bool Bio { get; set; } = false;
         public virtual bool Miljömärkt { get; set; } = false;
 
+        public bool IsInvicible { get; set; } = false;
+
+        public virtual bool Autogiro { get; set; } = false;
+        public virtual bool EFaktura { get; set; } = false;
+        public virtual bool Pappersfaktura { get; set; } = false;
+
+        public virtual bool House { get; set; } = false;
+        public virtual bool Appartment { get; set; } = false;
     }
 }

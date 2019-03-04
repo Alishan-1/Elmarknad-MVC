@@ -44,7 +44,7 @@ namespace Elmarknad.Models.ViewModels
         private Dictionary<string, string> _Payment = new Dictionary<string, string>
         {
             {"A", "Autogiro"},
-            {"E", "Efaktura"},
+            {"E", "E-Faktura"},
             {"P", "Pappersfaktura"},
         };
         public IEnumerable<SelectListItem> PaymentList
@@ -56,8 +56,8 @@ namespace Elmarknad.Models.ViewModels
         public string Property { get; set; }
         private Dictionary<string, string> _Property = new Dictionary<string, string>
         {
-            {"House", "Villa"},
-            {"Cabin", "Lägenhet / Sommarstuga"}
+            {"house", "Villa"},
+            {"cabin", "Lägenhet / Sommarstuga"}
         };
         public IEnumerable<SelectListItem> PropertyList
         {
@@ -66,15 +66,12 @@ namespace Elmarknad.Models.ViewModels
 
         //--slut--//
         //--//
-        [Display(Name = "Välj Energikälla")]
+        [Display(Name = "Vill du ha ett miljöavtal?")]
         public string Source { get; set; }
         private Dictionary<string, string> _Source = new Dictionary<string, string>
         {
-            {"sol", "Energi från solceller"},
-            {"vind", "Energi från vattenkraft"},
-            {"vatten", "Energi från vattenkraft"},
-            {"bio", "Energi från biologiskt avfall"},
-            {"friendly", "Ett bra miljöval"}
+            {"yes", "Ja"},
+            {"no", "Nej"}
         };
         public IEnumerable<SelectListItem> SourceList
         {

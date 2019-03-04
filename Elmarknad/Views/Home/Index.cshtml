@@ -4,42 +4,45 @@
 }
 
 @*<div class="multiselect">
-    <div class="selectBox" onclick="showCheckboxes()">
-        <select class="form-control">
-            <option>Select an option</option>
-        </select>
-        <div class="overSelect"></div>
-    </div>
-    <div id="checkboxes">
-        <label for="Test2">
-            @Html.CheckBoxFor(i => i.Test2) Test
-        </label>
-        <label for="two">
-            <input type="checkbox" id="two" />Second checkbox
-        </label>
-        <label for="three">
-            <input type="checkbox" id="three" />Third checkbox
-        </label>
-    </div>
-</div>*@
+        <div class="selectBox" onclick="showCheckboxes()">
+            <select class="form-control">
+                <option>Select an option</option>
+            </select>
+            <div class="overSelect"></div>
+        </div>
+        <div id="checkboxes">
+            <label for="Test2">
+                @Html.CheckBoxFor(i => i.Test2) Test
+            </label>
+            <label for="two">
+                <input type="checkbox" id="two" />Second checkbox
+            </label>
+            <label for="three">
+                <input type="checkbox" id="three" />Third checkbox
+            </label>
+        </div>
+    </div>*@
 <style>
     .custom {
-        width: 100% ;
-        height: 100% ;
-        display: flex ;
-        align-items: center ;
-        justify-content: center ;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin: 0;
         padding: 0;
     }
+
     .custom-bg {
-       background-color: #316a87;
+        background-color: #316a87;
     }
+
     #extra-index {
         width: 100%;
         margin: 0 !important;
         padding: 0 !important;
     }
+
     .multiselect {
         width: 100%;
     }
@@ -65,7 +68,6 @@
         display: none;
         border: 1px #dadada solid;
         background-color: #fff;
-        
     }
 
         #checkboxes label {
@@ -77,7 +79,7 @@
             }
 </style>
 
-<div class="container-fluid custom" id="first-page" > 
+<div class="container-fluid custom" id="first-page">
     <div class="col-md-4 center-block">
         <div class="jumbotron center-block" style="background-color: rgba(255, 255, 255, 0.8); margin-top: 15%;margin-bottom: 10%;">
             <h3 class="text-center" style="color: #1b5b82;">Jämför elpriser och byt elavtal</h3>
@@ -85,7 +87,7 @@
             <small> Nam aliquet id erat nec viverra. Morbi sagittis volutpat tellus, vitae consectetur libero laoreet vitae. Vestibulum eget rhoncus nunc. In hac habitasse platea dictumst.</small>
             <hr />
 
-           
+
             <div class="form-horizontal">
 
                 <div class="col-md-offset-1 center-block">
@@ -108,7 +110,7 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
 
     </div>
@@ -137,8 +139,8 @@
                         <div class="col-md-6">
                             @Html.DropDownListFor(m => m.Typ, Model.TypList, "Välj typ av avtal", new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Typ, "", new { @class = "text-danger val-typ" })
-                            <input id="ElområdeId" name="ElområdeId" type="hidden" value="">
-                            <input id="hidden-number" name="Postnummer" type="hidden" value="">
+                            <input class="ElområdeId-append" name="ElområdeId" type="hidden" value="">
+                            <input class="hidden-number" name="Postnummer" type="hidden" value="">
                         </div>
                     </div>
 
@@ -171,7 +173,7 @@
             <small> Nam aliquet id erat nec viverra. Morbi sagittis volutpat tellus, vitae consectetur libero laoreet vitae. Vestibulum eget rhoncus nunc. In hac habitasse platea dictumst.</small>
             <hr />
 
-            @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("Lista", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
             {
 
 
@@ -179,25 +181,29 @@
 
                     <div class="form-group center-block">
                         <div class="col-md-12">
-                            @Html.DropDownListFor(m => m.Source, Model.SourceList, "Specificera energikälla", new { @class = "form-control" })
-                           
+                            @Html.DropDownListFor(m => m.Source, Model.SourceList, "Vill du ha ett miljöavtal?", new { @class = "form-control" })
+
                         </div>
                     </div>
                     <div class="form-group center-block">
                         <div class="col-md-12">
-                            @Html.DropDownListFor(m => m.PaymentMethod, Model.PaymentList, "Specificera betalningsmetod", new { @class = "form-control" })
-                       
+                            @Html.DropDownListFor(m => m.PaymentMethod, Model.PaymentList, "Välj betalningsmetod", new { @class = "form-control" })
+
                         </div>
                     </div>
                     <div class="form-group center-block">
                         <div class="col-md-12">
-                            @Html.DropDownListFor(m => m.Property, Model.PropertyList, "Specificera vilken typ av bostad", new { @class = "form-control" })
+                            @Html.DropDownListFor(m => m.Property, Model.PropertyList, "Välj vilken typ av bostad", new { @class = "form-control" })
+                            <input class="ElområdeId-append" name="ElområdeId" type="hidden" value="">
+                            <input class="hidden-number" name="Postnummer" type="hidden" value="">
+                            <input class="Förbrukning-append" name="Förbrukning" type="hidden" value="">
+                            <input class="Typ-append" name="Typ" type="hidden" value="">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="submit" value="Sök" class="btn btn-success btn-block display-spinner"/>
+                            <input type="submit" value="Sök" class="btn btn-success btn-block display-spinner" />
                         </div>
                     </div>
                     <div class="preloader" style="display: none;">
@@ -221,94 +227,98 @@
 </section>
 
 @section Scripts {
-<script>
-    
-    formStorage = {
-        avtal: "",
-        postnr: "",
-        betalmetod: "",
-        elfbr: "",
-        energikälla: "",
-        bostadsform: ""
-    }
-    function saveAsJson() {
-        dataToSave = JSON.stringify(formStorage);
-        localStorage.setItem("userdata", dataToSave);
-    }
-    $(".display-spinner").on("click", function () {
-        $(".preloader").show();
-    });
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
 
-    var expanded = false;
-    $("#enhanced-search").on("click", function (e) {
-        e.preventDefault();
-        $(".val-forbrukning").empty();
-        $(".val-typ").empty();
-        var IsValid = true;
-        var förbrukning = $("#F_rbrukning").val();
-
-        if (förbrukning < 1) {
-            IsValid = false;
-            $(".val-forbrukning").append("Din elförbrukning är kwh-timmar per år. Måste vara över 0.");
+        formStorage = {
+            avtal: "",
+            postnr: "",
+            betalmetod: "",
+            elfbr: "",
+            energikälla: "",
+            bostadsform: ""
         }
-        
-        var avtalstyp = $("#Typ").val();
-        if (avtalstyp.length < 1) {
-            IsValid = false;
-            $(".val-typ").append("Du måste välja avtalstyp. Vill du ha ett rörligt, fast eller ett mixat avtal?. ");
+        function saveAsJson() {
+            dataToSave = JSON.stringify(formStorage);
+            localStorage.setItem("userdata", dataToSave);
         }
-        if (IsValid) {
-            $("#second-page").hide();
-            $("#third-page").fadeIn(500);
-        }
-        $(".preloader").hide();
-    })
-    $(document).ready(function () {
-        var postnumber = $("#Postnummer").val();
-        
-        if (postnumber.length > 0) {
-            
-            $("#first-page").hide();
-            $("#second-page").fadeIn(500);
-        }
-    })
-    $("#PaymentMethod").on("change", function () {
-        formStorage.betalmetod = $("#PaymentMethod").val();
-        saveAsJson();
-        
-    });
-    $("#btn-postnumber").on("click", function () {
-        $(".preloader").show();
-        $(".error-postnumber").empty();
-        var postnumber = $("#Postnummer").val();
-        var isCorrect = /^\d{3}\d{2}$/.test(postnumber);
-        if (isCorrect) {
-            formStorage.postnr = postnumber;
-            saveAsJson();
-            $.ajax({
-                url: "/api/search/area",
-                type: "Get",
-                data: { Postnumber: postnumber },
-                contentType: "application/json; charset=utf-8",
-                success: function (data) {
-                    $(".preloader").hide();
-                    $("#ElområdeId").val(data);
-                    $("#hidden-number").val(postnumber);
-                    $("#first-page").hide();
-                    $("#second-page").fadeIn(500);
-                },
-                error: function () {
-                    $(".preloader").hide();
-                }
-            })
-        } else {
-            $(".error-postnumber").append("Ange ett riktigt postnumber");
-            $(".preloader").hide();
-            return false;
-        }
-
-        
-       
+        $(".display-spinner").on("click", function () {
+            $(".preloader").show();
         });
-    </script>    
+
+        var expanded = false;
+        $("#enhanced-search").on("click", function (e) {
+            e.preventDefault();
+            $(".val-forbrukning").empty();
+            $(".val-typ").empty();
+            var IsValid = true;
+            var förbrukning = $("#F_rbrukning").val();
+
+            if (förbrukning < 1) {
+                IsValid = false;
+                $(".val-forbrukning").append("Din elförbrukning är kwh-timmar per år. Måste vara över 0.");
+            }
+
+            var avtalstyp = $("#Typ").val();
+            if (avtalstyp.length < 1) {
+                IsValid = false;
+                $(".val-typ").append("Du måste välja avtalstyp. Vill du ha ett rörligt, fast eller ett mixat avtal?. ");
+            }
+            if (IsValid) {
+                $(".Förbrukning-append").val(förbrukning);
+                $(".Typ-append").val(avtalstyp);
+                $("#second-page").hide();
+                $("#third-page").fadeIn(500);
+            }
+            $(".preloader").hide();
+        })
+
+        $(document).ready(function () {
+            var postnumber = $("#Postnummer").val();
+
+            if (postnumber.length > 0) {
+
+                $("#first-page").hide();
+                $("#second-page").fadeIn(500);
+            }
+        })
+        $("#PaymentMethod").on("change", function () {
+            formStorage.betalmetod = $("#PaymentMethod").val();
+            saveAsJson();
+
+        });
+
+        $("#btn-postnumber").on("click", function () {
+            $(".preloader").show();
+            $(".error-postnumber").empty();
+            var postnumber = $("#Postnummer").val();
+            var isCorrect = /^\d{3}\d{2}$/.test(postnumber);
+            if (isCorrect) {
+                formStorage.postnr = postnumber;
+                saveAsJson();
+                $.ajax({
+                    url: "/api/search/area",
+                    type: "Get",
+                    data: { Postnumber: postnumber },
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        $(".preloader").hide();
+                        $(".ElområdeId-append").val(data);
+                        $(".hidden-number").val(postnumber);
+                        $("#first-page").hide();
+                        $("#second-page").fadeIn(500);
+                    },
+                    error: function () {
+                        $(".preloader").hide();
+                    }
+                })
+            } else {
+                $(".error-postnumber").append("Ange ett riktigt postnumber");
+                $(".preloader").hide();
+                return false;
+            }
+        });
+
+
+    </script>
 }

@@ -19,7 +19,7 @@ namespace Elmarknad.Controllers
 
             return View(model);
         }
-        #region ShowResult
+        #region OldSearch
         [HttpGet]
         public ActionResult Search(SearchViewModel model)
         {
@@ -45,6 +45,7 @@ namespace Elmarknad.Controllers
 
             return View("Index", model);
         }
+        #endregion
         #region ShowResult
         [HttpGet]
         public ActionResult Prislista(EnhancedSearchViewModel model)
@@ -55,6 +56,35 @@ namespace Elmarknad.Controllers
                 try
                 {
                     var searchmodel = _searchRepo.FillEnhancedSearchResultModel(model);
+                    return View("Search", searchmodel);
+                }
+                catch
+                {
+                    var m = new ListSearchResultViewModel
+                    {
+                        Förbrukning = model.Förbrukning,
+                        Typ = model.Typ,
+                        Agreements = new List<SearchResultViewModel>()
+                    };
+                    return View(m);
+
+                }
+
+            }
+
+            return View("Index", model);
+        }
+
+        [HttpGet]
+        [Route("lista-elavtal")]
+        public ActionResult Lista(EnhancedSearchViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var searchmodel = _searchRepo.FillSpecifiedEnhancedSearchModel(model);
                     return View("Search", searchmodel);
                 }
                 catch
@@ -216,4 +246,3 @@ namespace Elmarknad.Controllers
         }
     }
 }
-#endregion

@@ -62,93 +62,170 @@
     @foreach (var item in Model.Agreements)
     {
 
-        <div class="row to-hide center-block search-tool" style="border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;">
-            <div class="col-md-2">
-                <h3></h3>
-                @if (item.Image != null)
-                {<div class="center-block">
-                    <img class="img-responsive img-thumbnail" src="~/@item.Image" alt="" style="margin-bottom: 1%; max-width: 150px !important;">
-                </div>
-                }
-                else
-                {<div class="center-block">
-                    <img class="img-responsive img-thumbnail" src="~/Images/searchDefault.jpg" alt="" style="margin-bottom: 1%; max-width: 150px !important;">
-                </div>
-    }
-</div>
-
-            <div class="col-md-3">
-                <h3 class="comp-name">@item.Company</h3>
-                <small>@item.Contract</small>
-                <ul class="list-group">
-                    <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Avtalstyp: @Model.Typ</li>
-                    <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Avtalstid: 12 månader</li>
-                    <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>@item.ExtraInfo</li>
-                    <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Automatiskförlängning: @item.AutomatiskFörlängning</li>
-                    <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Uppsägningstid: @item.Uppsägningstid</li>
-                    @if (item.Rating != 0)
+        if (item.IsInvicible)
+        {
+            <div class="row to-hide center-block search-tool" style="display: none !important; border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;">
+                <div class="col-md-2 col-xs-6">
+                    <h3></h3>
+                    @if (item.Image != null)
                     {
-                        <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Kundbetyg: @item.Rating</li>
+                        <img class="img-responsive img-thumbnail" src="~/@item.Image" alt="" style="margin-bottom: 1%; max-width: 150px !important;">
+
                     }
-                </ul>
+                    else
+                    {
+                        <img class="img-responsive img-thumbnail" src="~/Images/searchDefault.jpg" alt="" style="margin-bottom: 1%; max-width: 150px !important;">
+
+                    }
+                </div>
+
+                <div class="col-md-3 col-xs-6">
+                    <h3 class="comp-name">@item.Company</h3>
+                    <small>@item.Contract</small>
+                    <ul class="list-group">
+                        <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Avtalstyp: @Model.Typ</li>
+                        <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Avtalstid: 12 månader</li>
+                        <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>@item.ExtraInfo</li>
+                        <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Automatiskförlängning: @item.AutomatiskFörlängning</li>
+                        <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Uppsägningstid: @item.Uppsägningstid</li>
+                        @if (item.Rating != 0)
+                        {
+                            <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Kundbetyg: @item.Rating</li>
+                        }
+                    </ul>
+
+                </div>
+                <div class="col-md-3">
+                    <h3></h3>
+
+                    @if (item.Bio)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Energi från biologiskt avfall"><img src="~/Images/bio.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                    @if (item.Sol)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Energi från solceller"><img src="~/Images/sol.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                    @if (item.Miljömärkt)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Ett bra miljöval"><img src="~/Images/miljöval.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                    @if (item.Vatten)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Energi från vattenkraft"><img src="~/Images/vatten.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                    @if (item.Vind)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Energi från vindkraft"><img src="~/Images/vind.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                </div>
+                <div class="col-md-3">
+                    <h3 class=""><span class="badge badge-secondary" style="padding: 2%; font-size: 70%;background-color: #1b5b82;">@item.Price.ToString(specifier, culture) öre/kwh</span></h3><br />
+
+                    <br />
+
+                    @if (item.IsClient)
+                    {
+                        @Html.ActionLink("Teckna avtal", "TecknaKampanjAvtal", new { id = item.Id }, new { @class = "btn btn-block btn-primary", @style = "background-color: #f07451 !important; border: none  !important; margin-bottom: 1%; margin-top: 1%;" })
+
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Teckna avtal", "TecknaAvtal", new { id = item.Id }, new { @class = "btn  btn-block btn-primary", @style = "background-color: #f07451 !important;  border: none  !important; margin-bottom: 1%; margin-top: 1%;" })
+
+                    }
+                </div>
 
             </div>
-            <div class="col-md-3">
-                <h3></h3>
+        }
+        else
+        {
+            <div class="row to-hide center-block search-tool" style="border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;">
+                <div class="col-md-2 col-xs-6">
+                    <h3></h3>
+                    @if (item.Image != null)
+                    {
+                        <img class="img-responsive img-thumbnail" src="~/@item.Image" alt="" style="margin-bottom: 1%; max-width: 150px !important;">
 
-                @if (item.Bio)
-                {
-                    <span data-toggle="tooltip" data-placement="top" title="Energi från biologiskt avfall"><img src="~/Images/bio.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
-                }
-                @if (item.Sol)
-                {
-                    <span data-toggle="tooltip" data-placement="top" title="Energi från solceller"><img src="~/Images/sol.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
-                }
-                @if (item.Miljömärkt)
-                {
-                    <span data-toggle="tooltip" data-placement="top" title="Ett bra miljöval"><img src="~/Images/miljöval.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
-                }
-                @if (item.Vatten)
-                {
-                    <span data-toggle="tooltip" data-placement="top" title="Energi från vattenkraft"><img src="~/Images/vatten.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
-                }
-                @if (item.Vind)
-                {
-                    <span data-toggle="tooltip" data-placement="top" title="Energi från vindkraft"><img src="~/Images/vind.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
-                }
+                    }
+                    else
+                    {
+                        <img class="img-responsive img-thumbnail" src="~/Images/searchDefault.jpg" alt="" style="margin-bottom: 1%; max-width: 150px !important;">
+
+                    }
+                </div>
+
+                <div class="col-md-3 col-xs-6">
+                    <h3 class="comp-name">@item.Company</h3>
+                    <small>@item.Contract</small>
+                    <ul class="list-group">
+                        <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Avtalstyp: @Model.Typ</li>
+                        <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Avtalstid: 12 månader</li>
+                        <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>@item.ExtraInfo</li>
+                        <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Automatiskförlängning: @item.AutomatiskFörlängning</li>
+                        <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Uppsägningstid: @item.Uppsägningstid</li>
+                        @if (item.Rating != 0)
+                        {
+                            <li style="list-style: none;"><span style="margin-right: 1%;"><i class="glyphicon glyphicon-plus-sign" style="color: #f07451;"></i></span>Kundbetyg: @item.Rating</li>
+                        }
+                    </ul>
+
+                </div>
+                <div class="col-md-3">
+                    <h3></h3>
+
+                    @if (item.Bio)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Energi från biologiskt avfall"><img src="~/Images/bio.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                    @if (item.Sol)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Energi från solceller"><img src="~/Images/sol.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                    @if (item.Miljömärkt)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Ett bra miljöval"><img src="~/Images/miljöval.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                    @if (item.Vatten)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Energi från vattenkraft"><img src="~/Images/vatten.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                    @if (item.Vind)
+                    {
+                        <span data-toggle="tooltip" data-placement="top" title="Energi från vindkraft"><img src="~/Images/vind.png" class="img-responsive img-thumbnail" style="width: 20%;" /></span>
+                    }
+                </div>
+                <div class="col-md-3">
+                    <h3 class=""><span class="badge badge-secondary" style="padding: 2%; font-size: 70%;background-color: #1b5b82;">@item.Price.ToString(specifier, culture) öre/kwh</span></h3><br />
+
+                    <br />
+
+                    @if (item.IsClient)
+                    {
+                        @Html.ActionLink("Teckna avtal", "TecknaKampanjAvtal", new { id = item.Id }, new { @class = "btn btn-block btn-primary", @style = "background-color: #f07451 !important; border: none  !important; margin-bottom: 1%; margin-top: 1%;" })
+
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Teckna avtal", "TecknaAvtal", new { id = item.Id }, new { @class = "btn  btn-block btn-primary", @style = "background-color: #f07451 !important;  border: none  !important; margin-bottom: 1%; margin-top: 1%;" })
+
+                    }
+                </div>
+
             </div>
-            <div class="col-md-3">
-                <h3 class=""><span class="badge badge-secondary" style="padding: 2%; font-size: 70%;background-color: #1b5b82;">@item.Price.ToString(specifier, culture) öre/kwh</span></h3><br />
+        }
 
-
-
-
-                <br />
-
-                @if (item.IsClient)
-                {
-                    @Html.ActionLink("Teckna avtal", "TecknaKampanjAvtal", new { id = item.Id }, new { @class = "btn btn-block btn-primary", @style = "background-color: #f07451 !important; border: none  !important; margin-bottom: 1%; margin-top: 1%;" })
-
-                }
-                else
-                {
-                    @Html.ActionLink("Teckna avtal", "TecknaAvtal", new { id = item.Id }, new { @class = "btn  btn-block btn-primary", @style = "background-color: #f07451 !important;  border: none  !important; margin-bottom: 1%; margin-top: 1%;" })
-
-                }
-            </div>
-
-        </div>
 
     }
 
 
 
 </div>
-<div class="col-lg-12">
-    <div class="center-block"><button class="btn btn-success center-block" id="show-all" style="margin-bottom: 10%;">Visa Mer <br /> @antalAvtal Avtal </button></div>
-</div>
-@section Scripts {
-    <script>
+            <div class="col-lg-12">
+                <div class="center-block"><button class="btn btn-success center-block" id="show-all" style="margin-bottom: 10%;">Visa Mer <br /> @antalAvtal Avtal </button></div>
+            </div>
+            @section Scripts {
+                <script>
         $("#show-filter").on("click", function () {
             $("#filter-deals").slideToggle(200);
         })
@@ -328,5 +405,5 @@
                 }
             })
         });
-    </script>
-}
+                </script>
+            }
