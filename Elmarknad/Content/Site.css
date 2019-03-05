@@ -487,7 +487,10 @@ section {
     line-height: 40px;
     transition: width 0.4s linear;
 }
-
+    .search_input::placeholder {
+        color: #fff;
+        font-size: 1.5em;
+    }
 .searchbar:hover > .search_input {
     padding: 0 10px;
     width: 450px;
