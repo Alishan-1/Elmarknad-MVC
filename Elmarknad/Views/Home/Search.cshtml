@@ -72,21 +72,24 @@
                 
                 <div class="col-lg-12" data-toggle="buttons">
                     <h5>Vilken fakturatyp letar du efter?</h5>
-                    <label class="btn btn-block btn-success" id="price">
+                    <label class="btn btn-block btn-success" id="autogiro">
                         <input type="radio" name="options" id="option1" autocomplete="off"> Autogiro
                     </label>
-                    <label class="btn btn-block btn-success" id="rating">
+                    <label class="btn btn-block btn-success" id="e-faktura">
                         <input type="radio" name="options" id="option2" autocomplete="off"> E-Faktura
                     </label>
-                    <label class="btn btn-block btn-success" id="rating">
+                    <label class="btn btn-block btn-success" id="pappersfaktura">
                         <input type="radio" name="options" id="option3" autocomplete="off"> Pappersfaktura
                     </label>
+                    
                 </div>
             </div>
-   
-
-
-</div>
+            <div class="col-md-12" style="margin-bottom: 1%;">
+                <div class="col-lg-12" data-toggle="buttons">
+                    <button class="btn btn-danger">Starta om filtrering</button>
+                </div>
+                </div>
+            </div>
 
 <div class="col-lg-12 custom-filter" id="filtered-ready">
     <div class="preloader" style="display: none;">
@@ -95,7 +98,7 @@
     </div>
     <hr />
     <div class="col-lg-12">
-        <p class="lead" style="color: #1b5b82;">Visar elavtal för postnummer @Model.Postnummer och elförbrukning @Model.Förbrukning</p>
+        <p class="lead" style="color: #1b5b82;">Visar<span id="amount"></span> elavtal för postnummer @Model.Postnummer och elförbrukning @Model.Förbrukning</p>
     </div>
     <hr>
     <div class="filter-by-number" id="filter-by-number">
@@ -104,7 +107,7 @@
 
             if (item.IsInvicible)
             {
-                <div class="row to-hide center-block search-tool" rating="@item.Rating" price="@item.Price.ToString(specifier, culture)" style="display: none !important; border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;">
+                <div class="row to-hide center-block search-tool" invicible="True" autogiro="@item.Autogiro.ToString()" efaktura="@item.EFaktura.ToString()" pfaktura="@item.Pappersfaktura.ToString()" rating="@item.Rating" price="@item.Price.ToString(specifier, culture)" style="display: none !important; border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;">
                     <div class="col-md-2">
                         <h3></h3>
                         @if (item.Image != null)
@@ -184,7 +187,7 @@
             }
             else
             {
-                <div class="row to-hide center-block search-tool" rating="@item.Rating" price="@item.Price.ToString(specifier, culture)" style="border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;">
+                <div class="row to-hide center-block search-tool"  invicible="False" autogiro="@item.Autogiro.ToString()" efaktura="@item.EFaktura.ToString()" pfaktura="@item.Pappersfaktura.ToString()" rating="@item.Rating.ToString()" price="@item.Price.ToString(specifier, culture)" style="border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;">
                     <div class="col-md-2">
                         <h3></h3>
                         @if (item.Image != null)
@@ -278,6 +281,7 @@
 
         $("#no-friendly").on("click", function () {
             $(".search-tool").show();
+            GetVisibleDeals();
         });
         $("#yes-friendly").on("click", function () {
 
@@ -291,12 +295,64 @@
                 }
 
             });
+            GetVisibleDeals();
         });
-        
+        $("#autogiro").on("click", function () {
+
+
+            $(".search-tool").each(function () {
+                var element = $(this);
+                var attr = $(this).attr("autogiro");
+                //alert(attr.length);
+                if (attr == "False") {
+                    
+                    element.hide()
+                }
+
+            });
+            GetVisibleDeals();
+        });
+        $("#e-faktura").on("click", function () {
+
+
+            $(".search-tool").each(function () {
+                var element = $(this);
+                var attr = $(this).attr("efaktura");
+                //alert(attr.length);
+                
+                if (attr == "False") {
+                   
+                    element.hide()
+                }
+
+            });
+            GetVisibleDeals();
+        });
+        $("#pappersfaktura").on("click", function () {
+
+
+            $(".search-tool").each(function () {
+                var element = $(this);
+                var attr = $(this).attr("pfaktura");
+                //alert(attr.length);
+                if (attr == "False") {
+                    
+                    element.hide()
+                }
+
+            });
+            GetVisibleDeals();
+        });
+       
+        function GetVisibleDeals() {
+            
+            var amount = $(".search-tool:visible").length;
+            $("#amount").text(" " + amount);
+        }
 
         $(document).ready(function () {
-
-
+            GetVisibleDeals();
+            
         });
 
     $("#search-comp").on("keyup", function () {

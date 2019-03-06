@@ -133,7 +133,7 @@
 
                     <div class="form-group center-block">
                         <div class="col-md-6">
-                            @Html.TextBoxFor(m => m.Förbrukning, "{0:#.#}", new { @class = "form-control", @placeholder = "Din elförbrukning", @type = "number" })
+                            @Html.TextBoxFor(m => m.Förbrukning, "{0:#.#}", new { @class = "form-control", @placeholder = "Din elförbrukning", @type = "number", @min = "0", @max = "30000",@step = "1000" })
                             @Html.ValidationMessageFor(m => m.Förbrukning, "", new { @class = "text-danger val-forbrukning" })
                         </div>
                         <div class="col-md-6">
@@ -150,7 +150,7 @@
                             <input type="submit" value="Sök nu" class="btn btn-block btn-success" />
                         </div>
                         <div class="col-md-6">
-                            <button value="next" class="btn btn-block btn-success display-spinner" id="enhanced-search">Utökad sökning</button>
+                            <button value="next" class="btn btn-block btn-success display-spinner" id="enhanced-search" style="margin-top: 1%;">Utökad sökning</button>
                         </div>
                     </div>
                     <div class="preloader" style="display: none;">
@@ -265,6 +265,7 @@
         });
 
         var expanded = false;
+
         $("#enhanced-search").on("click", function (e) {
             e.preventDefault();
             $(".val-forbrukning").empty();
@@ -283,6 +284,10 @@
                 $(".val-typ").append("Du måste välja avtalstyp. Vill du ha ett rörligt, fast eller ett mixat avtal?. ");
             }
             if (IsValid) {
+                formStorage.elfbr = $("#F_rbrukning").val();
+                formStorage.avtal = $("#Typ").val();
+                
+                saveAsJson();
                 $(".Förbrukning-append").val(förbrukning);
                 $(".Typ-append").val(avtalstyp);
                 $("#second-page").hide();
@@ -298,9 +303,39 @@
                 $("#Postnummer").val(retrievedData.postnr);
 
             } 
+            if (retrievedData.elfbr != "") {
+                $("#F_rbrukning").val(retrievedData.elfbr);
+
+            } 
+            if (retrievedData.avtal != "") {
+                $("#Typ").val(retrievedData.avtal);
+
+            } 
+            if (retrievedData.betalmetod != "") {
+                $("#PaymentMethod").val(retrievedData.betalmetod);
+
+            } 
+            if (retrievedData.energikälla != "") {
+                $("#Source").val(retrievedData.energikälla);
+
+            } 
+            if (retrievedData.bostadsform != "") {
+                $("#Property").val(retrievedData.bostadsform);
+
+            } 
         })
         $("#PaymentMethod").on("change", function () {
             formStorage.betalmetod = $("#PaymentMethod").val();
+            saveAsJson();
+
+        });
+        $("#Source").on("change", function () {
+            formStorage.energikälla = $("#Source").val();
+            saveAsJson();
+
+        });
+        $("#Property").on("change", function () {
+            formStorage.bostadsform = $("#Property").val();
             saveAsJson();
 
         });

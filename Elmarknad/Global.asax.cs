@@ -26,6 +26,8 @@ namespace Elmarknad
             //var migrator = new DbMigrator(configuration);
             //migrator.Update();
 
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

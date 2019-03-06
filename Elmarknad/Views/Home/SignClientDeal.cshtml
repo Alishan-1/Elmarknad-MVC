@@ -47,14 +47,14 @@
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 @if (Model.Image != null)
                 {
-                    <img src="~/@Model.Image" class="img-thumbnail" /><br />
+                    <img src="~/@Model.Image" class="img-thumbnail"  style="width: 50%; margin-bottom: 1%;" /><br />
                 }
                 else
                 {
                     <img src="~/Images/searchDefault.jpg" class="img-thumbnail" style="width: 50%; margin-bottom: 1%;" /><br />
                 }
                 <span class="text-muted">Ditt pris</span>
-                <span class="badge badge-secondary badge-pill" style="background-color: #1b5b82;">@Model.Price</span>
+                <span class="badge badge-secondary badge-pill" style="background-color: #1b5b82;">@Model.Price öre/kwh</span>
 
             </h4>
             <ul class="list-group mb-3">
@@ -189,7 +189,7 @@
 
                 <li class="list-group-item d-flex justify-content-between">
                     <span class="text-muted">Ditt totala kilowattpris:</span>
-                    <span class="badge badge-primary badge-pill" style="background-color: #1b5b82;"><strong>@Model.Price</strong></span>
+                    <span class="badge badge-primary badge-pill" style="background-color: #1b5b82;"><strong>@Model.Price öre/kwh</strong></span>
                 </li>
             </ul>
 
@@ -234,7 +234,7 @@
                         @Html.LabelFor(m => m.CustomerInfo.Email)
 
                         @Html.TextBoxFor(m => m.CustomerInfo.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.CustomerInfo.Email, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(m => m.CustomerInfo.Email, "", new { @class = "text-danger", @type = "email" })
 
 
                     </div>
@@ -402,6 +402,12 @@
 @section scripts{
     <script>
         $(document).ready(function () {
+            formText = localStorage.getItem("userdata");
+            retrievedData = JSON.parse(formText);
+            if (retrievedData.postnr != "") {
+                $("#CustomerInfo_Postnumber").val(retrievedData.postnr);
+
+            } 
             var d = new Date();
             var strDate = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
             $("#datetimepicker4").val(strDate);
