@@ -115,7 +115,10 @@ namespace Elmarknad.Repo
                     Vind = item.Vind,
                     Autogiro = item.Autogiro,
                     EFaktura = item.EFaktura,
-                    Pappersfaktura = item.Pappersfaktura
+                    Pappersfaktura = item.Pappersfaktura,
+                    Appartment = true,
+                    House = true
+                    
                 };
                 list.Add(model);
             }
@@ -326,7 +329,9 @@ namespace Elmarknad.Repo
                     Miljömärkt = item.Miljömärkt,
                     Sol = item.Sol,
                     Vatten = item.Vatten,
-                    Vind = item.Vind
+                    Vind = item.Vind,
+                    Appartment = true,
+                    House = true
                 };
                 list.Add(model);
             }

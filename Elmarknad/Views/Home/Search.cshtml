@@ -26,70 +26,88 @@
     <button class="btn-sm btn-success" id="show-filter">Filtrera din sökning</button>
 
 </div>
-<div class="col-md-12" style="background-color: #316a86 !important; color: #fff !important; display: none;margin-top: 1%; margin-bottom: 1%;" id="filter-deals">
-    
-
-        
-
-            <div class="col-md-12" style="margin-top: 2%;">
-                <div class="h-100">
-                    <div class="d-flex justify-content-center h-100">
-                        <div class="searchbar">
-                            <input class="search_input" id="search-comp" type="text" name="" placeholder="Sök efter Elbolag...." style="color: #fff;">
-                            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+<div class="col-md-12" style="background-color: #316a86 !important; padding-top: 1% !important; padding-bottom: 1% !important; color: #fff !important; display: none;margin-top: 1%; margin-bottom: 1%;" id="filter-deals">
 
 
-            <div class="col-lg-4 col-md-12" style="margin-bottom: 1%;">
-                
-                <div class="col-lg-12" data-toggle="buttons">
-                    <h5>Filtrera på pris eller betyg</h5>
-                    <label class="btn btn-block btn-success" id="price">
-                        <input type="radio" name="options" id="option1" autocomplete="off"> Pris
-                    </label>
-                    <label class="btn btn-block btn-success" id="rating">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Betyg
-                    </label>
+
+
+    <div class="col-md-12" style="margin-top: 3% !important;">
+        <div class="h-100">
+            <div class="d-flex justify-content-center h-100">
+                <div class="searchbar">
+                    <input class="search_input" id="search-comp" type="text" name="" placeholder="Sök efter Elbolag...." style="color: #fff;">
+                    <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-12" style="margin-bottom: 1%;">
-               
-                <div class="col-lg-12" data-toggle="buttons">
-                    <h5>Vill du ha ett miljöavtal?</h5>
-                    <label class="btn btn-block btn-success" id="yes-friendly">
-                        <input type="radio" name="options" id="option1" autocomplete="off"> Ja
-                    </label>
-                    <label class="btn btn-block btn-success" id="no-friendly">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Nej
-                    </label>
-                </div>
+        </div>
+
+    </div>
+
+
+    <div class="col-lg-12" style="border: 1px solid #fff;">
+        <div class="col-lg-4 col-md-12" style="margin-bottom: 1%;">
+            <h5>Vill du ha ett miljöavtal?</h5>
+            <div class="col-lg-12" style="margin-left: 2% !important;">
+                <label for="yes-friendly" class="radio">
+                    <input type="radio" name="yes-friendly" id="yes-friendly" autocomplete="off"> Ja
+                </label>
+                <label for="no-friendly"class="radio">
+                    <input type="radio" name="yes-friendly" id="no-friendly" autocomplete="off"> Nej
+                </label>
             </div>
-            <div class="col-lg-4 col-md-12" style="margin-bottom: 1%;">
-                
-                <div class="col-lg-12" data-toggle="buttons">
-                    <h5>Vilken fakturatyp letar du efter?</h5>
-                    <label class="btn btn-block btn-success" id="autogiro">
-                        <input type="radio" name="options" id="option1" autocomplete="off"> Autogiro
-                    </label>
-                    <label class="btn btn-block btn-success" id="e-faktura">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> E-Faktura
-                    </label>
-                    <label class="btn btn-block btn-success" id="pappersfaktura">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> Pappersfaktura
-                    </label>
-                    
-                </div>
+        </div>
+        <div class="col-lg-4 col-md-12" style="margin-bottom: 1%;">
+            <h5>Välj bostad</h5>
+            <div class="col-lg-12" data-toggle="buttons" style="margin-left: 2%;">
+
+                <label for="yes-house" class="checkbox">
+                    <input type="checkbox" name="yes-house" id="yes-house" autocomplete="off"> Hus
+                </label>
+                <label for="yes-appartment"class="checkbox">
+                    <input type="checkbox" name="yes-appartment" id="yes-appartment" autocomplete="off"> Lägenhet / Sommarstuga
+                </label>
             </div>
-            <div class="col-md-12" style="margin-bottom: 1%;">
-                <div class="col-lg-12" data-toggle="buttons">
-                    <button class="btn btn-danger">Starta om filtrering</button>
-                </div>
-                </div>
+        </div>
+        <div class="col-lg-4 col-md-12" style="margin-bottom: 1%;">
+            <h5>Vilken fakturatyp letar du efter?</h5>
+            <div class="col-lg-12" data-toggle="buttons" style="margin-left: 2%;">
+
+                <label class="checkbox">
+                    <input type="checkbox" name="autogiro" id="autogiro" autocomplete="off"> Autogiro
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" name="e-faktura" id="e-faktura" autocomplete="off"> E-Faktura
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" name="pappersfaktura" id="pappersfaktura" autocomplete="off"> Pappersfaktura
+                </label>
+
             </div>
+        </div>
+        <div class="col-md-12" style="margin-bottom: 1%;">
+            <div class="col-lg-2 col-md-12" data-toggle="buttons">
+                <button class="btn btn-block btn-success" id="filter-start">Filtrera</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="col-lg-4 col-md-12 center-block">
+
+            <div class="btn-group-sm btn-group-vertical center-block" data-toggle="buttons" style="margin-bottom: 4% !important;">
+                <h5>Sortera på pris eller betyg</h5>
+                <label class="btn btn-default" id="price">
+                    <input type="radio" name="options" id="option1" autocomplete="off"> Pris
+                </label>
+                <label class="btn btn-default" id="rating">
+                    <input type="radio" name="options" id="option2" autocomplete="off"> Betyg
+                </label>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
 <div class="col-lg-12 custom-filter" id="filtered-ready">
     <div class="preloader" style="display: none;">
@@ -98,7 +116,7 @@
     </div>
     <hr />
     <div class="col-lg-12">
-        <p class="lead" style="color: #1b5b82;">Visar<span id="amount"></span> elavtal för postnummer @Model.Postnummer och elförbrukning @Model.Förbrukning</p>
+        <p class="lead" style="color: #1b5b82;">Visar<span id="amount"></span> elavtal med avtalstyp @Model.Typ för postnummer @Model.Postnummer och elförbrukning @Model.Förbrukning</p>
     </div>
     <hr>
     <div class="filter-by-number" id="filter-by-number">
@@ -107,7 +125,7 @@
 
             if (item.IsInvicible)
             {
-                <div class="row to-hide center-block search-tool" invicible="True" autogiro="@item.Autogiro.ToString()" efaktura="@item.EFaktura.ToString()" pfaktura="@item.Pappersfaktura.ToString()" rating="@item.Rating" price="@item.Price.ToString(specifier, culture)" style="display: none !important; border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;">
+                <div class="row to-hide center-block search-tool"  house="@item.House.ToString()" appartment="@item.Appartment.ToString()"invicible="True" autogiro="@item.Autogiro.ToString()" efaktura="@item.EFaktura.ToString()" pfaktura="@item.Pappersfaktura.ToString()" rating="@item.Rating" price="@item.Price.ToString(specifier, culture)" style="display: none !important; border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;">
                     <div class="col-md-2">
                         <h3></h3>
                         @if (item.Image != null)
@@ -187,7 +205,7 @@
             }
             else
             {
-                <div class="row to-hide center-block search-tool"  invicible="False" autogiro="@item.Autogiro.ToString()" efaktura="@item.EFaktura.ToString()" pfaktura="@item.Pappersfaktura.ToString()" rating="@item.Rating.ToString()" price="@item.Price.ToString(specifier, culture)" style="border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;">
+                <div class="row to-hide center-block search-tool" house="@item.House.ToString()" appartment="@item.Appartment.ToString()" invicible="False" autogiro="@item.Autogiro.ToString()" efaktura="@item.EFaktura.ToString()" pfaktura="@item.Pappersfaktura.ToString()" rating="@item.Rating.ToString()" price="@item.Price.ToString(specifier, culture)" style="border-bottom: 1px solid #e8e6e4; margin-bottom: 1%; margin-top: 1%;">
                     <div class="col-md-2">
                         <h3></h3>
                         @if (item.Image != null)
@@ -279,71 +297,10 @@
             $("#filter-deals").slideToggle(200);
         })
 
-        $("#no-friendly").on("click", function () {
-            $(".search-tool").show();
-            GetVisibleDeals();
-        });
-        $("#yes-friendly").on("click", function () {
-
-
-            $(".search-tool").each(function () {
-                var element = $(this);
-                var attr = $(this).find(".friendly");
-                //alert(attr.length);
-                if (attr.length < 1) {
-                    element.hide()
-                }
-
-            });
-            GetVisibleDeals();
-        });
-        $("#autogiro").on("click", function () {
-
-
-            $(".search-tool").each(function () {
-                var element = $(this);
-                var attr = $(this).attr("autogiro");
-                //alert(attr.length);
-                if (attr == "False") {
-                    
-                    element.hide()
-                }
-
-            });
-            GetVisibleDeals();
-        });
-        $("#e-faktura").on("click", function () {
-
-
-            $(".search-tool").each(function () {
-                var element = $(this);
-                var attr = $(this).attr("efaktura");
-                //alert(attr.length);
-                
-                if (attr == "False") {
-                   
-                    element.hide()
-                }
-
-            });
-            GetVisibleDeals();
-        });
-        $("#pappersfaktura").on("click", function () {
-
-
-            $(".search-tool").each(function () {
-                var element = $(this);
-                var attr = $(this).attr("pfaktura");
-                //alert(attr.length);
-                if (attr == "False") {
-                    
-                    element.hide()
-                }
-
-            });
-            GetVisibleDeals();
-        });
        
+       
+       
+     
         function GetVisibleDeals() {
             
             var amount = $(".search-tool:visible").length;
@@ -363,7 +320,7 @@
                 $(".search-tool").show();
             } else {
 
-                $(".search-tool").each(function () {
+                $(".search-tool:visible").each(function () {
                     var element = $(this);
                     var company = $(this).find(".comp-name").text().toLowerCase().trim();
                     //alert(company + value)
@@ -373,7 +330,102 @@
 
                 });
             }
-    });
+        });
+
+        $("#filter-start").on("click", function () {
+            //kollar om autogiro
+            $(".search-tool").show();
+           
+            if ($('#autogiro').prop('checked')) {
+                
+                $(".search-tool").each(function () {
+                    var element = $(this);
+                    var attr = $(this).attr("autogiro");
+                    //alert(attr.length);
+                    if (attr == "False") {
+
+                        element.hide()
+                    }
+
+                });
+            } 
+            //kollar om pappersfaktura
+            if ($('#pappersfaktura').prop('checked')) {
+               
+                $(".search-tool").each(function () {
+                    
+                    var element = $(this);
+                    var attr = $(this).attr("pfaktura");
+                    //alert(attr.length);
+                    if (attr == "False") {
+
+                        element.hide();
+                    }
+
+                });
+            }
+            //kollar om e-faktura
+            if ($('#e-faktura').prop('checked')) {
+                
+                $(".search-tool").each(function () {
+                    
+                    var element = $(this);
+                    var attr = $(this).attr("efaktura");
+                    //alert(attr.length);
+                    if (attr == "False") {
+
+                        element.hide()
+                    } 
+
+                });
+            }
+            if ($('#yes-house').prop('checked')) {
+                
+                $(".search-tool").each(function () {
+                    
+                    var element = $(this);
+                    var attr = $(this).attr("house");
+                    //alert(attr.length);
+                    if (attr == "False") {
+
+                        element.hide()
+                    } 
+
+                });
+            }
+            if ($('#yes-appartment').prop('checked')) {
+                
+                $(".search-tool").each(function () {
+                    
+                    var element = $(this);
+                    var attr = $(this).attr("appartment");
+                    //alert(attr.length);
+                    if (attr == "False") {
+
+                        element.hide()
+                    }
+
+                });
+            }
+            if ($('#yes-friendly').prop('checked')) {
+                
+                $(".search-tool:visible").each(function () {
+                    
+                    //alert(attr.length);
+                    var element = $(this);
+                    var attr = $(this).find(".friendly");
+                    //alert(attr.length);
+                    if (attr.length < 1) {
+                        element.hide()
+                    }
+
+                });
+            }
+            $(".preloader").show()
+            setTimeout(function () { $(".preloader").hide() }, 200);
+            
+            GetVisibleDeals();
+        });
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
@@ -381,6 +433,7 @@
 
     $("#price").on("click", function () {
         // get array of elements
+        
         var myArray = $(".search-tool");
 
         var count = 0;
@@ -405,7 +458,7 @@
         // put sorted results back on page
         $("#filtered-ready").append(myArray);
 
-
+        
         });
 
     $("#rating").on("click", function () {

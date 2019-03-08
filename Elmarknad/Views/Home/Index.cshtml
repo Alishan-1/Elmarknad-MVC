@@ -43,7 +43,7 @@
         padding: 0 !important;
     }
 
-    .multiselect {
+    /*.multiselect {
         width: 100%;
     }
 
@@ -76,7 +76,7 @@
 
             #checkboxes label:hover {
                 background-color: #1e90ff;
-            }
+            }*/
 </style>
 
 <div class="container-fluid custom" id="first-page">
@@ -133,7 +133,7 @@
 
                     <div class="form-group center-block">
                         <div class="col-md-6">
-                            @Html.TextBoxFor(m => m.Förbrukning, "{0:#.#}", new { @class = "form-control", @placeholder = "Din elförbrukning", @type = "number", @min = "0", @max = "30000",@step = "1000" })
+                            @Html.TextBoxFor(m => m.Förbrukning, "{0:#.#}", new { @class = "form-control", @placeholder = "Din elförbrukning", @type = "number", @min = "0", @max = "30000"})
                             @Html.ValidationMessageFor(m => m.Förbrukning, "", new { @class = "text-danger val-forbrukning" })
                         </div>
                         <div class="col-md-6">
