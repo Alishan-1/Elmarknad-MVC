@@ -1,5 +1,6 @@
 ﻿using Elmarknad.Models.ViewModels;
 using Elmarknad.Repo;
+using Elmarknad.Repo.ActionFilters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,12 @@ using System.Web.Mvc;
 
 namespace Elmarknad.Controllers
 {
-    [Authorize(Roles = "Admin")]
+   
     public class HomeController : Controller
     {
         private SearchResultRepository _searchRepo = new SearchResultRepository();
 
+        [OutputCache(Duration = 600)]
         public ActionResult Index()
         {
             var model = new EnhancedSearchViewModel();
@@ -48,6 +50,7 @@ namespace Elmarknad.Controllers
         #endregion
         #region ShowResult
         [HttpGet]
+        [WhitespaceFilter]
         public ActionResult Prislista(EnhancedSearchViewModel model)
         {
 
@@ -77,6 +80,7 @@ namespace Elmarknad.Controllers
 
         [HttpGet]
         [Route("lista-elavtal")]
+        [WhitespaceFilter]
         public ActionResult Lista(EnhancedSearchViewModel model)
         {
 

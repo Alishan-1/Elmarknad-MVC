@@ -275,6 +275,7 @@
     <Compile Include="Models\Webscrape\RemovedUserModel.cs" />
     <Compile Include="Models\Webscrape\ScrapeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repo\ActionFilters\WhiteSpaceFilter.cs" />
     <Compile Include="Repo\BlogRepository.cs" />
     <Compile Include="Repo\ClientRepository.cs" />
     <Compile Include="Repo\CustomerDealRepository.cs" />
@@ -295,7 +296,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom-contact.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -311,6 +315,11 @@
     </Content>
     <Content Include="Models\Webscrape\jsonEl.json" />
     <Content Include="Connected Services\Application Insights\ConnectedService.json" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Properties\PublishProfiles\Elmarknad - Web Deploy.pubxml">
       <SubType>Designer</SubType>
     </None>
@@ -399,7 +408,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DataAnnotationsExtensions\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>

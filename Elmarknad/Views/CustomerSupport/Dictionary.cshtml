@@ -30,7 +30,7 @@
                 <div class="d-flex justify-content-center h-100">
                     <div class="searchbar">
                         <input class="search_input" id="input-words" type="text" name="" placeholder="Sök...">
-                        <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                        
                     </div>
                 </div>
             </div>
@@ -91,15 +91,15 @@
 <script>
     $("#input-words").on("keyup", function () {
        
-        
-        var value = $("#input-words").val();
+
+        var value = $("#input-words").val().toLowerCase();
         if (value.length == 0) {
             $(".list-group-item").show();
         } else {
 
             $(".list-group-item").each(function () {
                 var element = $(this);
-                var info = $(this).find(".info").text().toLowerCase().trim();
+                var info = $(this).find(".info").text().toLowerCase().trim().toLowerCase();
                 //alert(company + value)
                 if (!info.startsWith(value)) {
                     element.hide()

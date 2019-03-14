@@ -1,4 +1,4 @@
-﻿@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+﻿
 
 body {
     padding-top: 50px;
@@ -25,7 +25,7 @@ textarea {
     max-width: 580px;
 }
 /* Footer */
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
 
 section {
     padding: 60px 0;
@@ -114,8 +114,8 @@ section {
 }
 
 .paddingTB60 {
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding-top: 2%;
+    padding-bottom: 1%;
 }
 
 .bgcolor-skyblue {
@@ -164,9 +164,9 @@ section {
         background-size: cover;
         background-position: center center;
         color: #fff;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        height: 20%;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        
     }
 
     .lg-text {
@@ -296,7 +296,7 @@ section {
 
 /* padding-margin */
 .paddingTB60 {
-    padding-top: 60px;
+    padding-top: 1% !important;
     padding-bottom: 60px;
 }
 
@@ -483,19 +483,18 @@ section {
     outline: 0;
     background: none;
     width: 0;
-    caret-color: transparent;
+    width: 90%;
     line-height: 40px;
-    transition: width 0.4s linear;
 }
     .search_input::placeholder {
         color: #fff;
-        font-size: 1.5em;
+        font-size: 1em;
     }
 .searchbar:hover > .search_input {
     padding: 0 10px;
-    width: 450px;
-    caret-color: red;
-    transition: width 0.4s linear;
+    width: 90%;
+    
+    
 }
 
 .searchbar:hover > .search_icon {

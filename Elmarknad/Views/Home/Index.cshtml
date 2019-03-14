@@ -43,40 +43,8 @@
         padding: 0 !important;
     }
 
-    /*.multiselect {
-        width: 100%;
-    }
-
-    .selectBox {
-        position: relative;
-    }
-
-        .selectBox select {
-            width: 100%;
-            font-weight: bold;
-        }
-
-    .overSelect {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-    }
-
-    #checkboxes {
-        display: none;
-        border: 1px #dadada solid;
-        background-color: #fff;
-    }
-
-        #checkboxes label {
-            display: block;
-        }
-
-            #checkboxes label:hover {
-                background-color: #1e90ff;
-            }*/
+    
+   
 </style>
 
 <div class="container-fluid custom" id="first-page">
@@ -101,7 +69,7 @@
 
                     <div class="form-group">
                         <div class="col-md-12">
-                            <button class="btn btn-block btn-success display-spinner" id="btn-postnumber">Sök</button>
+                            <button class="btn btn-block btn-success display-spinner" id="btn-postnumber">Sök <span class="fa fa-arrow-circle-o-right "></span></button>
                         </div>
                     </div>
                     <div class="preloader" style="display: none;">
@@ -146,8 +114,8 @@
 
 
                     <div class="form-group">
-                        <div class="col-md-6">
-                            <input type="submit" value="Sök nu" class="btn btn-block btn-success" />
+                        <div class="col-md-6" id="this-search">
+                            <input type="submit" id="search-now" value="Sök nu" class="btn btn-block btn-success" />
                         </div>
                         <div class="col-md-6">
                             <button value="next" class="btn btn-block btn-success display-spinner" id="enhanced-search" style="margin-top: 1%;">Utökad sökning</button>
@@ -266,6 +234,29 @@
 
         var expanded = false;
 
+        $("#search-now").on("click", function () {
+        
+            
+            var förbrukning = $("#F_rbrukning").val();
+            var IsValid = true;
+            if (förbrukning < 1) {
+                IsValid = false;
+              
+            }
+
+            var avtalstyp = $("#Typ").val();
+            if (avtalstyp.length < 1) {
+                IsValid = false;
+            
+            }
+            if (IsValid) {
+                formStorage.elfbr = $("#F_rbrukning").val();
+                formStorage.avtal = $("#Typ").val();
+                $(".preloader").show();
+                saveAsJson();
+               
+            }
+        });
         $("#enhanced-search").on("click", function (e) {
             e.preventDefault();
             $(".val-forbrukning").empty();
