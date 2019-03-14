@@ -566,3 +566,15 @@ section {
         
     }
 }
+@media (max-width:768px) {
+    #custom-navbar {
+        padding-left: 0 !important;
+    }
+    .nav {
+        border-bottom: 1px solid #ff782f !important;
+    }
+}
+
+.nav-links-custom:hover {
+    color: #fff !important;
+}

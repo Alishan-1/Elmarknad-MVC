@@ -69,7 +69,7 @@
 
                     <div class="form-group">
                         <div class="col-md-12">
-                            <button class="btn btn-block btn-success display-spinner" id="btn-postnumber">Sök <span class="fa fa-arrow-circle-o-right "></span></button>
+                            <button class="btn btn-block btn-success display-spinner" id="btn-postnumber">Sök <span class="fa fa-long-arrow-right"></span></button>
                         </div>
                     </div>
                     <div class="preloader" style="display: none;">
@@ -100,11 +100,11 @@
                 <div class="col-md-offset-1 center-block">
 
                     <div class="form-group center-block">
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             @Html.TextBoxFor(m => m.Förbrukning, "{0:#.#}", new { @class = "form-control", @placeholder = "Din elförbrukning", @type = "number", @min = "0", @max = "30000"})
                             @Html.ValidationMessageFor(m => m.Förbrukning, "", new { @class = "text-danger val-forbrukning" })
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             @Html.DropDownListFor(m => m.Typ, Model.TypList, "Välj typ av avtal", new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Typ, "", new { @class = "text-danger val-typ" })
                             <input class="ElområdeId-append" name="ElområdeId" type="hidden" value="">
@@ -114,11 +114,11 @@
 
 
                     <div class="form-group">
-                        <div class="col-md-6" id="this-search">
-                            <input type="submit" id="search-now" value="Sök nu" class="btn btn-block btn-success" />
+                        <div class="col-lg-6" id="this-search">
+                            <button type="submit" id="search-now" class="btn btn-block btn-success">Sök nu <span class="fa fa-search"></span></button>
                         </div>
-                        <div class="col-md-6">
-                            <button value="next" class="btn btn-block btn-success display-spinner" id="enhanced-search" style="margin-top: 1%;">Utökad sökning</button>
+                        <div class="col-lg-6">
+                            <button value="next" class="btn btn-block btn-success display-spinner" id="enhanced-search" style="margin-top: 1%;">Utökad sökning <span class="fa fa-long-arrow-right"></span></button>
                         </div>
                     </div>
                     <div class="preloader" style="display: none;">
@@ -171,7 +171,7 @@
 
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="submit" value="Sök" class="btn btn-success btn-block display-spinner" />
+                            <button type="submit" class="btn btn-success btn-block display-spinner" >Sök <span class="fa fa-search"></span></button>
                         </div>
                     </div>
                     <div class="preloader" style="display: none;">
