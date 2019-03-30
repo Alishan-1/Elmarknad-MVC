@@ -55,7 +55,7 @@ namespace Elmarknad.Repo
             return sign;
         }
         
-        private string GetEmailTemplate(SignDealViewModel model) {
+        private string GetEmailTemplate(SignDealViewModel model)  {
 
 
             var company = GetCompany(model);
@@ -66,82 +66,82 @@ namespace Elmarknad.Repo
             string htmlFooter = File.ReadAllText(pathFooter);
             var email = html + "<tr>" +
                         "<td align='center' valign='top' style='border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 10px; padding-right: 10px;' class='floaters'>" +
-                            "<table width='400' border='0' cellpadding='0' cellspacing='0' align='right' valign='top' style='border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0; margin: 0; padding: 0; display: inline-table; float: none;' class='floater'>" +
+                            "<table width='400' border='0' cellpadding='0' cellspacing='0' align='right' valign='top' style=' mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0; margin: 0; padding: 0; display: inline-table; float: none;' class='floater'>" +
                                 "<tr>" +
-                                    "<td align='center' valign='top' style='border-collapse: collapse;border:2px solid #808080; border-spacing: 0; margin: 0; padding: 0; padding-left: 15px; padding-right: 15px; font-size: 17px; font-weight: 400; line-height: 160%;" +
+                                    "<td align='center' valign='top' style='border:1px solid #808080 !important; border-spacing: 0; margin: 0; padding: 0; padding-left: 15px; padding-right: 15px; font-size: 17px; font-weight: 400; line-height: 160%;" +
                                     "padding-top: 30px;padding-bottom: 30px;" +
                                     "font-family: sans-serif;" +
                                     "color: #000000;'>" +
                                     "<h3 style='color:#0B5073; text-decoration: underline;'>Uppgifter från dig</h3>" +
                                         "<br />" +
-                                        "<table style='border: 1px solid #f9f9f9; list-style:none;'>" +
+                                        "<table class='custom-table' style='border-collapse: separate !important; border: 1px solid #1b5b82; list-style:none;'>" +
                                             "<tr align='left'>" +
-                                                "<th>Namn: </th>" +
+                                                "<th style='font-weight: 600'>Namn: </th>" +
                                                 "<td>" + model.CustomerInfo.Firstname + " " + model.CustomerInfo.Lastname + "</td>" +
                                             "</tr>" +
                                             "<tr align='left'>" +
-                                                "<th>Personummer: </th>" +
+                                                "<th style='font-weight: 600'>Personummer: </th>" +
                                                 "<td>" + model.CustomerInfo.SocialSecurity + "</td>" +
                                             "</tr>" +
                                             "<tr align='left'>" +
-                                                "<th>Epost: </th>" +
+                                                "<th style='font-weight: 600'>Epost: </th>" +
                                                 "<td>" + model.CustomerInfo.Email +  "</td>" +
                                             "</tr>" +
                                             "<tr align='left'>" +
-                                                "<th>Adress: </th>" +
+                                                "<th style='font-weight: 600'>Adress: </th>" +
                                                 "<td>" + model.CustomerInfo.Address  + "</td>" +
                                             "</tr>" +
                                             "<tr align='left'>" +
-                                                "<th>Postnummer: </th>" +
+                                                "<th style='font-weight: 600'>Postnummer: </th>" +
                                                 "<td>" + model.CustomerInfo.Postnumber +  "</td>" +
                                             "</tr>" +
                                             "<tr align='left'>" +
-                                                "<th>Ort: </th>" +
+                                                "<th style='font-weight: 600'>Ort: </th>" +
                                                 "<td>" + model.CustomerInfo.City + "</td>" +
                                             "</tr>" +
                                             "<tr align='left'>" +
-                                                "<th>Betalmetod: </th>" +
+                                                "<th style='font-weight: 600'>Betalmetod: </th>" +
                                                 "<td>" + model.CustomerInfo.Paymentmethod +  "</td>" +
                                             "</tr>" +
                                         "</table>" +
                                     "</td>" +
                                 "</tr>" +
                             "</table>" +
-                             "<table width='400' border='0' cellpadding='0' cellspacing='0' align='right' valign='top' style='border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0; margin: 0; padding: 0; display: inline-table; float: none;' class='floater'>" +
+                             "<table width='400' border='0' cellpadding='0' cellspacing='0' align='right' valign='top' style='mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0; margin: 0; padding: 0; margin-top: 50px !important; display: inline-table; float: none;' class='floater'>" +
                                 "<tr>" +
-                                    "<td align='center' valign='top' style='border-collapse: collapse;border:2px solid #808080; border-spacing: 0; margin: 0; padding: 0; padding-left: 15px; padding-right: 15px; font-size: 17px; font-weight: 400; line-height: 160%;" +
+                                    "<td align='center' valign='top' style='border:1px solid #808080; border-spacing: 0; margin: 0; padding: 0; padding-left: 15px; padding-right: 15px; font-size: 17px; font-weight: 400; line-height: 160%;" +
                                     "padding-top: 30px;padding-bottom: 30px;" +
                                     "font-family: sans-serif;" +
                                     "color: #000000;'>" +
                                     "<h3 style='color:#0B5073; text-decoration: underline;'>Uppgifter om ditt elavtal</h3>" +
                                         "<br />" +
-                                        "<table style='border: 1px solid #f9f9f9; list-style:none;'>" +
+                                        "<table  class='custom-table' style='border-collapse: separate !important; border: 1px solid #1b5b82; list-style:none;'>" +
                                             "<tr align='left'>" +
-                                                "<th>Elbolag: </th>" +
+                                                "<th style='font-weight: 600'>Elbolag: </th>" +
                                                 "<td>" + company.Company +  "</td>" +
                                             "</tr>" +
                                             "<tr align='left'>" +
-                                                "<th>Avtal: </th>" +
+                                                "<th style='font-weight: 600'>Avtal: </th>" +
                                                 "<td>" + company.Contract + "</td>" +
                                             "</tr>" +
                                             "<tr align='left'>" +
-                                                "<th>Totalt Pris: </th>" +
+                                                "<th style='font-weight: 600'>Totalt Pris: </th>" +
                                                 "<td>" + company.Price + "</td>" +
                                             "</tr>" +
                                             "<tr align='left'>" +
-                                                "<th>Automatiskförlängning: </th>" +
+                                                "<th style='font-weight: 600'>Automatiskförlängning: </th>" +
                                                 "<td>" + company.Automatiskförlängning + "</td>" +
                                             "</tr>" +
                                             "<tr align='left'>" +
-                                                "<th>Omteckningsrätt: </th>" +
+                                                "<th style='font-weight: 600'>Omteckningsrätt: </th>" +
                                                 "<td>" + company.Omteckningsrätt + " </td>" +
                                             "</tr>" +
                                             "<tr align='left'>" +
-                                                "<th>Uppsägningstid: </th>" +
+                                                "<th style='font-weight: 600'>Uppsägningstid: </th>" +
                                                 "<td>" + company.Uppsägningstid + "</td>" +
                                             "</tr>" +
                                             "<tr align='left'>" +
-                                                "<th>Övrig info: </th>" +
+                                                "<th style='font-weight: 600'>Övrig info: </th>" +
                                                 "<td>" + company.ExtraInfo + "</td>" +
                                             "</tr>" +
                                         "</table>" +

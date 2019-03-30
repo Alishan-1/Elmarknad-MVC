@@ -14,7 +14,7 @@ namespace Elmarknad.Controllers
     {
         private SearchResultRepository _searchRepo = new SearchResultRepository();
 
-        //[OutputCache(Duration = 600)]
+        [OutputCache(Duration = 600)]
         public ActionResult Index()
         {
             var model = new EnhancedSearchViewModel();

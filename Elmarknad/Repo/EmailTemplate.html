@@ -11,7 +11,7 @@
         body {
             margin: 0;
             padding: 0;
-            min-width: 100%;
+            min-width: 80%;
             width: 100% !important;
             height: 100% !important;
         }
@@ -56,12 +56,22 @@
             }
 
         /* Extra floater space for advanced mail clients only */
-        @media all and (max-width: 600px) {
+        @media all and (max-width: 768px) {
             .floater {
-                width: 320px;
+                width: 150px !important;
+            }
+            .body {
+                margin: 0;
+                padding: 0;
+                
+                width: 200px !important;
+                height: 200px !important;
+            }
+            .custom-table tr, .custom-table td, .custom-table table, .custom-table th {
+                width: 250px !important;
+                max-width: 300px !important;
             }
         }
-
         /* Set color for auto links (addresses, dates, etc.) */
         a, a:hover {
             color: #127DB3;
@@ -69,6 +79,17 @@
 
         .footer a, .footer a:hover {
             color: #999999;
+        }
+        .custom-table{
+            width: 50% !important;
+        }
+        .custom-table tr, .custom-table td, .custom-table table, .custom-table th {
+            border-collapse: separate !important;
+            border: 1px solid #127DB3;
+            
+        }
+        .custom-table td, .custom-table th {
+            padding: 10px !important;
         }
     </style>
 
@@ -79,7 +100,7 @@
 
 <!-- BODY -->
 <!-- Set message background color (twice) and text color (twice) -->
-<body topmargin="0" rightmargin="0" bottommargin="0" leftmargin="0" marginwidth="0" marginheight="0" width="100%" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%; height: 100%; -webkit-font-smoothing: antialiased; text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; line-height: 100%;
+<body topmargin="0" rightmargin="0" bottommargin="0" leftmargin="0" marginwidth="0" marginheight="0" width="50%" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%; height: 100%; -webkit-font-smoothing: antialiased; text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; line-height: 100%;
 	background-color: #FFFFFF;
 	color: #000000;"
       bgcolor="#FFFFFF"
@@ -87,7 +108,7 @@
 
     <!-- SECTION / BACKGROUND -->
     <!-- Set section background color -->
-    <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%;" class="background">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 50%!important; collapse; border-spacing: 0; margin: 0; padding: 0;" class="background">
         <tr>
             <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;"
                 bgcolor="#127DB3">
